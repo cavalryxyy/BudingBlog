@@ -1,6 +1,6 @@
 # Yuanyuan Xu - Portfolio
 
-Welcome to my professional portfolio showcasing my work as a Data Scientist & AI Engineer at Bekaert.
+Welcome to my professional portfolio showcasing my work as a Data Scientist & AI Engineer.
 
 ## 🚀 Live Demo
 
@@ -53,7 +53,7 @@ BudingBlog/
 │   ├── Patent Landscaping.html
 │   ├── Portfolio Analysis.html
 │   ├── Tensile Strength Predictive Model.html
-│   ├── Die Driver Predictive Model.html
+│   ├── Hypothesis & Predictive Model.html
 │   ├── Trajectory Tracking.html
 │   ├── Web Calculator.html
 │   └── Galva Process Optimization.html
