@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuanyuan Xu - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .job-role {
+            margin-bottom: 2rem;
+        }
+        .job-role h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 0.5rem;
+        }
+        .experience {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .experience:hover {
+            transform: translateY(-5px);
+        }
+        .experience h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .experience p {
+            margin-bottom: 0;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Yuanyuan Xu</h1>
+        <p>Data Scientist & AI Engineer</p>
+    </header>
+    <div class="container">
+        <div class="job-role">
+            <h2>Data Scientist & AI Engineer (Bekaert - Global Advanced Digital Solution, 2023~Present)</h2>
+            <div class="experience" onclick="navigateToFlowchart('Industrial IoT Manufacturing Optimization')">
+                <h3>Industrial Process Optimization (MLOps)</h3>
+                <p>Click to view the technology flowchart and description.</p>
+            </div>
+            <div class="experience" onclick="navigateToFlowchart('Sentiment analysis')">
+                <h3>Sentiment Analysis (AI Application)</h3>
+                <p>Click to view the technology flowchart and description.</p>
+            </div>
+            <div class="experience" onclick="navigateToFlowchart('Patent Landscaping')">
+                <h3>Patent Landscaping (AI Application)</h3>
+                <p>Click to view the technology flowchart and description.</p>
+            </div>
+        </div>
+
+        <div class="job-role">
+            <h2>Data Engineer & Data Analyst (Bekaert Technology Research Development Company, 2020~2022)</h2>
+            <div class="experience" onclick="navigateToFlowchart('Portfolio Analysis')">
+                <h3>Portfolio Analysis (Business Analytics / MLOps)</h3>
+                <p>Click to view the technology flowchart and description.</p>
+            </div>
+            <div class="experience" onclick="navigateToFlowchart('Tensile Strength Predictive Model')">
+                <h3>Tensile Strength Predictive Model (MLOps)</h3>
+                <p>Click to view the technology flowchart and description.</p>
+            </div>
+            <div class="experience" onclick="navigateToFlowchart('Die Driver Predictive Model')">
+                <h3>Die Driver Hypothesis Test & Predictive Model (MLOps)</h3>
+                <p>Click to view the technology flowchart and description.</p>
+            </div>
+            <div class="experience" onclick="navigateToFlowchart('Trajectory Tracking')">
+                <h3>Vehicle Trajectory Tracking (Data Analytics)</h3>
+                <p>Click to view the technology flowchart and description.</p>
+            </div>
+        </div>
+
+        <div class="job-role">
+            <h2>Python Developer (Bekaert Technology Research Development Company, 2019~2020)</h2>
+            <div class="experience" onclick="navigateToFlowchart('Industrial IoT Manufacturing Optimization')">
+                <h3>Industrial IoT & Manufacturing Optimization (Computer Vision)</h3>
+                <p>Click to view the technology flowchart and description.</p>
+            </div>
+            <div class="experience" onclick="navigateToFlowchart('Web Calculator')">
+                <h3>Web Calculator (Web Applications & Cloud Infrastructure)</h3>
+                <p>Click to view the technology flowchart and description.</p>
+            </div>
+            <div class="experience" onclick="navigateToFlowchart('Galva Process Optimization')">
+                <h3>Calculate Internal Lamellar Spacing (Computer Vision)</h3>
+                <p>Click to view the technology flowchart and description.</p>
+            </div>
+            <div class="experience" onclick="navigateToFlowchart('Galva Process Optimization')">
+                <h3>Micro Structure (Data Analytics / Machine Learning)</h3>
+                <p>Click to view the technology flowchart and description.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Yuanyuan Xu. All rights reserved.</p>
+    </footer>
+    <script>
+        function navigateToFlowchart(projectName) {
+            // Keep spaces in filename and encode them for URL
+            const filename = projectName + '.html';
+            const encodedFilename = encodeURIComponent(filename);
+            window.location.href = `test%20html/${encodedFilename}`;
+        }
+    </script>
+</body>
+</html> 
