@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mermaid Flowcharts Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .flowchart {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        .flowchart h2 {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+        .instructions {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196F3;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mermaid Flowcharts Test</h1>
+        
+        <div class="instructions">
+            <h3>📝 使用说明</h3>
+            <p><strong>要测试新的流程图：</strong></p>
+            <ol>
+                <li>修改标题 "MPS Manufacturing System" 为您的项目名称</li>
+                <li>替换 flowchart LR 开始到结束的代码为您的Mermaid代码</li>
+                <li>保存文件并刷新浏览器查看效果</li>
+            </ol>
+        </div>
+        
+        <div class="flowchart">
+            <h2>MPS Manufacturing System</h2>
+            <div class="mermaid">
+flowchart LR
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef device fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef gateway fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef scada fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef cloud fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef analytics fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef decision fill:#FFB6C1,stroke:#FF69B4,color:#333,stroke-width:2px,rounded:5px
+    classDef storage fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+    classDef batch fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph edge_devices["Production Hardware"]
+        ir_thermometer[IR Thermometer/Camera]
+        plc[Production PLC]
+    end
+    
+    subgraph gateways["Communication"]
+        gateway[Edge Gateway Device]
+    end
+    
+    subgraph control["Control Systems"]
+        scada[WebSCADA System]
+    end
+    
+    subgraph cloud_services["Cloud Platform"]
+        azure_iothub[Azure IoT Hub]
+        stream_analytics["Azure Stream Analytics (Real-time Processing)"]
+    end
+    
+    subgraph data["Data Layer"]
+        synapse["Azure Synapse Analytics (Data Warehouse)"]
+    end
+    
+    subgraph intelligence["Decision Services"]
+        fastapi["FastAPI Service (20-min Batch & Prediction)"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    ir_thermometer -->|Modbus TCP| gateway
+    gateway -->|OPC UA| scada
+    scada -->|REST API| azure_iothub
+    azure_iothub -->|AMQP| stream_analytics
+    stream_analytics -->|Processed Data| synapse
+    synapse -->|Batch Data| fastapi
+    fastapi -->|Predictions & Decisions| scada
+    scada -->|OPC UA Commands| plc
+    plc -->|OPC UA Data| scada
+    scada -->|Historical Data| synapse
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class ir_thermometer,plc device
+    class gateway gateway
+    class scada scada
+    class azure_iothub,stream_analytics cloud
+    class fastapi decision
+    class synapse storage
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+    linkStyle 0,1,7,8 stroke:#FF7F50,stroke-dasharray:0  
+    linkStyle 2,3,4 stroke:#3CB371,stroke-dasharray:0    
+    linkStyle 5,6 stroke:#FF69B4,stroke-dasharray:0
+    linkStyle 9 stroke:#BA55D3,stroke-dasharray:5 5
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html> 

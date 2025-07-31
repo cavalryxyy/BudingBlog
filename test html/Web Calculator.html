@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .flowchart {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        .flowchart h2 {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Web Calculator</h1>
+        
+        <div class="flowchart">
+            <h2>System Architecture</h2>
+            <div class="mermaid">
+flowchart LR
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef frontend fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef backend fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef database fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef cloud fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef auth fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef storage fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+    classDef deployment fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph frontend["Frontend Layer"]
+        react_app["React Application"]
+        dash_components["Dash Components"]
+        bootstrap_ui["Bootstrap UI"]
+    end
+    
+    subgraph backend["Backend Services"]
+        fastapi_app["FastAPI Application"]
+        flask_auth["Flask-Login Authentication"]
+        calculator_engine["Calculator Engine"]
+    end
+    
+    subgraph data["Data Layer"]
+        sqlite_db["SQLite Database"]
+        azure_blob["Azure Blob Storage"]
+    end
+    
+    subgraph cloud_platform["Cloud Platform"]
+        azure_webapp["Azure Web Apps"]
+        azure_pipelines["Azure DevOps CI/CD"]
+    end
+    
+    subgraph deployment["Deployment"]
+        docker_container["Docker Container"]
+        azure_deploy["Azure Deployment"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    react_app -->|HTTP Requests| fastapi_app
+    dash_components -->|Interactive Components| react_app
+    bootstrap_ui -->|UI Framework| react_app
+    fastapi_app -->|Authentication| flask_auth
+    fastapi_app -->|Calculations| calculator_engine
+    calculator_engine -->|Data Storage| sqlite_db
+    calculator_engine -->|File Storage| azure_blob
+    fastapi_app -->|API Responses| react_app
+    docker_container -->|Deployment| azure_webapp
+    azure_pipelines -->|CI/CD| azure_deploy
+    azure_deploy -->|Production| azure_webapp
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class react_app,dash_components,bootstrap_ui frontend
+    class fastapi_app,flask_auth,calculator_engine backend
+    class sqlite_db,azure_blob data
+    class azure_webapp,azure_pipelines cloud
+    class flask_auth auth
+    class docker_container,azure_deploy deployment
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+    linkStyle 0,1,2 stroke:#1E90FF,stroke-dasharray:0  
+    linkStyle 3,4,5 stroke:#9370DB,stroke-dasharray:0    
+    linkStyle 6,7 stroke:#FF7F50,stroke-dasharray:0
+    linkStyle 8,9,10 stroke:#3CB371,stroke-dasharray:0
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html>

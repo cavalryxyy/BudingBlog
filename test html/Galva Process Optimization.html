@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galva Process Optimization</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .flowchart {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        .flowchart h2 {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Galva Process Optimization</h1>
+        
+        <div class="flowchart">
+            <h2>System Architecture</h2>
+            <div class="mermaid">
+flowchart LR
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef legacy fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef migration fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef processing fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef ml fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef cloud fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+    classDef deployment fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph legacy_systems["Legacy Systems"]
+        sas_repositories["SAS Repositories"]
+        sas_cli["SAS CLI"]
+        legacy_models["Legacy SAS Models"]
+    end
+    
+    subgraph migration["Migration Layer"]
+        python_migration["Python Migration Engine"]
+        data_transformation["Data Transformation"]
+        model_conversion["Model Conversion"]
+        pyspark_etl["PySpark ETL Pipeline"]
+    end
+    
+    subgraph processing["Processing Engine"]
+        azure_synapse["Azure Synapse Analytics"]
+        pyspark_processing["PySpark Processing"]
+        data_cleaning["Data Cleaning"]
+        feature_engineering["Feature Engineering"]
+    end
+    
+    subgraph ml_models["ML Models"]
+        python_ml["Python ML Models"]
+        model_training["Model Training"]
+        model_evaluation["Model Evaluation"]
+        optimization_algorithms["Optimization Algorithms"]
+    end
+    
+    subgraph visualization["Visualization"]
+        powerbi_reports["PowerBI Reports"]
+        replicated_visualizations["Replicated Visualizations"]
+        process_dashboards["Process Dashboards"]
+    end
+    
+    subgraph cloud_platform["Cloud Platform"]
+        azure_synapse_platform["Azure Synapse"]
+        azure_devops["Azure DevOps"]
+        azure_storage["Azure Storage"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    sas_repositories -->|Extract| python_migration
+    sas_cli -->|Command Line| python_migration
+    legacy_models -->|Convert| model_conversion
+    python_migration -->|Transform| data_transformation
+    data_transformation -->|Process| pyspark_etl
+    pyspark_etl -->|Load| azure_synapse
+    azure_synapse -->|Process| pyspark_processing
+    pyspark_processing -->|Clean| data_cleaning
+    data_cleaning -->|Engineer| feature_engineering
+    feature_engineering -->|Train| python_ml
+    model_conversion -->|Migrate| python_ml
+    python_ml -->|Train| model_training
+    model_training -->|Evaluate| model_evaluation
+    model_evaluation -->|Optimize| optimization_algorithms
+    optimization_algorithms -->|Visualize| powerbi_reports
+    powerbi_reports -->|Display| replicated_visualizations
+    replicated_visualizations -->|Show| process_dashboards
+    azure_synapse_platform -->|Host| azure_synapse
+    azure_devops -->|Deploy| pyspark_etl
+    azure_storage -->|Store| sas_repositories
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class sas_repositories,sas_cli,legacy_models legacy
+    class python_migration,data_transformation,model_conversion,pyspark_etl migration
+    class azure_synapse,pyspark_processing,data_cleaning,feature_engineering processing
+    class python_ml,model_training,model_evaluation,optimization_algorithms ml
+    class powerbi_reports,replicated_visualizations,process_dashboards visualization
+    class azure_synapse_platform,azure_devops,azure_storage cloud
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+    linkStyle 0,1,2 stroke:#1E90FF,stroke-dasharray:0  
+    linkStyle 3,4,5,6 stroke:#9370DB,stroke-dasharray:0    
+    linkStyle 7,8,9,10 stroke:#FF7F50,stroke-dasharray:0
+    linkStyle 11,12,13,14 stroke:#3CB371,stroke-dasharray:0
+    linkStyle 15,16,17 stroke:#FFA500,stroke-dasharray:0
+    linkStyle 18,19,20 stroke:#BDBDBD,stroke-dasharray:0
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html>

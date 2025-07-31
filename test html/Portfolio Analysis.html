@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .flowchart {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        .flowchart h2 {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Portfolio Analysis</h1>
+        
+        <div class="flowchart">
+            <h2>System Architecture</h2>
+            <div class="mermaid">
+flowchart LR
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef etl fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef warehouse fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef analytics fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef cloud fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+    classDef business fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph data_sources["Data Sources"]
+        raw_data["Raw Business Data"]
+        external_sources["External Data Sources"]
+        historical_data["Historical Portfolio Data"]
+    end
+    
+    subgraph etl_process["ETL Pipeline"]
+        data_extraction["Data Extraction"]
+        data_cleaning["Data Cleaning & Transformation"]
+        data_validation["Data Validation"]
+        synapse_etl["Azure Synapse ETL"]
+    end
+    
+    subgraph data_warehouse["Data Warehouse"]
+        synapse_analytics["Azure Synapse Analytics"]
+        sql_database["SQL Database"]
+        data_mart["Data Marts"]
+    end
+    
+    subgraph analytics["Analytics Engine"]
+        sql_queries["SQL Queries"]
+        business_logic["Business Logic"]
+        data_aggregation["Data Aggregation"]
+        performance_metrics["Performance Metrics"]
+    end
+    
+    subgraph visualization["Visualization Layer"]
+        powerbi_reports["PowerBI Reports"]
+        interactive_dashboards["Interactive Dashboards"]
+        kpi_metrics["KPI Metrics"]
+        business_insights["Business Insights"]
+    end
+    
+    subgraph cloud_platform["Cloud Platform"]
+        azure_synapse["Azure Synapse Analytics"]
+        azure_storage["Azure Storage"]
+        azure_devops["Azure DevOps"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    raw_data -->|Extract| data_extraction
+    external_sources -->|Extract| data_extraction
+    historical_data -->|Extract| data_extraction
+    data_extraction -->|Transform| data_cleaning
+    data_cleaning -->|Validate| data_validation
+    data_validation -->|Load| synapse_etl
+    synapse_etl -->|Store| synapse_analytics
+    synapse_analytics -->|Query| sql_database
+    sql_database -->|Process| data_mart
+    data_mart -->|Analyze| sql_queries
+    sql_queries -->|Apply| business_logic
+    business_logic -->|Aggregate| data_aggregation
+    data_aggregation -->|Calculate| performance_metrics
+    performance_metrics -->|Visualize| powerbi_reports
+    powerbi_reports -->|Display| interactive_dashboards
+    interactive_dashboards -->|Show| kpi_metrics
+    kpi_metrics -->|Generate| business_insights
+    azure_synapse -->|Host| synapse_analytics
+    azure_storage -->|Store| raw_data
+    azure_devops -->|Deploy| synapse_etl
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class raw_data,external_sources,historical_data data_source
+    class data_extraction,data_cleaning,data_validation,synapse_etl etl
+    class synapse_analytics,sql_database,data_mart warehouse
+    class sql_queries,business_logic,data_aggregation,performance_metrics analytics
+    class powerbi_reports,interactive_dashboards,kpi_metrics,business_insights visualization
+    class azure_synapse,azure_storage,azure_devops cloud
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+    linkStyle 0,1,2 stroke:#1E90FF,stroke-dasharray:0  
+    linkStyle 3,4,5,6 stroke:#9370DB,stroke-dasharray:0    
+    linkStyle 7,8,9 stroke:#FF7F50,stroke-dasharray:0
+    linkStyle 10,11,12,13 stroke:#3CB371,stroke-dasharray:0
+    linkStyle 14,15,16,17 stroke:#FFA500,stroke-dasharray:0
+    linkStyle 18,19,20 stroke:#BDBDBD,stroke-dasharray:0
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html>

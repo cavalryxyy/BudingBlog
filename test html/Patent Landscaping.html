@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patent Landscaping</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .flowchart {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        .flowchart h2 {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Patent Landscaping</h1>
+        
+        <div class="flowchart">
+            <h2>System Architecture</h2>
+            <div class="mermaid">
+flowchart LR
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef ai_agent fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef processing fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef analysis fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef llm fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+    classDef output fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph data_sources["Patent Data Sources"]
+        patent_documents["Patent Documents"]
+        patent_titles["Patent Titles"]
+        patent_abstracts["Patent Abstracts"]
+        patent_claims["Patent Claims"]
+    end
+    
+    subgraph ai_agent["AI Agent System"]
+        genai_bot["GenAI Bot Patent Analyzer"]
+        smart_genai["Smart GenAI Bot"]
+        patent_agent["Patent Landscape Agent"]
+        category_analyzer["Category Analyzer"]
+    end
+    
+    subgraph processing["Processing Engine"]
+        langchain_extraction["LangChain Extraction"]
+        prompt_engineering["Prompt Engineering"]
+        text_processing["Text Processing"]
+        data_cleaning["Data Cleaning"]
+    end
+    
+    subgraph analysis["Analysis Engine"]
+        category_extraction["Category Extraction"]
+        keyword_clustering["Keyword Clustering"]
+        priority_assessment["Priority Assessment"]
+        landscape_analysis["Landscape Analysis"]
+    end
+    
+    subgraph llm["LLM Integration"]
+        gpt4_integration["GPT-4 Integration"]
+        gemini_integration["Gemini Integration"]
+        autogen_integration["AutoGen Integration"]
+        llm_prompts["LLM Prompts"]
+    end
+    
+    subgraph output["Output & Results"]
+        patent_categories["Patent Categories"]
+        keyword_analysis["Keyword Analysis"]
+        priority_scores["Priority Scores"]
+        landscape_report["Landscape Report"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    patent_documents -->|Extract| patent_titles
+    patent_documents -->|Extract| patent_abstracts
+    patent_documents -->|Extract| patent_claims
+    patent_titles -->|Process| genai_bot
+    patent_abstracts -->|Process| genai_bot
+    patent_claims -->|Process| genai_bot
+    genai_bot -->|Initialize| smart_genai
+    smart_genai -->|Create| patent_agent
+    patent_agent -->|Analyze| category_analyzer
+    category_analyzer -->|Extract| langchain_extraction
+    langchain_extraction -->|Engineer| prompt_engineering
+    prompt_engineering -->|Process| text_processing
+    text_processing -->|Clean| data_cleaning
+    data_cleaning -->|Analyze| category_extraction
+    category_extraction -->|Cluster| keyword_clustering
+    keyword_clustering -->|Assess| priority_assessment
+    priority_assessment -->|Analyze| landscape_analysis
+    landscape_analysis -->|Integrate| gpt4_integration
+    landscape_analysis -->|Integrate| gemini_integration
+    landscape_analysis -->|Integrate| autogen_integration
+    gpt4_integration -->|Generate| llm_prompts
+    gemini_integration -->|Generate| llm_prompts
+    autogen_integration -->|Generate| llm_prompts
+    llm_prompts -->|Output| patent_categories
+    llm_prompts -->|Output| keyword_analysis
+    llm_prompts -->|Output| priority_scores
+    patent_categories -->|Generate| landscape_report
+    keyword_analysis -->|Generate| landscape_report
+    priority_scores -->|Generate| landscape_report
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class patent_documents,patent_titles,patent_abstracts,patent_claims data_source
+    class genai_bot,smart_genai,patent_agent,category_analyzer ai_agent
+    class langchain_extraction,prompt_engineering,text_processing,data_cleaning processing
+    class category_extraction,keyword_clustering,priority_assessment,landscape_analysis analysis
+    class gpt4_integration,gemini_integration,autogen_integration,llm_prompts llm
+    class patent_categories,keyword_analysis,priority_scores,landscape_report output
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+    linkStyle 0,1,2,3 stroke:#1E90FF,stroke-dasharray:0  
+    linkStyle 4,5,6,7,8,9 stroke:#9370DB,stroke-dasharray:0    
+    linkStyle 10,11,12,13 stroke:#FF7F50,stroke-dasharray:0
+    linkStyle 14,15,16,17 stroke:#3CB371,stroke-dasharray:0
+    linkStyle 18,19,20,21,22,23 stroke:#BDBDBD,stroke-dasharray:0
+    linkStyle 24,25,26,27,28,29 stroke:#FFA500,stroke-dasharray:0
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html>

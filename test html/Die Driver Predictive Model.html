@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Die Driver Predictive Model</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .flowchart {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        .flowchart h2 {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Die Driver Predictive Model</h1>
+        
+        <div class="flowchart">
+            <h2>System Architecture</h2>
+            <div class="mermaid">
+flowchart LR
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef preprocessing fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef ml_engine fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef evaluation fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef deployment fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+    classDef optimization fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph data_sources["Manufacturing Data"]
+        production_data["Production Process Data"]
+        die_parameters["Die Driver Parameters"]
+        quality_metrics["Quality Metrics"]
+        historical_performance["Historical Performance Data"]
+    end
+    
+    subgraph preprocessing["Data Preprocessing"]
+        pandas_processing["Pandas Data Processing"]
+        data_cleaning["Data Cleaning"]
+        feature_engineering["Feature Engineering"]
+        hypothesis_testing["Hypothesis Testing"]
+    end
+    
+    subgraph ml_engine["ML Engine"]
+        scikit_learn["Scikit-learn Models"]
+        predictive_models["Predictive Models"]
+        model_training["Model Training"]
+        performance_optimization["Performance Optimization"]
+    end
+    
+    subgraph evaluation["Model Evaluation"]
+        performance_metrics["Performance Metrics"]
+        model_validation["Model Validation"]
+        prediction_accuracy["Prediction Accuracy"]
+        manufacturing_insights["Manufacturing Insights"]
+    end
+    
+    subgraph visualization["Visualization & Dashboards"]
+        plotly_dashboards["Plotly Dashboards"]
+        performance_charts["Performance Charts"]
+        manufacturing_dashboards["Manufacturing Dashboards"]
+        optimization_plots["Optimization Plots"]
+    end
+    
+    subgraph deployment["Deployment"]
+        fastapi_service["FastAPI Service"]
+        azure_devops["Azure DevOps"]
+        manufacturing_integration["Manufacturing Integration"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    production_data -->|Extract| pandas_processing
+    die_parameters -->|Extract| pandas_processing
+    quality_metrics -->|Extract| pandas_processing
+    historical_performance -->|Extract| pandas_processing
+    pandas_processing -->|Clean| data_cleaning
+    data_cleaning -->|Engineer| feature_engineering
+    feature_engineering -->|Test| hypothesis_testing
+    hypothesis_testing -->|Train| scikit_learn
+    hypothesis_testing -->|Train| predictive_models
+    scikit_learn -->|Optimize| performance_optimization
+    predictive_models -->|Optimize| performance_optimization
+    performance_optimization -->|Train| model_training
+    model_training -->|Evaluate| performance_metrics
+    performance_metrics -->|Validate| model_validation
+    model_validation -->|Assess| prediction_accuracy
+    prediction_accuracy -->|Generate| manufacturing_insights
+    manufacturing_insights -->|Visualize| plotly_dashboards
+    plotly_dashboards -->|Display| performance_charts
+    performance_charts -->|Show| manufacturing_dashboards
+    manufacturing_dashboards -->|Monitor| optimization_plots
+    optimization_plots -->|Serve| fastapi_service
+    fastapi_service -->|Deploy| azure_devops
+    azure_devops -->|Integrate| manufacturing_integration
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class production_data,die_parameters,quality_metrics,historical_performance data_source
+    class pandas_processing,data_cleaning,feature_engineering,hypothesis_testing preprocessing
+    class scikit_learn,predictive_models,model_training,performance_optimization ml_engine
+    class performance_metrics,model_validation,prediction_accuracy,manufacturing_insights evaluation
+    class plotly_dashboards,performance_charts,manufacturing_dashboards,optimization_plots visualization
+    class fastapi_service,azure_devops,manufacturing_integration deployment
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+    linkStyle 0,1,2,3 stroke:#1E90FF,stroke-dasharray:0  
+    linkStyle 4,5,6,7 stroke:#9370DB,stroke-dasharray:0    
+    linkStyle 8,9,10,11 stroke:#FF7F50,stroke-dasharray:0
+    linkStyle 12,13,14,15 stroke:#3CB371,stroke-dasharray:0
+    linkStyle 16,17,18,19 stroke:#FFA500,stroke-dasharray:0
+    linkStyle 20,21,22,23 stroke:#BDBDBD,stroke-dasharray:0
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html>

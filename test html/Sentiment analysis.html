@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .flowchart {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        .flowchart h2 {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment analysis</h1>
+        
+        <div class="flowchart">
+            <h2>System Architecture</h2>
+            <div class="mermaid">
+flowchart LR
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef data fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef prompt fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef agent fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef analytics fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef rags fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef decisions fill:#FFB6C1,stroke:#FF69B4,color:#333,stroke-width:2px,rounded:5px
+    classDef data_process fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph all_data["Data"]
+        reports["Annual Report"]
+        financial_sections["Financial Sections"]
+        statements_sections["Business Strategy Sections"]
+    end
+    
+    subgraph rag["RAG"]
+        RAG_Score["Financial Strategy Knowledge Base"]
+    end
+    
+    subgraph s1["Prompt Engineering"]
+        P_F["Langchain - Extract Financial Tables"]
+        P_S["Langchain - Extract Business Statements"]
+        P_BU["Distinguish Business Segment"]
+        P_Time["Remap with Actual Time Periods"]
+        P_Score["Perform Sentiment Scoring"]
+    end
+    
+    subgraph agent["Agent"]
+        A_metrics["Extract Financial Metrics Results"]
+    end
+    
+    subgraph analytics["Analytics"]
+        data_smoothing["Regularization & Smoothing"]
+        t_evaluation["Predicted Sentiment Score Results"]
+        a_evaluation["Actual Financial Results"]
+        testing["Validate on Historic Data"]
+        prediction["Prediction"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    reports -->|Langchain| financial_sections
+    reports -->|Langchain| statements_sections
+    financial_sections --> A_metrics
+    statements_sections --> RAG_Score
+    RAG_Score --> P_Score
+    P_Score --> data_smoothing
+    P_BU --> P_Time
+    P_Time --> P_Score
+    data_smoothing -->|Revenue vs Time Periods| t_evaluation
+    t_evaluation --> testing
+    testing --> prediction
+    A_metrics -->|Revenue vs Time Periods| a_evaluation
+    a_evaluation --> testing
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class reports,financial_sections,statements_sections data
+    class RAG_Score rags
+    class P_F,P_S,P_BU,P_Time,P_Score prompt
+    class A_metrics agent
+    class data_smoothing,t_evaluation,a_evaluation,testing,prediction analytics
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+    linkStyle 0,1 stroke:#1E90FF,stroke-dasharray:0
+    linkStyle 2,3 stroke:#FFD700,stroke-dasharray:0
+    linkStyle 4,5,6 stroke:#9370DB,stroke-dasharray:0
+    linkStyle 7,8,9 stroke:#FFA07A,stroke-dasharray:0
+    linkStyle 10,11,12 stroke:#3CB371,stroke-dasharray:0
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html>

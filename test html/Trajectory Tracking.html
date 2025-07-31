@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS Trajectory Tracking</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .flowchart {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        .flowchart h2 {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TTS Trajectory Tracking</h1>
+        
+        <div class="flowchart">
+            <h2>System Architecture</h2>
+            <div class="mermaid">
+flowchart LR
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef processing fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef analysis fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef deployment fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph data_sources["Data Sources"]
+        gps_data["GPS Trajectory Data"]
+        excel_files["Excel Files"]
+        accdb_files["Access Database Files"]
+    end
+    
+    subgraph processing["Data Processing"]
+        pandas_processing["Pandas Processing"]
+        rdp_algorithm["RDP Algorithm"]
+        data_cleaning["Data Cleaning"]
+        coordinate_transform["Coordinate Transform"]
+    end
+    
+    subgraph analysis["Analysis Engine"]
+        trajectory_analysis["Trajectory Analysis"]
+        distance_calc["Distance Calculations"]
+        acceleration_analysis["Acceleration Analysis"]
+        multi_track["Multi-track Processing"]
+    end
+
+    %% ========================
+    %% Data Flow - Upper Layer
+    %% ========================
+    gps_data -->|Raw Data| pandas_processing
+    excel_files -->|Import| pandas_processing
+    accdb_files -->|Import| pandas_processing
+    pandas_processing -->|Clean| data_cleaning
+    data_cleaning -->|Transform| coordinate_transform
+    coordinate_transform -->|Process| rdp_algorithm
+    rdp_algorithm -->|Analyze| trajectory_analysis
+    trajectory_analysis -->|Calculate| distance_calc
+    trajectory_analysis -->|Analyze| acceleration_analysis
+    trajectory_analysis -->|Process| multi_track
+
+    %% ========================
+    %% Lower Layer - Visualization & Deployment (????)
+    %% ========================
+    subgraph visualization["Visualization"]
+        plotly_charts["Plotly Charts"]
+        matplotlib_plots["Matplotlib Plots"]
+        html_dashboards["HTML Dashboards"]
+    end
+    
+    subgraph deployment["Deployment"]
+        fastapi_service["FastAPI Service"]
+        azure_devops["Azure DevOps"]
+    end
+
+    %% ========================
+    %% Cross-layer Connections (??)
+    %% ========================
+    distance_calc -.->|Results| plotly_charts
+    acceleration_analysis -.->|Results| matplotlib_plots
+    multi_track -.->|Results| html_dashboards
+    plotly_charts -->|Serve| fastapi_service
+    matplotlib_plots -->|Serve| fastapi_service
+    html_dashboards -->|Deploy| fastapi_service
+    fastapi_service -->|Deploy| azure_devops
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class gps_data,excel_files,accdb_files data_source
+    class pandas_processing,rdp_algorithm,data_cleaning,coordinate_transform processing
+    class trajectory_analysis,distance_calc,acceleration_analysis,multi_track analysis
+    class plotly_charts,matplotlib_plots,html_dashboards visualization
+    class fastapi_service,azure_devops deployment
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+    linkStyle 0,1,2 stroke:#1E90FF,stroke-dasharray:0  
+    linkStyle 3,4,5,6 stroke:#9370DB,stroke-dasharray:0    
+    linkStyle 7,8,9 stroke:#FFA07A,stroke-dasharray:0
+    linkStyle 10,11,12 stroke:#3CB371,stroke-dasharray:5 5
+    linkStyle 13,14,15 stroke:#FFA500,stroke-dasharray:0
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html>
