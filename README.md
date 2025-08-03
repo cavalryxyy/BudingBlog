@@ -45,19 +45,27 @@ I am a Data Scientist & AI Engineer with extensive experience in:
 ## 📁 Project Structure
 
 ```
-BudingBlog/
-├── index.html              # Main portfolio page
-├── test html/              # Individual project pages
-│   ├── Industrial IoT Manufacturing Optimization.html
-│   ├── Sentiment analysis.html
-│   ├── Patent Landscaping.html
-│   ├── Portfolio Analysis.html
-│   ├── Tensile Strength Predictive Model.html
-│   ├── Hypothesis & Predictive Model.html
-│   ├── Trajectory Tracking.html
-│   ├── Web Calculator.html
-│   └── Galva Process Optimization.html
-└── README.md               # This file
+portfolio/
+├── index.html                          # Main homepage with skill tree
+├── css/
+│   └── main.css                        # Global styles & animations
+├── js/
+│   └── main.js                         # Interactive functionality
+├── projects/                           # Individual project pages
+│   ├── sentiment-analysis.html
+│   ├── portfolio-analysis.html
+│   ├── patent-landscaping.html
+│   ├── hypothesis-predictive-model.html
+│   ├── galva-process-optimization.html
+│   ├── web-calculator.html
+│   ├── trajectory-tracking.html
+│   └── industrial-iot-optimization.html
+├── assets/
+│   ├── images/                         # Portfolio images
+│   └── data/
+│       └── projects.json               # Project metadata
+├── README.md                           # Project documentation
+└── .gitignore                          # Git ignore rules
 ```
 
 ## 🎯 How to Use
