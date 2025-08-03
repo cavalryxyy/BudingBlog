@@ -13,6 +13,13 @@ Thumbs.db
 *.swp
 *.swo
 *~
+.sublime-*
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.cache
 
 # Python (for future Flask development)
 __pycache__/
@@ -172,4 +179,24 @@ logs
 
 # API keys and secrets
 secrets.json
-config.json 
+config.json
+
+# Static Website specific
+.sass-cache/
+*.css.map
+*.js.map
+docs/_site/
+drafts/
+private/
+todo.md
+notes.txt
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.netlify/
+.vercel/
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar 
