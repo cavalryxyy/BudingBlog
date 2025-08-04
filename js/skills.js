@@ -1,10 +1,6 @@
 // Skills Section JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize skills section
-    initSkillsSection();
-});
-
-function initSkillsSection() {
+    // Enhanced skill tree functionality
     const enhancedSkillModules = document.querySelectorAll('.enhanced-skill-module');
 
     enhancedSkillModules.forEach(module => {
@@ -38,22 +34,4 @@ function initSkillsSection() {
             });
         });
     });
-
-    // Add scroll indicator functionality
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (scrollIndicator) {
-        scrollIndicator.addEventListener('click', function() {
-            scrollToSection('projects');
-        });
-    }
-}
-
-function scrollToSection(sectionId) {
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-} 
+}); 
