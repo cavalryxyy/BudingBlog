@@ -1,0 +1,102 @@
+/* Projects Section Styles */
+.projects-section {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.projects-content {
+    max-width: 1200px;
+    width: 100%;
+    padding: 2rem;
+}
+
+.projects-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.role-section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.role-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.role-section p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.project-card h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.project-card p {
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+/* Role-specific backgrounds */
+.role-data-scientist {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.role-data-engineer {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.role-python-developer {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .projects-content h2 {
+        font-size: 2rem;
+    }
+    
+    .role-section {
+        padding: 1.5rem;
+    }
+    
+    .role-section h3 {
+        font-size: 1.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .project-card {
+        padding: 1rem;
+    }
+} 
