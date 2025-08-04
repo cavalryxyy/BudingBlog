@@ -1,22 +1,12 @@
-/* Skills Section Styles */
-.skill-section {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-}
-
-.skill-content {
-    max-width: 1200px;
-    width: 100%;
-    padding: 2rem;
-    text-align: center;
-}
-
-.skill-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-}
-
 /* Enhanced Skill Tree Animation Section */
+.enhanced-skills-section {
+    padding: 3rem 0;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 80vh;
+    position: relative;
+    overflow: hidden;
+}
+
 .enhanced-skills-container {
     display: flex;
     justify-content: center;
@@ -192,36 +182,37 @@
 
 /* Increased distances to prevent overlapping */
 .enhanced-skill-module .enhanced-child-bubble:nth-child(1) { 
-    top: -180px; left: 25px;
+    top: -180px; left: 25px; /* 12 o'clock - top center */
 }
 .enhanced-skill-module .enhanced-child-bubble:nth-child(2) { 
-    top: -130px; right: -140px;
+    top: 25px; right: -180px; /* 3 o'clock - right center */
 }
 .enhanced-skill-module .enhanced-child-bubble:nth-child(3) { 
-    bottom: -130px; right: -140px;
+    bottom: -180px; left: 25px; /* 6 o'clock - bottom center */
 }
 .enhanced-skill-module .enhanced-child-bubble:nth-child(4) { 
-    bottom: -180px; left: 25px;
+    top: 25px; left: -180px; /* 9 o'clock - left center */
 }
 .enhanced-skill-module .enhanced-child-bubble:nth-child(5) { 
-    top: -130px; left: -140px;
+    top: -130px; left: -140px; /* 10 o'clock - for trees with 5 children */
 }
 
-/* Grandchildren distributed around their parent */
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(1) { top: -90px; left: 17px; }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(2) { top: -65px; right: -80px; }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(3) { top: 17px; right: -90px; }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(4) { bottom: -65px; right: -80px; }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(5) { bottom: -90px; left: 17px; }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(6) { bottom: -65px; left: -80px; }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(7) { top: 17px; left: -90px; }
+
+/* Grandchildren distributed around their parent with increased spacing */
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(1) { top: -90px; left: 17px; /* increased from -70px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(2) { top: -65px; right: -80px; /* increased from -60px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(3) { top: 17px; right: -90px; /* increased from -70px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(4) { bottom: -65px; right: -80px; /* increased from -60px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(5) { bottom: -90px; left: 17px; /* increased from -70px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(6) { bottom: -65px; left: -80px; /* increased from -60px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(7) { top: 17px; left: -90px; /* increased from -70px */ }
 
 /* Connection lines for mind map effect */
 .enhanced-child-bubble::before {
     content: '';
     position: absolute;
     width: 2px;
-    height: 80px;
+    height: 80px; /* increased from 60px */
     background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
     top: 50%;
     left: 50%;
@@ -234,7 +225,7 @@
     opacity: 1;
 }
 
-/* Responsive design for enhanced skill tree */
+/* Mobile responsive adjustments */
 @media (max-width: 768px) {
     .enhanced-skills-container {
         flex-direction: column;
