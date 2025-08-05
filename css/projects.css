@@ -34,6 +34,51 @@
     opacity: 0.9;
 }
 
+.role-header {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.role-header:hover {
+    opacity: 0.8;
+}
+
+.role-toggle {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    color: white;
+    opacity: 0.8;
+    margin-left: 1rem;
+}
+
+.role-section.expanded .role-toggle {
+    transform: rotate(180deg);
+}
+
+.role-header:hover .role-toggle {
+    opacity: 1;
+}
+
+.projects-container {
+    display: none !important;
+    margin-top: 1rem;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+.role-section.expanded .projects-container {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));  /* Increased from 300px */
