@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Modular CSS Files -->
-    <link rel="stylesheet" href="css/main.css?v=1.1">
-    <link rel="stylesheet" href="css/welcome.css?v=1.1">
-    <link rel="stylesheet" href="css/skills.css?v=1.1">
-    <link rel="stylesheet" href="css/projects.css?v=1.1">
+    <link rel="stylesheet" href="css/main.css?v=1.3">
+    <link rel="stylesheet" href="css/welcome.css?v=1.3">
+    <link rel="stylesheet" href="css/skills.css?v=1.3">
+    <link rel="stylesheet" href="css/projects.css?v=1.3">
 </head>
 <body>
     <!-- Navigation -->
@@ -226,63 +226,84 @@
                 
                 <!-- Data Scientist & AI Engineer -->
                 <div class="role-section role-data-scientist">
-                    <h3><i class="fas fa-brain"></i> Data Scientist & AI Engineer</h3>
-                    <p><strong>Bekaert - Global Advanced Digital Solution (2023~Present)</strong></p>
-                    <div class="projects-grid">
-                        <div class="project-card" onclick="navigateToProject('sentiment-analysis')">
-                            <h4><i class="fas fa-robot"></i> Sentiment Analysis (AI Application)</h4>
-                            <p>AI-powered sentiment analysis for business intelligence</p>
+                    <div class="role-header" onclick="toggleProjects(this.parentElement)">
+                        <div>
+                            <h3><i class="fas fa-brain"></i> Data Scientist & AI Engineer</h3>
+                            <p><strong>Bekaert - Global Advanced Digital Solution (2023~Present)</strong></p>
                         </div>
-                        <div class="project-card" onclick="navigateToProject('patent-landscaping')">
-                            <h4><i class="fas fa-robot"></i> Patent Landscaping (AI Application)</h4>
-                            <p>AI-driven patent analysis and landscaping tool</p>
-                        </div>
-                        <div class="project-card" onclick="navigateToProject('galva-process-optimization')">
-                            <h4><i class="fas fa-chart-line"></i> Industrial Process Optimization (MLOps)</h4>
-                            <p>Machine learning for process improvement</p>
+                        <i class="fas fa-chevron-down role-toggle"></i>
+                    </div>
+                    <div class="projects-container">
+                        <div class="projects-grid">
+                            <div class="project-card" onclick="navigateToProject('sentiment-analysis')">
+                                <h4><i class="fas fa-robot"></i> Sentiment Analysis (AI Application)</h4>
+                                <p>AI-powered sentiment analysis for business intelligence</p>
+                            </div>
+                            <div class="project-card" onclick="navigateToProject('patent-landscaping')">
+                                <h4><i class="fas fa-robot"></i> Patent Landscaping (AI Application)</h4>
+                                <p>AI-driven patent analysis and landscaping tool</p>
+                            </div>
+                            <div class="project-card" onclick="navigateToProject('galva-process-optimization')">
+                                <h4><i class="fas fa-chart-line"></i> Industrial Process Optimization (MLOps)</h4>
+                                <p>Machine learning for process improvement</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Data Engineer & Data Analyst -->
                 <div class="role-section role-data-engineer">
-                    <h3><i class="fas fa-chart-pie"></i> Data Engineer & Data Analyst</h3>
-                    <p><strong>Bekaert Technology Research Development Company (2020~2022)</strong></p>
-                    <div class="projects-grid">
-                        <div class="project-card" onclick="navigateToProject('portfolio-analysis')">
-                            <h4><i class="fas fa-chart-line"></i> Portfolio Analysis (Business Analytics)</h4>
-                            <p>Comprehensive business analytics and reporting</p>
+                    <div class="role-header" onclick="toggleProjects(this.parentElement)">
+                        <div>
+                            <h3><i class="fas fa-chart-pie"></i> Data Engineer & Data Analyst</h3>
+                            <p><strong>Bekaert Technology Research Development Company (2020~2022)</strong></p>
                         </div>
-                        <div class="project-card" onclick="navigateToProject('tensile-strength-predictive-model')">
-                            <h4><i class="fas fa-brain"></i> Tensile Strength Predictive Model (MLOps)</h4>
-                            <p>Machine learning for material strength prediction</p>
-                        </div>
-                        <div class="project-card" onclick="navigateToProject('hypothesis-predictive-model')">
-                            <h4><i class="fas fa-brain"></i> Hypothesis Test & Predictive Model (MLOps)</h4>
-                            <p>Statistical modeling for manufacturing processes</p>
-                        </div>
-                        <div class="project-card" onclick="navigateToProject('trajectory-tracking')">
-                            <h4><i class="fas fa-eye"></i> Vehicle Trajectory Tracking (Data Analytics)</h4>
-                            <p>Computer vision-based tracking system</p>
+                        <i class="fas fa-chevron-down role-toggle"></i>
+                    </div>
+                    <div class="projects-container">
+                        <div class="projects-grid">
+                            <div class="project-card" onclick="navigateToProject('portfolio-analysis')">
+                                <h4><i class="fas fa-chart-line"></i> Portfolio Analysis (Business Analytics)</h4>
+                                <p>Comprehensive business analytics and reporting</p>
+                            </div>
+                            <div class="project-card" onclick="navigateToProject('tensile-strength-predictive-model')">
+                                <h4><i class="fas fa-brain"></i> Tensile Strength Predictive Model (MLOps)</h4>
+                                <p>Machine learning for material strength prediction</p>
+                            </div>
+                            <div class="project-card" onclick="navigateToProject('hypothesis-predictive-model')">
+                                <h4><i class="fas fa-brain"></i> Hypothesis Test & Predictive Model (MLOps)</h4>
+                                <p>Statistical modeling for manufacturing processes</p>
+                            </div>
+                            <div class="project-card" onclick="navigateToProject('trajectory-tracking')">
+                                <h4><i class="fas fa-eye"></i> Vehicle Trajectory Tracking (Data Analytics)</h4>
+                                <p>Computer vision-based tracking system</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Python Developer -->
+                                <!-- Python Developer -->
                 <div class="role-section role-python-developer">
-                    <h3><i class="fas fa-code"></i> Python Developer</h3>
-                    <p><strong>Bekaert Technology Research Development Company (2019~2020)</strong></p>
-                    <div class="projects-grid">
-                        <div class="project-card" onclick="navigateToProject('industrial-iot-optimization')">
-                            <h4><i class="fas fa-industry"></i> Industrial IoT & Manufacturing Optimization (Computer Vision)</h4>
-                            <p>IoT solution for manufacturing process optimization</p>
+                    <div class="role-header" onclick="toggleProjects(this.parentElement)">
+                        <div>
+                            <h3><i class="fas fa-code"></i> Python Developer</h3>
+                            <p><strong>Bekaert Technology Research Development Company (2019~2020)</strong></p>
                         </div>
-                        <div class="project-card" onclick="navigateToProject('web-calculator')">
-                            <h4><i class="fas fa-calculator"></i> Web Calculator (Web Applications)</h4>
-                            <p>Interactive web application for complex calculations</p>
-            </div>
-            </div>
-            </div>
+                        <i class="fas fa-chevron-down role-toggle"></i>
+                    </div>
+                    <div class="projects-container">
+                        <div class="projects-grid">
+                            <div class="project-card" onclick="navigateToProject('industrial-iot-optimization')">
+                                <h4><i class="fas fa-industry"></i> Industrial IoT & Manufacturing Optimization (Computer Vision)</h4>
+                                <p>IoT solution for manufacturing process optimization</p>
+                            </div>
+                            <div class="project-card" onclick="navigateToProject('web-calculator')">
+                                <h4><i class="fas fa-calculator"></i> Web Calculator (Web Applications)</h4>
+                                <p>Interactive web application for complex calculations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
