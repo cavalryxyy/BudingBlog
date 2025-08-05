@@ -1,0 +1,104 @@
+{
+  "projects": [
+    {
+      "id": "sentiment-analysis",
+      "title": "Sentiment Analysis",
+      "description": "AI-powered sentiment analysis application for business intelligence and customer feedback analysis.",
+      "category": "AI Application",
+      "technologies": ["Python", "NLP", "Machine Learning", "Text Analysis"],
+      "url": "projects/sentiment-analysis.html",
+      "image": "assets/images/sentiment-analysis.jpg"
+    },
+    {
+      "id": "portfolio-analysis",
+      "title": "Portfolio Analysis",
+      "description": "Comprehensive business analytics and portfolio management system with advanced reporting capabilities.",
+      "category": "Business Analytics",
+      "technologies": ["Python", "Data Analysis", "Business Intelligence", "Reporting"],
+      "url": "projects/portfolio-analysis.html",
+      "image": "assets/images/portfolio-analysis.jpg"
+    },
+    {
+      "id": "patent-landscaping",
+      "title": "Patent Landscaping",
+      "description": "AI-driven patent analysis and landscaping tool for intellectual property research and competitive analysis.",
+      "category": "AI Application",
+      "technologies": ["Python", "AI", "Patent Analysis", "Text Mining"],
+      "url": "projects/patent-landscaping.html",
+      "image": "assets/images/patent-landscaping.jpg"
+    },
+    {
+      "id": "hypothesis-predictive-model",
+      "title": "Hypothesis & Predictive Model",
+      "description": "Advanced statistical modeling and hypothesis testing for data-driven decision making in manufacturing processes.",
+      "category": "MLOps",
+      "technologies": ["Python", "Statistics", "Machine Learning", "Predictive Modeling"],
+      "url": "projects/hypothesis-predictive-model.html",
+      "image": "assets/images/hypothesis-model.jpg"
+    },
+    {
+      "id": "galva-process-optimization",
+      "title": "Galva Process Optimization",
+      "description": "Industrial process optimization using machine learning for galvanization process improvement and quality control.",
+      "category": "MLOps",
+      "technologies": ["Python", "Process Optimization", "Machine Learning", "Industrial IoT"],
+      "url": "projects/galva-process-optimization.html",
+      "image": "assets/images/galva-optimization.jpg"
+    },
+    {
+      "id": "web-calculator",
+      "title": "Web Calculator",
+      "description": "Interactive web application for complex calculations and data processing with real-time results.",
+      "category": "Web Applications",
+      "technologies": ["JavaScript", "HTML/CSS", "Web Development", "Interactive UI"],
+      "url": "projects/web-calculator.html",
+      "image": "assets/images/web-calculator.jpg"
+    },
+    {
+      "id": "trajectory-tracking",
+      "title": "Trajectory Tracking",
+      "description": "Computer vision-based vehicle trajectory tracking system for transportation analytics and safety monitoring.",
+      "category": "Data Analytics",
+      "technologies": ["Python", "Computer Vision", "Data Analytics", "Tracking"],
+      "url": "projects/trajectory-tracking.html",
+      "image": "assets/images/trajectory-tracking.jpg"
+    },
+    {
+      "id": "industrial-iot-optimization",
+      "title": "Industrial IoT Manufacturing Optimization",
+      "description": "Comprehensive IoT solution for manufacturing process optimization and real-time monitoring.",
+      "category": "Computer Vision",
+      "technologies": ["Python", "IoT", "Computer Vision", "Manufacturing"],
+      "url": "projects/industrial-iot-optimization.html",
+      "image": "assets/images/industrial-iot.jpg"
+    },
+    {
+      "id": "tensile-strength-predictive-model",
+      "title": "Tensile Strength Predictive Model",
+      "description": "Machine learning model for predicting material tensile strength with high accuracy for quality assurance.",
+      "category": "MLOps",
+      "technologies": ["Python", "Machine Learning", "Predictive Modeling", "Material Science"],
+      "url": "projects/tensile-strength-predictive-model.html",
+      "image": "assets/images/tensile-strength.jpg"
+    }
+  ],
+  "categories": [
+    "AI Application",
+    "Business Analytics",
+    "MLOps",
+    "Web Applications",
+    "Data Analytics",
+    "Computer Vision"
+  ],
+  "technologies": [
+    "Python",
+    "JavaScript",
+    "HTML/CSS",
+    "Machine Learning",
+    "Computer Vision",
+    "IoT",
+    "Data Analysis",
+    "Statistics",
+    "Web Development"
+  ]
+} 

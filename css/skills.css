@@ -1,0 +1,264 @@
+/* Enhanced Skill Tree Animation Section */
+.enhanced-skills-section {
+    padding: 3rem 0;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 80vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.enhanced-skills-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 2rem;
+    position: relative;
+}
+
+.enhanced-skill-module {
+    position: relative;
+    margin: 3rem;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.enhanced-skill-module.focused {
+    z-index: 100;
+    transform: scale(1.1);
+}
+
+.enhanced-skill-module.faded {
+    opacity: 0.2;
+    transform: scale(0.85);
+    filter: blur(2px);
+}
+
+.enhanced-main-bubble {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: white;
+    border: 3px solid rgba(255,255,255,0.4);
+    backdrop-filter: blur(10px);
+}
+
+.enhanced-skill-module.focused .enhanced-main-bubble {
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(255,255,255,0.3);
+    border: 4px solid rgba(255,255,255,0.8);
+}
+
+/* Enhanced bubble colors with gradients */
+.enhanced-programming .enhanced-main-bubble { 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.enhanced-cloud .enhanced-main-bubble { 
+    background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+}
+.enhanced-ai .enhanced-main-bubble { 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+.enhanced-analytics .enhanced-main-bubble { 
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+.enhanced-industrial .enhanced-main-bubble { 
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+}
+
+.enhanced-children-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.enhanced-child-bubble {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0) rotate(180deg);
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.5);
+    z-index: 8;
+    backdrop-filter: blur(5px);
+}
+
+.enhanced-grandchild-bubble {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.7rem;
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0) rotate(-90deg);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.6);
+    z-index: 6;
+    backdrop-filter: blur(3px);
+}
+
+/* Enhanced child bubble colors */
+.enhanced-programming .enhanced-child-bubble { 
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+.enhanced-cloud .enhanced-child-bubble { 
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+.enhanced-ai .enhanced-child-bubble { 
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+.enhanced-analytics .enhanced-child-bubble { 
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+.enhanced-industrial .enhanced-child-bubble { 
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+/* Enhanced grandchild bubble colors */
+.enhanced-programming .enhanced-grandchild-bubble { 
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+}
+.enhanced-cloud .enhanced-grandchild-bubble { 
+    background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+}
+.enhanced-ai .enhanced-grandchild-bubble { 
+    background: linear-gradient(135deg, #fdbb2d 0%, #22c1c3 100%);
+}
+.enhanced-analytics .enhanced-grandchild-bubble { 
+    background: linear-gradient(135deg, #e0c3fc 0%, #9bb5ff 100%);
+}
+.enhanced-industrial .enhanced-grandchild-bubble { 
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+/* Expanded state with staggered animations */
+.enhanced-skill-module.is-expanded .enhanced-child-bubble {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) rotate(0deg);
+    pointer-events: auto;
+}
+
+.enhanced-skill-module.is-expanded .enhanced-grandchild-bubble {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) rotate(0deg);
+    pointer-events: auto;
+}
+
+/* Staggered animation delays for children */
+.enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(1) { transition-delay: 0.1s; }
+.enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(2) { transition-delay: 0.2s; }
+.enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(3) { transition-delay: 0.3s; }
+.enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(4) { transition-delay: 0.4s; }
+
+/* Increased distances to prevent overlapping */
+.enhanced-skill-module .enhanced-child-bubble:nth-child(1) { 
+    top: -180px; left: 25px; /* 12 o'clock - top center */
+}
+.enhanced-skill-module .enhanced-child-bubble:nth-child(2) { 
+    top: 25px; right: -180px; /* 3 o'clock - right center */
+}
+.enhanced-skill-module .enhanced-child-bubble:nth-child(3) { 
+    bottom: -180px; left: 25px; /* 6 o'clock - bottom center */
+}
+.enhanced-skill-module .enhanced-child-bubble:nth-child(4) { 
+    top: 25px; left: -180px; /* 9 o'clock - left center */
+}
+.enhanced-skill-module .enhanced-child-bubble:nth-child(5) { 
+    top: -130px; left: -140px; /* 10 o'clock - for trees with 5 children */
+}
+
+
+/* Grandchildren distributed around their parent with increased spacing */
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(1) { top: -90px; left: 17px; /* increased from -70px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(2) { top: -65px; right: -80px; /* increased from -60px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(3) { top: 17px; right: -90px; /* increased from -70px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(4) { bottom: -65px; right: -80px; /* increased from -60px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(5) { bottom: -90px; left: 17px; /* increased from -70px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(6) { bottom: -65px; left: -80px; /* increased from -60px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(7) { top: 17px; left: -90px; /* increased from -70px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(8) { top: -65px; left: -80px; /* 8th node following existing pattern */ }
+
+/* Connection lines for mind map effect */
+.enhanced-child-bubble::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 80px; /* increased from 60px */
+    background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+.enhanced-skill-module.is-expanded .enhanced-child-bubble::before {
+    opacity: 1;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .enhanced-skills-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .enhanced-skill-module {
+        margin: 2rem 0;
+    }
+
+    .enhanced-main-bubble {
+        width: 120px;
+        height: 120px;
+        font-size: 0.8rem;
+    }
+
+    .enhanced-child-bubble {
+        width: 80px;
+        height: 80px;
+        font-size: 0.7rem;
+    }
+
+    .enhanced-grandchild-bubble {
+        width: 60px;
+        height: 60px;
+        font-size: 0.6rem;
+    }
+
+    /* Adjust distances for mobile */
+    .enhanced-skill-module .enhanced-child-bubble:nth-child(1) { top: -120px; left: 20px; }
+    .enhanced-skill-module .enhanced-child-bubble:nth-child(2) { top: -90px; right: -90px; }
+    .enhanced-skill-module .enhanced-child-bubble:nth-child(3) { bottom: -90px; right: -90px; }
+    .enhanced-skill-module .enhanced-child-bubble:nth-child(4) { bottom: -120px; left: 20px; }
+    .enhanced-skill-module .enhanced-child-bubble:nth-child(5) { top: -90px; left: -90px; }
+} 
