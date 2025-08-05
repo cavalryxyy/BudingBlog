@@ -24,26 +24,25 @@ function initPortfolio() {
 
 function initNavigationVisibility() {
     const navLinks = document.querySelector('.nav-links');
-    const welcomeSection = document.getElementById('welcome');
     
-    if (!navLinks || !welcomeSection) return;
+    if (!navLinks) return;
     
-    function updateNavigationVisibility() {
-        const welcomeRect = welcomeSection.getBoundingClientRect();
-        const isInWelcomeSection = welcomeRect.bottom > 0 && welcomeRect.top < window.innerHeight;
-        
-        if (isInWelcomeSection) {
-            navLinks.classList.remove('hidden');
-        } else {
-            navLinks.classList.add('hidden');
-        }
+    // Always show navigation - remove the hiding logic
+    navLinks.classList.remove('hidden');
+    
+    // Remove any background styling from the navigation container
+    function updateNavigationStyle() {
+        // Remove any background that might create rectangular effect
+        navLinks.style.background = 'transparent';
+        navLinks.style.border = 'none';
+        navLinks.style.outline = 'none';
     }
     
     // Update on scroll
-    window.addEventListener('scroll', debounce(updateNavigationVisibility, 10));
+    window.addEventListener('scroll', debounce(updateNavigationStyle, 10));
     
     // Initial check
-    updateNavigationVisibility();
+    updateNavigationStyle();
 }
 
 function addFadeInAnimation() {

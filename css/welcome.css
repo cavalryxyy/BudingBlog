@@ -33,20 +33,10 @@
     transform: translateX(-50%);
     color: white;
     cursor: pointer;
-    animation: bounce 2s infinite;
+    /* Removed bouncing animation */
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    40% {
-        transform: translateX(-50%) translateY(-10px);
-    }
-    60% {
-        transform: translateX(-50%) translateY(-5px);
-    }
-}
+/* Removed bounce animation keyframes */
 
 /* Responsive Design */
 @media (max-width: 768px) {
