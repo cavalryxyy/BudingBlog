@@ -73,7 +73,7 @@ BudingBlog/
 │   │   ├── welcome_3.jpeg
 │   │   └── avatar_1.jpeg
 │   └── images/                         # Portfolio images
-├── test html/                          # Individual project pages
+├── projects/                           # Individual project pages
 │   ├── sentiment-analysis.html
 │   ├── portfolio-analysis.html
 │   ├── patent-landscaping.html

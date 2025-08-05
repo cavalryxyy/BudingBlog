@@ -378,10 +378,9 @@
         }
 
         function navigateToProject(projectName) {
-            // Keep spaces in filename and encode them for URL
+            // Navigate to project files in the projects directory
             const filename = projectName + '.html';
-            const encodedFilename = encodeURIComponent(filename);
-            window.location.href = `test%20html/${encodedFilename}`;
+            window.location.href = `projects/${filename}`;
         }
     </script>
 </body>
