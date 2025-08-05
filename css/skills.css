@@ -206,6 +206,7 @@
 .enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(5) { bottom: -90px; left: 17px; /* increased from -70px */ }
 .enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(6) { bottom: -65px; left: -80px; /* increased from -60px */ }
 .enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(7) { top: 17px; left: -90px; /* increased from -70px */ }
+.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(8) { top: -65px; left: -80px; /* 8th node following existing pattern */ }
 
 /* Connection lines for mind map effect */
 .enhanced-child-bubble::before {
