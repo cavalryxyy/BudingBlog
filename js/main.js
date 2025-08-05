@@ -15,6 +15,8 @@ function initPortfolio() {
     // Initialize navigation visibility control
     initNavigationVisibility();
     
+
+    
     // Load project data if available
     loadProjectData();
     
@@ -24,26 +26,25 @@ function initPortfolio() {
 
 function initNavigationVisibility() {
     const navLinks = document.querySelector('.nav-links');
-    const welcomeSection = document.getElementById('welcome');
     
-    if (!navLinks || !welcomeSection) return;
+    if (!navLinks) return;
     
-    function updateNavigationVisibility() {
-        const welcomeRect = welcomeSection.getBoundingClientRect();
-        const isInWelcomeSection = welcomeRect.bottom > 0 && welcomeRect.top < window.innerHeight;
-        
-        if (isInWelcomeSection) {
-            navLinks.classList.remove('hidden');
-        } else {
-            navLinks.classList.add('hidden');
-        }
+    // Always show navigation - remove the hiding logic
+    navLinks.classList.remove('hidden');
+    
+    // Remove any background styling from the navigation container
+    function updateNavigationStyle() {
+        // Remove any background that might create rectangular effect
+        navLinks.style.background = 'transparent';
+        navLinks.style.border = 'none';
+        navLinks.style.outline = 'none';
     }
     
     // Update on scroll
-    window.addEventListener('scroll', debounce(updateNavigationVisibility, 10));
+    window.addEventListener('scroll', debounce(updateNavigationStyle, 10));
     
     // Initial check
-    updateNavigationVisibility();
+    updateNavigationStyle();
 }
 
 function addFadeInAnimation() {
@@ -130,6 +131,50 @@ function addInteractiveElements() {
     // Add click tracking for analytics
     addClickTracking();
 }
+
+// Simple toggle function for projects
+function toggleProjects(roleSection) {
+    const projectsContainer = roleSection.querySelector('.projects-container');
+    const toggleIcon = roleSection.querySelector('.role-toggle');
+    
+    if (projectsContainer.style.display === 'block') {
+        projectsContainer.style.display = 'none';
+        roleSection.classList.remove('expanded');
+    } else {
+        projectsContainer.style.display = 'block';
+        roleSection.classList.add('expanded');
+    }
+}
+
+// Make function globally available
+window.toggleProjects = toggleProjects;
+
+// Ensure projects are hidden by default on page load
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, hiding projects');
+    const projectsContainers = document.querySelectorAll('.projects-container');
+    projectsContainers.forEach(container => {
+        container.style.display = 'none';
+        container.style.visibility = 'hidden';
+        container.style.opacity = '0';
+        container.style.height = '0';
+        container.style.overflow = 'hidden';
+    });
+    console.log('Hidden', projectsContainers.length, 'project containers');
+});
+
+// Also hide projects when window loads
+window.addEventListener('load', function() {
+    console.log('Window loaded, ensuring projects are hidden');
+    const projectsContainers = document.querySelectorAll('.projects-container');
+    projectsContainers.forEach(container => {
+        container.style.display = 'none';
+        container.style.visibility = 'hidden';
+        container.style.opacity = '0';
+        container.style.height = '0';
+        container.style.overflow = 'hidden';
+    });
+});
 
 function addClickTracking() {
     const links = document.querySelectorAll('a');
