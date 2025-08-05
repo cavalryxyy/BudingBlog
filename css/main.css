@@ -60,20 +60,10 @@ body {
     transform: translateX(-50%);
     color: white;
     cursor: pointer;
-    animation: bounce 2s infinite;
+    /* Removed bouncing animation */
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    40% {
-        transform: translateX(-50%) translateY(-10px);
-    }
-    60% {
-        transform: translateX(-50%) translateY(-5px);
-    }
-}
+/* Removed bounce animation keyframes */
 
 /* Skill Tree Section */
 .skill-section {
@@ -144,6 +134,10 @@ body {
     opacity: 1;
     visibility: visible;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    border: none;
+    outline: none;
+    background: transparent;
+    box-shadow: none;
 }
 
 /* Hide navigation when not in welcome section */
@@ -160,11 +154,15 @@ body {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    border: none;
+    outline: none;
 }
 
 .nav-links a:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
+    border: none;
+    outline: none;
 }
 
 /* Footer */
