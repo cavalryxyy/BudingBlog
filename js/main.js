@@ -12,11 +12,38 @@ function initPortfolio() {
     // Initialize smooth scrolling for navigation
     initSmoothScrolling();
     
+    // Initialize navigation visibility control
+    initNavigationVisibility();
+    
     // Load project data if available
     loadProjectData();
     
     // Add interactive elements
     addInteractiveElements();
+}
+
+function initNavigationVisibility() {
+    const navLinks = document.querySelector('.nav-links');
+    const welcomeSection = document.getElementById('welcome');
+    
+    if (!navLinks || !welcomeSection) return;
+    
+    function updateNavigationVisibility() {
+        const welcomeRect = welcomeSection.getBoundingClientRect();
+        const isInWelcomeSection = welcomeRect.bottom > 0 && welcomeRect.top < window.innerHeight;
+        
+        if (isInWelcomeSection) {
+            navLinks.classList.remove('hidden');
+        } else {
+            navLinks.classList.add('hidden');
+        }
+    }
+    
+    // Update on scroll
+    window.addEventListener('scroll', debounce(updateNavigationVisibility, 10));
+    
+    // Initial check
+    updateNavigationVisibility();
 }
 
 function addFadeInAnimation() {
