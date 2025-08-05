@@ -5,128 +5,351 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yuanyuan Xu - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-        .job-role {
-            margin-bottom: 2rem;
-        }
-        .job-role h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #2c3e50;
-            padding-bottom: 0.5rem;
-        }
-        .experience {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1rem;
-            padding: 1rem;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .experience:hover {
-            transform: translateY(-5px);
-        }
-        .experience h3 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
-        .experience p {
-            margin-bottom: 0;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem 0;
-            background-color: #2c3e50;
-            color: white;
-            margin-top: 2rem;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Modular CSS Files -->
+    <link rel="stylesheet" href="css/main.css?v=1.0">
+    <link rel="stylesheet" href="css/welcome.css?v=1.0">
+    <link rel="stylesheet" href="css/skills.css?v=1.0">
+    <link rel="stylesheet" href="css/projects.css?v=1.0">
 </head>
 <body>
-    <header>
+    <!-- Navigation -->
+    <nav class="nav-links">
+        <a href="#welcome">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section id="welcome" class="section welcome-section">
+        <div class="welcome-content">
         <h1>Yuanyuan Xu</h1>
-        <p>Data Scientist & AI Engineer</p>
-    </header>
-    <div class="container">
-        <div class="job-role">
-            <h2>Data Scientist & AI Engineer (Bekaert - Global Advanced Digital Solution, 2023~Present)</h2>
-            <div class="experience" onclick="navigateToFlowchart('Industrial IoT Manufacturing Optimization')">
-                <h3>Industrial Process Optimization (MLOps)</h3>
-                <p>Click to view the technology flowchart and description.</p>
+            <p>Data Scientist & AI Engineer | Python Developer | Industrial IoT Specialist</p>
+            <p>Transforming data into intelligent solutions for the future</p>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToSection('skills')">
+            <i class="fa-solid fa-circle-chevron-down" style="font-size:400%"></i>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skill-section">
+        <div class="skill-content">
+            <h2>Skills & Expertise</h2>
+            <div class="enhanced-skills-container">
+                <!-- Programming Languages & Frameworks -->
+                <div class="enhanced-skill-module enhanced-programming" data-module="programming">
+                    <div class="enhanced-main-bubble">
+                        Programming Languages & Frameworks
+                    </div>
+                    <div class="enhanced-children-container">
+                        <div class="enhanced-child-bubble">
+                            Python Ecosystem
+                            <div class="enhanced-grandchild-bubble">OpenCV</div>
+                            <div class="enhanced-grandchild-bubble">Pandas</div>
+                            <div class="enhanced-grandchild-bubble">Scikit-learn</div>
+                            <div class="enhanced-grandchild-bubble">Scipy</div>
+                            <div class="enhanced-grandchild-bubble">FastAPI</div>
+                            <div class="enhanced-grandchild-bubble">Plotly</div>
+                            <div class="enhanced-grandchild-bubble">Dash</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            Web Technologies
+                            <div class="enhanced-grandchild-bubble">React</div>
+                            <div class="enhanced-grandchild-bubble">Docker</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            Other Languages
+                            <div class="enhanced-grandchild-bubble">SQL</div>
+                            <div class="enhanced-grandchild-bubble">R</div>
+                            <div class="enhanced-grandchild-bubble">SAS</div>
+                            <div class="enhanced-grandchild-bubble">MATLAB</div>
+                            <div class="enhanced-grandchild-bubble">LaTeX</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            Development Tools
+                            <div class="enhanced-grandchild-bubble">Git</div>
+                            <div class="enhanced-grandchild-bubble">VS Code</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud & Infrastructure -->
+                <div class="enhanced-skill-module enhanced-cloud" data-module="cloud">
+                    <div class="enhanced-main-bubble">
+                        Cloud & Infrastructure
+                    </div>
+                    <div class="enhanced-children-container">
+                        <div class="enhanced-child-bubble">
+                            Azure Platform
+                            <div class="enhanced-grandchild-bubble">Synapse Analytics</div>
+                            <div class="enhanced-grandchild-bubble">Machine Learning</div>
+                            <div class="enhanced-grandchild-bubble">Web Apps</div>
+                            <div class="enhanced-grandchild-bubble">Blob Storage</div>
+                            <div class="enhanced-grandchild-bubble">Pipeline</div>
+                            <div class="enhanced-grandchild-bubble">IoT Hub</div>
+                            <div class="enhanced-grandchild-bubble">Stream Analytics</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            DevOps
+                            <div class="enhanced-grandchild-bubble">Azure DevOps</div>
+                            <div class="enhanced-grandchild-bubble">Docker</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            Data Storage
+                            <div class="enhanced-grandchild-bubble">SQL Database</div>
+                            <div class="enhanced-grandchild-bubble">NoSQL</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            Monitoring
+                            <div class="enhanced-grandchild-bubble">App Insights</div>
+                            <div class="enhanced-grandchild-bubble">Log Analytics</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI & Machine Learning -->
+                <div class="enhanced-skill-module enhanced-ai" data-module="ai">
+                    <div class="enhanced-main-bubble">
+                        AI & Machine Learning
+                    </div>
+                    <div class="enhanced-children-container">
+                        <div class="enhanced-child-bubble">
+                            Prompt Engineering
+                            <div class="enhanced-grandchild-bubble">RAG</div>
+                            <div class="enhanced-grandchild-bubble">LangChain</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            LLM Integration
+                            <div class="enhanced-grandchild-bubble">GPT-4o</div>
+                            <div class="enhanced-grandchild-bubble">Claude</div>
+                            <div class="enhanced-grandchild-bubble">Deep-seek</div>
+                            <div class="enhanced-grandchild-bubble">Gemini</div>
+                            <div class="enhanced-grandchild-bubble">AutoGen</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            Computer Vision
+                            <div class="enhanced-grandchild-bubble">OpenCV Algorithms</div>
+                            <div class="enhanced-grandchild-bubble">Image Processing</div>
+                            <div class="enhanced-grandchild-bubble">Real-time Detection</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            Machine Learning
+                            <div class="enhanced-grandchild-bubble">Predictive Modeling</div>
+                            <div class="enhanced-grandchild-bubble">Time-series Forecasting</div>
+                            <div class="enhanced-grandchild-bubble">Hypothesis Testing</div>
+                            <div class="enhanced-grandchild-bubble">Feature Engineering</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Analytics & Visualization -->
+                <div class="enhanced-skill-module enhanced-analytics" data-module="analytics">
+                    <div class="enhanced-main-bubble">
+                        Data Analytics & Visualization
+                    </div>
+                    <div class="enhanced-children-container">
+                        <div class="enhanced-child-bubble">
+                            Business Intelligence
+                            <div class="enhanced-grandchild-bubble">PowerBI</div>
+                            <div class="enhanced-grandchild-bubble">Pareto Analysis</div>
+                            <div class="enhanced-grandchild-bubble">A/B Testing</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            Data Processing
+                            <div class="enhanced-grandchild-bubble">ETL Pipelines</div>
+                            <div class="enhanced-grandchild-bubble">Data Warehousing</div>
+                            <div class="enhanced-grandchild-bubble">GPS Data Processing</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            Analytics Domains
+                            <div class="enhanced-grandchild-bubble">Business Analytics</div>
+                            <div class="enhanced-grandchild-bubble">Financial Analytics</div>
+                            <div class="enhanced-grandchild-bubble">Topic Modeling</div>
+                            <div class="enhanced-grandchild-bubble">Manufacturing Analytics</div>
             </div>
-            <div class="experience" onclick="navigateToFlowchart('Sentiment analysis')">
-                <h3>Sentiment Analysis (AI Application)</h3>
-                <p>Click to view the technology flowchart and description.</p>
+                        <div class="enhanced-child-bubble">
+                            Visualization Tools
+                            <div class="enhanced-grandchild-bubble">Matplotlib</div>
+                            <div class="enhanced-grandchild-bubble">Seaborn</div>
             </div>
-            <div class="experience" onclick="navigateToFlowchart('Patent Landscaping')">
-                <h3>Patent Landscaping (AI Application)</h3>
-                <p>Click to view the technology flowchart and description.</p>
             </div>
         </div>
 
-        <div class="job-role">
-            <h2>Data Engineer & Data Analyst (Bekaert Technology Research Development Company, 2020~2022)</h2>
-            <div class="experience" onclick="navigateToFlowchart('Portfolio Analysis')">
-                <h3>Portfolio Analysis (Business Analytics / MLOps)</h3>
-                <p>Click to view the technology flowchart and description.</p>
+                <!-- Industrial Applications -->
+                <div class="enhanced-skill-module enhanced-industrial" data-module="industrial">
+                    <div class="enhanced-main-bubble">
+                        Industrial Applications
+                    </div>
+                    <div class="enhanced-children-container">
+                        <div class="enhanced-child-bubble">
+                            Manufacturing Optimization
+                            <div class="enhanced-grandchild-bubble">Real-time Monitoring</div>
+                            <div class="enhanced-grandchild-bubble">Predictive Maintenance</div>
+                            <div class="enhanced-grandchild-bubble">Quality Control</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            IoT Solutions
+                            <div class="enhanced-grandchild-bubble">Sensor Integration</div>
+                            <div class="enhanced-grandchild-bubble">PLC Communication</div>
+                            <div class="enhanced-grandchild-bubble">Industrial Automation</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            Process Optimization
+                            <div class="enhanced-grandchild-bubble">Material Science</div>
+                            <div class="enhanced-grandchild-bubble">Microstructure Analysis</div>
+                            <div class="enhanced-grandchild-bubble">Finite Element Modeling</div>
+                        </div>
+                        <div class="enhanced-child-bubble">
+                            Quality Assurance
+                            <div class="enhanced-grandchild-bubble">Statistical Process Control</div>
+                            <div class="enhanced-grandchild-bubble">Six Sigma</div>
+                        </div>
             </div>
-            <div class="experience" onclick="navigateToFlowchart('Tensile Strength Predictive Model')">
-                <h3>Tensile Strength Predictive Model (MLOps)</h3>
-                <p>Click to view the technology flowchart and description.</p>
             </div>
-            <div class="experience" onclick="navigateToFlowchart('Hypothesis & Predictive Model')">
-                <h3>Hypothesis Test & Predictive Model (MLOps)</h3>
-                <p>Click to view the technology flowchart and description.</p>
             </div>
-            <div class="experience" onclick="navigateToFlowchart('Trajectory Tracking')">
-                <h3>Vehicle Trajectory Tracking (Data Analytics)</h3>
-                <p>Click to view the technology flowchart and description.</p>
+            <div class="scroll-indicator" onclick="scrollToSection('projects')">
+                <i class="fa-solid fa-circle-chevron-down" style="font-size:400%"></i>
             </div>
         </div>
+    </section>
 
-        <div class="job-role">
-            <h2>Python Developer (Bekaert Technology Research Development Company, 2019~2020)</h2>
-            <div class="experience" onclick="navigateToFlowchart('Industrial IoT Manufacturing Optimization')">
-                <h3>Industrial IoT & Manufacturing Optimization (Computer Vision)</h3>
-                <p>Click to view the technology flowchart and description.</p>
-            </div>
-            <div class="experience" onclick="navigateToFlowchart('Web Calculator')">
-                <h3>Web Calculator (Web Applications & Cloud Infrastructure)</h3>
-                <p>Click to view the technology flowchart and description.</p>
-            </div>
-            <div class="experience" onclick="navigateToFlowchart('Galva Process Optimization')">
-                <h3>Calculate Internal Lamellar Spacing (Computer Vision)</h3>
-                <p>Click to view the technology flowchart and description.</p>
-            </div>
-            <div class="experience" onclick="navigateToFlowchart('Galva Process Optimization')">
-                <h3>Micro Structure (Data Analytics / Machine Learning)</h3>
-                <p>Click to view the technology flowchart and description.</p>
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+        <div id="projects-container">
+            <!-- Projects content will be loaded from sections/projects.html -->
+            <!-- Fallback content for local testing -->
+            <div class="projects-content">
+                <h2>Professional Experience & Projects</h2>
+                
+                <!-- Data Scientist & AI Engineer -->
+                <div class="role-section role-data-scientist">
+                    <h3><i class="fas fa-brain"></i> Data Scientist & AI Engineer</h3>
+                    <p><strong>Bekaert - Global Advanced Digital Solution (2023~Present)</strong></p>
+                    <div class="projects-grid">
+                        <div class="project-card" onclick="navigateToProject('sentiment-analysis')">
+                            <h4><i class="fas fa-robot"></i> Sentiment Analysis (AI Application)</h4>
+                            <p>AI-powered sentiment analysis for business intelligence</p>
+                        </div>
+                        <div class="project-card" onclick="navigateToProject('patent-landscaping')">
+                            <h4><i class="fas fa-robot"></i> Patent Landscaping (AI Application)</h4>
+                            <p>AI-driven patent analysis and landscaping tool</p>
+                        </div>
+                        <div class="project-card" onclick="navigateToProject('galva-process-optimization')">
+                            <h4><i class="fas fa-chart-line"></i> Industrial Process Optimization (MLOps)</h4>
+                            <p>Machine learning for process improvement</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Engineer & Data Analyst -->
+                <div class="role-section role-data-engineer">
+                    <h3><i class="fas fa-chart-pie"></i> Data Engineer & Data Analyst</h3>
+                    <p><strong>Bekaert Technology Research Development Company (2020~2022)</strong></p>
+                    <div class="projects-grid">
+                        <div class="project-card" onclick="navigateToProject('portfolio-analysis')">
+                            <h4><i class="fas fa-chart-line"></i> Portfolio Analysis (Business Analytics)</h4>
+                            <p>Comprehensive business analytics and reporting</p>
+                        </div>
+                        <div class="project-card" onclick="navigateToProject('tensile-strength-predictive-model')">
+                            <h4><i class="fas fa-brain"></i> Tensile Strength Predictive Model (MLOps)</h4>
+                            <p>Machine learning for material strength prediction</p>
+                        </div>
+                        <div class="project-card" onclick="navigateToProject('hypothesis-predictive-model')">
+                            <h4><i class="fas fa-brain"></i> Hypothesis Test & Predictive Model (MLOps)</h4>
+                            <p>Statistical modeling for manufacturing processes</p>
+                        </div>
+                        <div class="project-card" onclick="navigateToProject('trajectory-tracking')">
+                            <h4><i class="fas fa-eye"></i> Vehicle Trajectory Tracking (Data Analytics)</h4>
+                            <p>Computer vision-based tracking system</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Python Developer -->
+                <div class="role-section role-python-developer">
+                    <h3><i class="fas fa-code"></i> Python Developer</h3>
+                    <p><strong>Bekaert Technology Research Development Company (2019~2020)</strong></p>
+                    <div class="projects-grid">
+                        <div class="project-card" onclick="navigateToProject('industrial-iot-optimization')">
+                            <h4><i class="fas fa-industry"></i> Industrial IoT & Manufacturing Optimization (Computer Vision)</h4>
+                            <p>IoT solution for manufacturing process optimization</p>
+                        </div>
+                        <div class="project-card" onclick="navigateToProject('web-calculator')">
+                            <h4><i class="fas fa-calculator"></i> Web Calculator (Web Applications)</h4>
+                            <p>Interactive web application for complex calculations</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Resume</span>
+                </a>
     </div>
-    <footer>
         <p>&copy; 2024 Yuanyuan Xu. All rights reserved.</p>
+        </div>
     </footer>
+
+    <!-- Modular JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/welcome.js"></script>
+    <script src="js/skills.js"></script>
+    <script src="js/projects.js"></script>
+
     <script>
-        function navigateToFlowchart(projectName) {
+        // Load projects content from external file (only when running on HTTP server)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Only try dynamic loading if we're on a proper HTTP server
+            if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+                fetch('./sections/projects.html')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(html => {
+                        document.getElementById('projects-container').innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error('Error loading projects section:', error);
+                        // Keep the fallback content if loading fails
+                    });
+            } else {
+                // Running locally via file:// protocol - use fallback content
+                console.log('Running locally - using fallback content');
+            }
+        });
+
+        function scrollToSection(sectionId) {
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        function navigateToProject(projectName) {
             // Keep spaces in filename and encode them for URL
             const filename = projectName + '.html';
             const encodedFilename = encodeURIComponent(filename);
