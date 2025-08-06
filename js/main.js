@@ -239,4 +239,33 @@ function optimizeImageLoading() {
         };
         img.src = src;
     });
+}
+
+// Loading modal functions
+function showLoadingModal() {
+    const loadingModal = document.getElementById('loadingModal');
+    if (loadingModal) {
+        loadingModal.classList.add('show');
+    }
+}
+
+function hideLoadingModal() {
+    const loadingModal = document.getElementById('loadingModal');
+    if (loadingModal) {
+        loadingModal.classList.remove('show');
+    }
+}
+
+// Enhanced navigateToProject function with loading message
+function navigateToProjectWithLoading(projectName) {
+    // Show loading modal
+    showLoadingModal();
+    
+    // Navigate to project files in the projects directory
+    const filename = projectName + '.html';
+    
+    // Add a small delay to show the loading message
+    setTimeout(() => {
+        window.location.href = `projects/${filename}`;
+    }, 1500); // Show loading message for 1.5 seconds
 } 
