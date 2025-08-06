@@ -6,22 +6,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initPortfolio() {
-    // Add fade-in animation to project cards
+    // Initialize all portfolio components
     addFadeInAnimation();
-    
-    // Initialize smooth scrolling for navigation
-    initSmoothScrolling();
+    addInteractiveElements();
     
     // Initialize navigation visibility control
     initNavigationVisibility();
     
-
+    // Optimize image loading
+    optimizeImageLoading();
     
     // Load project data if available
     loadProjectData();
     
-    // Add interactive elements
-    addInteractiveElements();
+    // Initialize role toggles
+    initRoleToggles();
 }
 
 function initNavigationVisibility() {
@@ -212,3 +211,32 @@ window.PortfolioApp = {
     addFadeInAnimation,
     loadProjectData
 }; 
+
+// Image loading optimization
+function optimizeImageLoading() {
+    const welcomeSection = document.querySelector('.welcome-section');
+    const avatar = document.querySelector('.avatar');
+    
+    // Preload critical images
+    const criticalImages = [
+        'assets/backgrounds/welcome_1.jpeg',
+        'assets/backgrounds/avatar_1.jpeg'
+    ];
+    
+    let loadedImages = 0;
+    const totalImages = criticalImages.length;
+    
+    criticalImages.forEach(src => {
+        const img = new Image();
+        img.onload = () => {
+            loadedImages++;
+            if (loadedImages === totalImages) {
+                // All critical images loaded
+                if (welcomeSection) {
+                    welcomeSection.classList.add('loaded');
+                }
+            }
+        };
+        img.src = src;
+    });
+} 
