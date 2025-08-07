@@ -6,6 +6,30 @@
     background-attachment: fixed;
     color: white;
     text-align: center;
+    /* Add loading optimization */
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/* Add preload for critical background images */
+@import url('../assets/backgrounds/welcome_1.jpeg') preload;
+
+/* Progressive loading fallback */
+.welcome-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: -1;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.welcome-section.loaded::before {
+    opacity: 0;
 }
 
 .welcome-content {
