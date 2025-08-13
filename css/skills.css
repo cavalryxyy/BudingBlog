@@ -50,16 +50,15 @@
 }
 
 .skill-guide-text {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    top: 1rem;
     color: rgba(255, 255, 255, 0.7);
     font-size: 1.4rem;
     font-style: italic;
     opacity: 0;
     transition: opacity 1s ease-in-out;
     pointer-events: none; /* Make sure it doesn't interfere with clicks */
+    margin-bottom: 2rem;
 }
 
 .skill-guide-text.is-visible {
