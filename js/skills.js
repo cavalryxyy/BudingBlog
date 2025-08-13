@@ -1,5 +1,66 @@
 // Skills Section JavaScript
+// Make the arrangement function global so it can be called from index.html
+window.arrangeBubbles = function(containerSelector, bubbleSelector, radius, startAngle = -90) {
+    const containers = document.querySelectorAll(containerSelector);
+    containers.forEach(container => {
+        const bubbles = container.querySelectorAll(bubbleSelector);
+        const count = bubbles.length;
+        const angleStep = 360 / count;
+
+        bubbles.forEach((bubble, i) => {
+            const angle = startAngle + i * angleStep;
+            const x = radius * Math.cos(angle * Math.PI / 180);
+            const y = radius * Math.sin(angle * Math.PI / 180);
+
+            // Center the bubble relative to the container
+            const bubbleSize = bubble.offsetWidth;
+            const parentSize = bubble.parentElement.offsetWidth;
+            const centeredX = x + (parentSize / 2) - (bubbleSize / 2);
+            const centeredY = y + (parentSize / 2) - (bubbleSize / 2);
+
+            bubble.style.position = 'absolute';
+            bubble.style.left = `${centeredX}px`;
+            bubble.style.top = `${centeredY}px`;
+
+            // Add transition delay for staggered animation
+            bubble.style.transitionDelay = `${i * 0.1}s`;
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Function to arrange bubbles in a circle
+    function arrangeBubbles(containerSelector, bubbleSelector, radius, startAngle = -90) {
+        const containers = document.querySelectorAll(containerSelector);
+        containers.forEach(container => {
+            const bubbles = container.querySelectorAll(bubbleSelector);
+            const count = bubbles.length;
+            if (count === 0) return;
+            const angleStep = 360 / count;
+
+            bubbles.forEach((bubble, i) => {
+                const angle = startAngle + i * angleStep;
+                const x = radius * Math.cos(angle * Math.PI / 180);
+                const y = radius * Math.sin(angle * Math.PI / 180);
+
+                const bubbleSize = bubble.offsetWidth;
+                const parentSize = bubble.parentElement.offsetWidth;
+                const centeredX = x + (parentSize / 2) - (bubbleSize / 2);
+                const centeredY = y + (parentSize / 2) - (bubbleSize / 2);
+
+                bubble.style.position = 'absolute';
+                bubble.style.left = `${centeredX}px`;
+                bubble.style.top = `${centeredY}px`;
+                
+                bubble.style.transitionDelay = `${i * 0.1}s`;
+            });
+        });
+    }
+
+    // Arrange child and grandchild bubbles on page load
+    arrangeBubbles('.enhanced-children-container', '.enhanced-child-bubble', 220);
+    arrangeBubbles('.enhanced-child-bubble', '.enhanced-grandchild-bubble', 100);
+
     // Enhanced skill tree functionality
     const enhancedSkillModules = document.querySelectorAll('.enhanced-skill-module');
 

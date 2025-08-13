@@ -179,35 +179,18 @@
 .enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(2) { transition-delay: 0.2s; }
 .enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(3) { transition-delay: 0.3s; }
 .enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(4) { transition-delay: 0.4s; }
-
-/* Increased distances to prevent overlapping */
-.enhanced-skill-module .enhanced-child-bubble:nth-child(1) { 
-    top: -180px; left: 25px; /* 12 o'clock - top center */
-}
-.enhanced-skill-module .enhanced-child-bubble:nth-child(2) { 
-    top: 25px; right: -180px; /* 3 o'clock - right center */
-}
-.enhanced-skill-module .enhanced-child-bubble:nth-child(3) { 
-    bottom: -180px; left: 25px; /* 6 o'clock - bottom center */
-}
-.enhanced-skill-module .enhanced-child-bubble:nth-child(4) { 
-    top: 25px; left: -180px; /* 9 o'clock - left center */
-}
-.enhanced-skill-module .enhanced-child-bubble:nth-child(5) { 
-    top: -130px; left: -140px; /* 10 o'clock - for trees with 5 children */
-}
+.enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(5) { transition-delay: 0.5s; }
 
 
-/* Grandchildren distributed around their parent with increased spacing */
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(1) { top: -90px; left: 17px; /* increased from -70px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(2) { top: -65px; right: -80px; /* increased from -60px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(3) { top: 17px; right: -90px; /* increased from -70px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(4) { bottom: -65px; right: -80px; /* increased from -60px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(5) { bottom: -90px; left: 17px; /* increased from -70px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(6) { bottom: -65px; left: -80px; /* increased from -60px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(7) { top: 17px; left: -90px; /* increased from -70px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(8) { top: -65px; left: -80px; /* 8th node following existing pattern */ }
+/* Dynamic positioning for child bubbles */
+.enhanced-skill-module .enhanced-child-bubble {
+    /* Bubbles are positioned by JavaScript now */
+}
 
+/* Dynamic positioning for grandchild bubbles */
+.enhanced-child-bubble .enhanced-grandchild-bubble {
+    /* Bubbles are positioned by JavaScript now */
+}
 
 
 /* Mobile responsive adjustments */
