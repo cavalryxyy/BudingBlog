@@ -1,12 +1,4 @@
 /* Enhanced Skill Tree Animation Section */
-.enhanced-skills-section {
-    padding: 3rem 0;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    min-height: 80vh;
-    position: relative;
-    overflow: hidden;
-}
-
 .enhanced-skills-container {
     display: flex;
     justify-content: center;
@@ -25,13 +17,62 @@
 
 .enhanced-skill-module.focused {
     z-index: 100;
-    transform: scale(1.1);
+    /* transform: scale(1.2); */ /* Scaling will be handled by hover now */
+}
+
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.35), 0 0 20px rgba(255,255,255,0.2);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+}
+
+.skill-section.user-has-interacted .enhanced-main-bubble {
+    animation: none;
+}
+
+.enhanced-skills-container.user-has-interacted .enhanced-main-bubble {
+    animation: none;
 }
 
 .enhanced-skill-module.faded {
     opacity: 0.2;
     transform: scale(0.85);
     filter: blur(2px);
+}
+
+.skill-guide-text {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.4rem;
+    font-style: italic;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    pointer-events: none; /* Make sure it doesn't interfere with clicks */
+}
+
+.skill-guide-text.is-visible {
+    opacity: 1;
+}
+
+/* Hover effect to scale individual bubbles */
+.enhanced-main-bubble:hover,
+.enhanced-skill-module.is-expanded .enhanced-child-bubble:hover,
+.enhanced-skill-module.is-expanded .enhanced-grandchild-bubble:hover {
+    transform: scale(1.2);
+    z-index: 101; /* Bring to front to avoid being overlapped */
+    animation: none;
 }
 
 .enhanced-main-bubble {
@@ -52,6 +93,7 @@
     color: white;
     border: 3px solid rgba(255,255,255,0.4);
     backdrop-filter: blur(10px);
+    animation: pulse-glow 3s infinite ease-in-out;
 }
 
 .enhanced-skill-module.focused .enhanced-main-bubble {
