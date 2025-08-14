@@ -199,4 +199,7 @@ _site/
 # Archive files
 *.zip
 *.tar.gz
-*.rar 
+*.rar
+
+# Personal documents
+assets/data/*.pdf 
