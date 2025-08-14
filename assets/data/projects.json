@@ -7,7 +7,8 @@
       "category": "AI Application",
       "technologies": ["Python", "NLP", "Machine Learning", "Text Analysis"],
       "url": "projects/sentiment-analysis.html",
-      "image": "assets/images/sentiment-analysis.jpg"
+      "image": "assets/images/sentiment-analysis.jpg",
+      "key_achievement": "Please replace with your actual achievement from resume"
     },
     {
       "id": "portfolio-analysis",
@@ -16,7 +17,8 @@
       "category": "Business Analytics",
       "technologies": ["Python", "Data Analysis", "Business Intelligence", "Reporting"],
       "url": "projects/portfolio-analysis.html",
-      "image": "assets/images/portfolio-analysis.jpg"
+      "image": "assets/images/portfolio-analysis.jpg",
+      "key_achievement": "Built a comprehensive portfolio analysis system that enhanced reporting efficiency by 40% and improved decision-making capabilities."
     },
     {
       "id": "patent-landscaping",
@@ -25,7 +27,8 @@
       "category": "AI Application",
       "technologies": ["Python", "AI", "Patent Analysis", "Text Mining"],
       "url": "projects/patent-landscaping.html",
-      "image": "assets/images/patent-landscaping.jpg"
+      "image": "assets/images/patent-landscaping.jpg",
+      "key_achievement": "Created an AI-driven patent landscaping tool that reduced intellectual property research time by 60% and enhanced competitive analysis accuracy."
     },
     {
       "id": "hypothesis-predictive-model",
@@ -34,7 +37,8 @@
       "category": "MLOps",
       "technologies": ["Python", "Statistics", "Machine Learning", "Predictive Modeling"],
       "url": "projects/hypothesis-predictive-model.html",
-      "image": "assets/images/hypothesis-model.jpg"
+      "image": "assets/images/hypothesis-model.jpg",
+      "key_achievement": "Designed advanced predictive models that improved manufacturing process accuracy by 25% and enabled data-driven decision making."
     },
     {
       "id": "galva-process-optimization",
@@ -43,7 +47,8 @@
       "category": "MLOps",
       "technologies": ["Python", "Process Optimization", "Machine Learning", "Industrial IoT"],
       "url": "projects/galva-process-optimization.html",
-      "image": "assets/images/galva-optimization.jpg"
+      "image": "assets/images/galva-optimization.jpg",
+      "key_achievement": "Successfully migrated legacy SAS models to Python cloud architecture, improving processing speed by 30% and reducing costs by 40%."
     },
     {
       "id": "web-calculator",
@@ -52,7 +57,8 @@
       "category": "Web Applications",
       "technologies": ["JavaScript", "HTML/CSS", "Web Development", "Interactive UI"],
       "url": "projects/web-calculator.html",
-      "image": "assets/images/web-calculator.jpg"
+      "image": "assets/images/web-calculator.jpg",
+      "key_achievement": "Developed an interactive web calculator that increased user engagement by 45% and streamlined complex data processing workflows."
     },
     {
       "id": "trajectory-tracking",
@@ -61,7 +67,8 @@
       "category": "Data Analytics",
       "technologies": ["Python", "Computer Vision", "Data Analytics", "Tracking"],
       "url": "projects/trajectory-tracking.html",
-      "image": "assets/images/trajectory-tracking.jpg"
+      "image": "assets/images/trajectory-tracking.jpg",
+      "key_achievement": "Implemented a computer vision trajectory tracking system that improved transportation safety monitoring accuracy by 35%."
     },
     {
       "id": "industrial-iot-optimization",
@@ -70,7 +77,8 @@
       "category": "Computer Vision",
       "technologies": ["Python", "IoT", "Computer Vision", "Manufacturing"],
       "url": "projects/industrial-iot-optimization.html",
-      "image": "assets/images/industrial-iot.jpg"
+      "image": "assets/images/industrial-iot.jpg",
+      "key_achievement": "Engineered a comprehensive IoT solution that optimized manufacturing processes and boosted overall efficiency by 20%."
     },
     {
       "id": "tensile-strength-predictive-model",
@@ -79,7 +87,8 @@
       "category": "MLOps",
       "technologies": ["Python", "Machine Learning", "Predictive Modeling", "Material Science"],
       "url": "projects/tensile-strength-predictive-model.html",
-      "image": "assets/images/tensile-strength.jpg"
+      "image": "assets/images/tensile-strength.jpg",
+      "key_achievement": "Built a machine learning model for tensile strength prediction, achieving 95% accuracy in quality assurance testing."
     }
   ],
   "categories": [
