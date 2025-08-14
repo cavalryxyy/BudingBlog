@@ -20,9 +20,10 @@
 <body>
     <!-- Navigation -->
     <nav class="nav-links">
-        <a href="#welcome">Home</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
+        <a href="#welcome" aria-label="Home"><i class="fas fa-home"></i></a>
+        <a href="#projects" aria-label="Projects"><i class="fas fa-briefcase"></i></a>
+        <a href="#skills" aria-label="Skills"><i class="fas fa-tools"></i></a>
+        <a href="#footer" aria-label="Contact"><i class="fas fa-envelope"></i></a>
     </nav>
 
     <!-- Welcome Section -->
@@ -314,7 +315,7 @@
 
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="footer" class="footer">
         <div class="footer-content">
             <div class="social-links">
                 <a href="https://github.com/cavalryxyy" class="social-link" target="_blank">
@@ -408,7 +409,7 @@
                 </button>
             </div>
             <div class="email-form-content">
-                <p>Please provide your email to download the complete resume. I'll send you the PDF and keep you updated on new opportunities.</p>
+                <p>Your information will not be used for any purpose other than to send you my resume.</p>
                 <form id="emailForm" onsubmit="submitEmail(event)">
                     <div class="form-group">
                         <label for="visitorEmail">Email Address *</label>
