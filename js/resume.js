@@ -108,7 +108,7 @@ function showSuccessMessage() {
         <div class="success-message">
             <i class="fas fa-check-circle"></i>
             <h4>Thank You!</h4>
-            <p>Your resume is being downloaded. I'll also send you a copy via email and keep you updated on new opportunities.</p>
+            <p> If it is not downloaded automatically, please leave a message to me.</p>
             <p><strong>Email:</strong> ${document.getElementById('visitorEmail').value}</p>
         </div>
     `;
@@ -147,10 +147,8 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Analytics function (for future use)
+// Analytics function
 function trackResumeDownload(email, name, company) {
-    // In production, this would send data to your analytics service
-    // For now, we'll just log it
     const analyticsData = {
         action: 'resume_download',
         email: email,
@@ -162,9 +160,6 @@ function trackResumeDownload(email, name, company) {
     };
     
     console.log('Analytics:', analyticsData);
-    
-    // You could send this to Google Analytics, your own server, etc.
-    // Example: gtag('event', 'resume_download', analyticsData);
 }
 
 // Export collected emails (for admin use)
