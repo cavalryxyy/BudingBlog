@@ -200,6 +200,3 @@ _site/
 *.zip
 *.tar.gz
 *.rar
-
-# Personal documents
-assets/data/*.pdf 
