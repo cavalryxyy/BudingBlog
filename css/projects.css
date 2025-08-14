@@ -1,32 +1,48 @@
 /* Projects Section Styles */
 .projects-section {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: white;
+    background: #f8fafc;
+    color: #1f2937;
+    position: relative;
+    padding: 4rem 0;
 }
 
 .projects-content {
     max-width: 1200px;
     width: 100%;
     padding: 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .projects-content h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
+    font-weight: 700;
+    color: #1f2937;
+    letter-spacing: -0.02em;
 }
 
 .role-section {
     margin-bottom: 3rem;
     padding: 2rem;
-    border-radius: 15px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
 }
 
 .role-section h3 {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.role-section h3 i {
+    color: #3b82f6;
+    margin-right: 0.5rem;
 }
 
 .role-section p {
@@ -86,22 +102,33 @@
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: #ffffff;
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    background: #f8fafc;
+    border-color: #3b82f6;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(59, 130, 246, 0.1);
 }
 
 .project-card h4 {
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.project-card h4 i {
+    color: #3b82f6;
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
 }
 
 .project-card p {
@@ -109,17 +136,45 @@
     font-size: 0.9rem;
 }
 
-/* Role-specific backgrounds */
+/* Role-specific backgrounds with clean professional theme */
 .role-data-scientist {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #3b82f6;
 }
 
 .role-data-engineer {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #8b5cf6;
 }
 
 .role-python-developer {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #10b981;
+}
+
+/* Add hover effects for role sections */
+.role-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Add tech-inspired loading animation for project cards */
+@keyframes tech-load {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.project-card {
+    animation: tech-load 0.6s ease-out;
 }
 
 /* Responsive Design */

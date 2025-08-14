@@ -8,10 +8,10 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa;
+    color: #1a202c;
+    background-color: #ffffff;
 }
 
 /* Section-specific styles */
@@ -27,18 +27,32 @@ body {
 
 /* Welcome Section */
 .welcome-section {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/backgrounds/welcome_3.jpeg');
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d3748 50%, #1a1a1a 100%);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     color: white;
     text-align: center;
+    position: relative;
+}
+
+.welcome-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../assets/backgrounds/welcome_3.jpeg') center/cover;
+    opacity: 0.3;
+    z-index: 1;
 }
 
 .welcome-content {
     max-width: 800px;
     padding: 2rem;
     z-index: 2;
+    position: relative;
 }
 
 .welcome-content h1 {
@@ -67,8 +81,10 @@ body {
 
 /* Skill Tree Section */
 .skill-section {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: white;
+    background: #ffffff;
+    color: #1f2937;
+    position: relative;
+    padding: 4rem 0;
 }
 
 .skill-content {
@@ -76,11 +92,16 @@ body {
     width: 100%;
     padding: 2rem;
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .skill-content h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    letter-spacing: -0.02em;
 }
 
 .skills-grid {
@@ -91,15 +112,18 @@ body {
 }
 
 .skill-category {
-    background: rgba(255, 255, 255, 0.1);
+    background: #ffffff;
     padding: 2rem;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
 }
 
 .skill-category:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-color: #3b82f6;
 }
 
 .skill-category h3 {
@@ -114,7 +138,8 @@ body {
 
 .skill-category li {
     padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid #f3f4f6;
+    color: #6b7280;
 }
 
 .skill-category li:last-child {
@@ -149,27 +174,28 @@ body {
 }
 
 .nav-links a {
-    color: white;
+    color: #1f2937;
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    border: none;
-    outline: none;
+    border: 1px solid #e5e7eb;
+    font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .nav-links a:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-    border: none;
-    outline: none;
+    background: #f8fafc;
+    transform: translateY(-1px);
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
 }
 
 /* Footer */
 .footer {
-    background: #2c3e50;
+    background: #1a1a1a;
     color: white;
     padding: 2rem 0;
     text-align: center;
@@ -198,7 +224,7 @@ body {
 }
 
 .social-link:hover {
-    color: #3498db;
+    color: #10b981;
 }
 
 /* Resume Modal Styles */
@@ -238,7 +264,7 @@ body {
 }
 
 .resume-modal-header, .email-modal-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%);
     color: white;
     padding: 1.5rem 2rem;
     display: flex;
@@ -281,7 +307,7 @@ body {
 }
 
 .resume-title {
-    color: #667eea;
+    color: #10b981;
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
     font-weight: 500;
@@ -299,13 +325,13 @@ body {
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem;
-    background: #f8f9fa;
-    border-radius: 10px;
-    border-left: 4px solid #667eea;
+    background: #f7fafc;
+    border-radius: 8px;
+    border-left: 4px solid #10b981;
 }
 
 .highlight-item i {
-    color: #667eea;
+    color: #10b981;
     font-size: 1.1rem;
 }
 
@@ -315,10 +341,11 @@ body {
 }
 
 .resume-summary {
-    background: #f8f9fa;
+    background: #f7fafc;
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 8px;
     margin-bottom: 2rem;
+    border: 1px solid #e2e8f0;
 }
 
 .resume-summary p {
@@ -332,11 +359,11 @@ body {
 }
 
 .btn-preview {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #10b981 0%, #0d9488 100%);
     color: white;
     border: none;
     padding: 1rem 2rem;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
@@ -349,7 +376,7 @@ body {
 
 .btn-preview:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
 }
 
 .resume-note {
@@ -391,8 +418,8 @@ body {
 
 .form-group input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
 .form-actions {
