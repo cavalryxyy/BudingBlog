@@ -23,7 +23,6 @@
         <a href="#welcome">Home</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
     </nav>
 
     <!-- Welcome Section -->
@@ -312,43 +311,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-        <div class="contact-content">
-            <h2>Get In Touch</h2>
-            <p>I'm always interested in discussing new opportunities, collaborations, or innovative projects in data science and AI.</p>
-            <div class="contact-links">
-                <a href="https://github.com/cavalryxyy" class="contact-link" target="_blank">
-                    <i class="fab fa-github"></i>
-                    <div class="contact-info">
-                        <span class="contact-title">GitHub</span>
-                        <span class="contact-detail">View my repositories</span>
-                    </div>
-                </a>
-                <a href="mailto:xuyuanyuan102888@outlook.com" class="contact-link">
-                    <i class="fas fa-envelope"></i>
-                    <div class="contact-info">
-                        <span class="contact-title">Email</span>
-                        <span class="contact-detail">xuyuanyuan102888@outlook.com</span>
-                    </div>
-                </a>
-                <a href="tel:+8615600159007" class="contact-link">
-                    <i class="fas fa-phone"></i>
-                    <div class="contact-info">
-                        <span class="contact-title">Mobile</span>
-                        <span class="contact-detail">+86 156 0015 9007</span>
-                    </div>
-                </a>
-                <a href="assets/data/YuanyuanXu_2025-2.pdf" class="contact-link" target="_blank" download>
-                    <i class="fas fa-file-alt"></i>
-                    <div class="contact-info">
-                        <span class="contact-title">Resume</span>
-                        <span class="contact-detail">Download PDF</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -366,7 +329,7 @@
                     <i class="fas fa-phone"></i>
                     <span>Mobile</span>
                 </a>
-                <a href="https://github.com/cavalryxyy/resume" class="social-link" target="_blank">
+                <a href="#" class="social-link" onclick="openResumePreview()">
                     <i class="fas fa-file-alt"></i>
                     <span>Resume</span>
                 </a>
@@ -389,11 +352,97 @@
         </div>
     </div>
 
+    <!-- Resume Preview Modal -->
+    <div id="resumePreviewModal" class="resume-modal">
+        <div class="resume-modal-content">
+            <div class="resume-modal-header">
+                <h3><i class="fas fa-file-alt"></i> Resume Preview</h3>
+                <button class="close-btn" onclick="closeResumePreview()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="resume-preview-content">
+                <div class="resume-preview-info">
+                    <h4>Yuanyuan Xu</h4>
+                    <p class="resume-title">Data Scientist & AI Engineer | Data Engineer | Python Developer</p>
+                    <div class="resume-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-brain"></i>
+                            <span>AI/ML Expertise</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Data Analytics</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-industry"></i>
+                            <span>Industrial Applications</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-cloud"></i>
+                            <span>Cloud & DevOps</span>
+                        </div>
+                    </div>
+                    <div class="resume-summary">
+                        <p>Experienced data scientist and AI engineer with expertise in machine learning, computer vision, and industrial applications. Proven track record in developing AI solutions for manufacturing optimization, predictive modeling, and business intelligence.</p>
+                    </div>
+                </div>
+                <div class="resume-actions">
+                    <button class="btn-preview" onclick="downloadResume()">
+                        <i class="fas fa-download"></i>
+                        Download Full Resume
+                    </button>
+                    <p class="resume-note">Get the complete PDF with detailed experience, projects, and technical skills</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Collection Modal -->
+    <div id="emailModal" class="email-modal">
+        <div class="email-modal-content">
+            <div class="email-modal-header">
+                <h3><i class="fas fa-envelope"></i> Get Your Resume</h3>
+                <button class="close-btn" onclick="closeEmailModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="email-form-content">
+                <p>Please provide your email to download the complete resume. I'll send you the PDF and keep you updated on new opportunities.</p>
+                <form id="emailForm" onsubmit="submitEmail(event)">
+                    <div class="form-group">
+                        <label for="visitorEmail">Email Address *</label>
+                        <input type="email" id="visitorEmail" name="email" required placeholder="your.email@company.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="visitorName">Name (Optional)</label>
+                        <input type="text" id="visitorName" name="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="companyName">Company (Optional)</label>
+                        <input type="text" id="companyName" name="company" placeholder="Your Company">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i>
+                            Download Resume
+                        </button>
+                    </div>
+                </form>
+                <div class="privacy-note">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Your information is secure and will not be used for any purpose and will only be used to send you my resume.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modular JavaScript Files -->
     <script src="js/main.js"></script>
     <script src="js/welcome.js"></script>
     <script src="js/skills.js"></script>
     <script src="js/projects.js"></script>
+    <script src="js/resume.js"></script>
 
     <script>
         // Load projects content from external file (only when running on HTTP server)
