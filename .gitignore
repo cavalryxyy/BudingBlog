@@ -181,6 +181,9 @@ logs
 secrets.json
 config.json
 
+# Private resume file
+assets/data/YuanyuanXu_2025-2.pdf
+
 # Static Website specific
 .sass-cache/
 *.css.map

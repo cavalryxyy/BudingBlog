@@ -1,14 +1,14 @@
 # Resume System Implementation
 
 ## Overview
-A two-step resume download system that collects visitor information before providing resume access. The system is integrated directly into the footer for a cleaner, more streamlined user experience.
+A resume request system that collects visitor email information for manual review and sending. The system is integrated directly into the footer for a cleaner, more streamlined user experience.
 
 ## Features Implemented
 
-### Phase 1: Basic Two-Step System ?
+### Phase 1: Basic Email Collection System ?
 - **Resume Preview Modal**: Shows a professional preview of the resume with key highlights
 - **Email Collection**: Collects visitor email, name, and company information
-- **Download Functionality**: Provides resume PDF download after email submission
+- **Manual Review**: All requests are stored for manual review and sending
 - **Success Feedback**: Shows confirmation message after successful submission
 - **Footer Integration**: Seamlessly integrated into existing footer links
 
@@ -28,11 +28,11 @@ A two-step resume download system that collects visitor information before provi
 
 1. **Visitor clicks "Resume" link** in the footer (GitHub, Email, Mobile, Resume)
 2. **Preview modal opens** showing resume highlights and summary
-3. **Visitor clicks "Download Full Resume"** button
+3. **Visitor clicks "Request Resume"** button
 4. **Email collection modal opens** with form fields
 5. **Visitor submits email** and optional name/company
-6. **Resume downloads automatically** and success message shows
-7. **Email data stored** for admin review
+6. **Success message shows** confirming request received
+7. **Email data stored** for manual review and sending
 
 ## Files Modified/Created
 
@@ -81,9 +81,9 @@ Visit `/admin.html` to access the admin dashboard where you can:
 ### For Visitors
 1. Navigate to the footer section
 2. Click "Resume" link in the footer
-3. Review the preview and click "Download Full Resume"
+3. Review the preview and click "Request Resume"
 4. Fill out the email form and submit
-5. Resume will download automatically
+5. You'll receive confirmation that your request was received
 
 ### For Admin
 1. Visit `/admin.html` in your browser

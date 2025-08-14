@@ -42,6 +42,58 @@ function openEmailModal() {
     }, 300);
 }
 
+// Email validation function
+function validateEmail(email) {
+    // Basic email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        return { valid: false, error: 'Please enter a valid email address format (e.g., user@example.com)' };
+    }
+    
+    // Check for common disposable email domains
+    const disposableDomains = [
+        'tempmail.org', 'guerrillamail.com', 'mailinator.com', '10minutemail.com',
+        'throwaway.email', 'temp-mail.org', 'sharklasers.com', 'getairmail.com'
+    ];
+    
+    const domain = email.split('@')[1].toLowerCase();
+    if (disposableDomains.includes(domain)) {
+        return { valid: false, error: 'Please use a valid email address' };
+    }
+    
+    return { valid: true };
+}
+
+// Show error message
+function showErrorMessage(message) {
+    const emailContent = document.querySelector('.email-form-content');
+    const currentForm = emailContent.querySelector('form');
+    
+    // Create error message element
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.innerHTML = `
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>${message}</p>
+        <button onclick="resetEmailForm()" class="btn-retry">
+            <i class="fas fa-redo"></i> Try Again
+        </button>
+    `;
+    
+    // Replace form with error message
+    emailContent.innerHTML = '';
+    emailContent.appendChild(errorDiv);
+}
+
+// Reset email form
+function resetEmailForm() {
+    // Reload the original email form by refreshing the modal
+    closeEmailModal();
+    setTimeout(() => {
+        openEmailModal();
+    }, 100);
+}
+
 // Handle email form submission
 function submitEmail(event) {
     event.preventDefault();
@@ -49,42 +101,58 @@ function submitEmail(event) {
     const form = event.target;
     const submitBtn = form.querySelector('.btn-submit');
     const originalText = submitBtn.innerHTML;
+    const email = document.getElementById('visitorEmail').value.trim();
+    
+    // Validate email format
+    const validation = validateEmail(email);
+    if (!validation.valid) {
+        showErrorMessage(validation.error);
+        return;
+    }
     
     // Disable button and show loading
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Validating...';
     
-    // Get form data
-    const email = document.getElementById('visitorEmail').value;
-    const name = document.getElementById('visitorName').value || 'Anonymous';
-    const company = document.getElementById('companyName').value || 'Not specified';
-    
-    // Store email data (in production, this would be sent to your server)
-    const emailData = {
-        email: email,
-        name: name,
-        company: company,
-        timestamp: new Date().toISOString(),
-        userAgent: navigator.userAgent,
-        referrer: document.referrer
-    };
-    
-    collectedEmails.push(emailData);
-    
-    // Store in localStorage for admin panel access
-    localStorage.setItem('resumeEmails', JSON.stringify(collectedEmails));
-    
-    // Log to console for development (remove in production)
-    console.log('Email collected:', emailData);
-    console.log('Total emails collected:', collectedEmails.length);
-    
-    // Simulate processing delay
+    // Simulate email validation check (in production, this would be a real API call)
     setTimeout(() => {
-        // Show success message
-        showSuccessMessage();
+        // Simulate random validation failure (remove this in production)
+        const randomFailure = Math.random() < 0.1; // 10% chance of failure for testing
         
-        // Download the resume
-        downloadResumeFile();
+        if (randomFailure) {
+            // Simulate email not found or invalid
+            submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Email Not Found';
+            setTimeout(() => {
+                showErrorMessage('This email address could not be verified. Please check your email and try again, or use a different email address.');
+            }, 1000);
+            return;
+        }
+        
+        // Email is valid, proceed with collection
+        const name = document.getElementById('visitorName').value || 'Anonymous';
+        const company = document.getElementById('companyName').value || 'Not specified';
+        
+        // Store email data (in production, this would be sent to your server)
+        const emailData = {
+            email: email,
+            name: name,
+            company: company,
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            referrer: document.referrer
+        };
+        
+        collectedEmails.push(emailData);
+        
+        // Store in localStorage for admin panel access
+        localStorage.setItem('resumeEmails', JSON.stringify(collectedEmails));
+        
+        // Log to console for development (remove in production)
+        console.log('Email collected:', emailData);
+        console.log('Total emails collected:', collectedEmails.length);
+        
+        // Collect email for manual resume sending
+        collectEmailForResume();
         
         // Reset form
         form.reset();
@@ -96,9 +164,9 @@ function submitEmail(event) {
         // Close modal after a delay
         setTimeout(() => {
             closeEmailModal();
-        }, 3000);
+        }, 5000);
         
-    }, 1500);
+    }, 2000); // Increased delay to simulate validation
 }
 
 // Show success message
@@ -108,21 +176,37 @@ function showSuccessMessage() {
         <div class="success-message">
             <i class="fas fa-check-circle"></i>
             <h4>Thank You!</h4>
-            <p> If it is not downloaded automatically, please leave a message to me.</p>
+            <p>I've received your request for my resume. I'll send it to your email address soon.</p>
             <p><strong>Email:</strong> ${document.getElementById('visitorEmail').value}</p>
         </div>
     `;
 }
 
-// Download resume file
-function downloadResumeFile() {
-    const link = document.createElement('a');
-    link.href = 'assets/data/YuanyuanXu_2025-2.pdf';
-    link.download = 'YuanyuanXu_Resume.pdf';
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+// Collect email for manual resume sending
+function collectEmailForResume() {
+    const email = document.getElementById('visitorEmail').value;
+    const name = document.getElementById('visitorName').value;
+    const company = document.getElementById('visitorCompany').value;
+    
+    // Store the email request
+    const requestData = {
+        email: email,
+        name: name,
+        company: company,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        page: window.location.href
+    };
+    
+    // Add to collected emails for admin review
+    collectedEmails.push(requestData);
+    localStorage.setItem('collectedEmails', JSON.stringify(collectedEmails));
+    
+    // Track the request
+    trackResumeDownload(email, name, company);
+    
+    // Show success message
+    showSuccessMessage();
 }
 
 // Close modals when clicking outside
@@ -197,4 +281,6 @@ window.closeResumePreview = closeResumePreview;
 window.closeEmailModal = closeEmailModal;
 window.downloadResume = downloadResume;
 window.submitEmail = submitEmail;
+window.showErrorMessage = showErrorMessage;
+window.resetEmailForm = resetEmailForm;
 window.exportCollectedEmails = exportCollectedEmails;
