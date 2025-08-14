@@ -209,6 +209,18 @@ body {
     font-size: 0.9rem;
 }
 
+/* Ensure icon links are centered and sized nicely */
+.nav-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-links a i {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
 .nav-links a:hover {
     background: #f8fafc;
     transform: translateY(-1px);
@@ -667,6 +679,8 @@ main {
     100% { width: 100%; }
 }
 
+
+
 /* Responsive design for loading modal */
 @media (max-width: 768px) {
     .loading-content {
@@ -710,32 +724,7 @@ main {
         grid-template-columns: 1fr;
     }
     
-    /* Contact section responsive styles */
-    .contact-content h2 {
-        font-size: 2rem;
-    }
-    
-    .contact-links {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .contact-link {
-        padding: 1rem;
-        gap: 1rem;
-    }
-    
-    .contact-link i {
-        font-size: 1.5rem;
-    }
-    
-    .contact-title {
-        font-size: 1.1rem;
-    }
-    
-    .contact-detail {
-        font-size: 0.9rem;
-    }
+
     
     /* Projects responsive styles moved to css/projects.css */
 }
