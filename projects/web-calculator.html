@@ -4,126 +4,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Calculator</title>
+    <link rel="stylesheet" href="../css/project-details.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .flowchart {
-            margin: 20px 0;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: #fafafa;
-        }
-        .flowchart h2 {
-            color: #666;
-            margin-bottom: 15px;
-        }
-        .mermaid {
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Web Calculator</h1>
-        
-        <div class="flowchart">
-            <h2>System Architecture</h2>
-            <div class="mermaid">
+        <header>
+            <h1>Web Calculator</h1>
+        </header>
+
+        <main>
+            <div class="top-section">
+                <div class="key-achievement">
+                    <h2>Key Achievements</h2>
+                    <ul class="achievement-list">
+                        <li>Developed React/FastAPI web app serving 200+ users across different time zones</li>
+                        <li>Built dynamic form builder with Dash components for custom quote modeling</li>
+                        <li>Implemented authentication with hierarchical roles (Admin/Sales/Developer)</li>
+                        <li>Architected hybrid storage: SQLite for transactional data, Azure Blob for contract PDFs</li>
+                        <li>Enabled 10M+ quarterly deals across different regions</li>
+                    </ul>
+                </div>
+                <div class="tech-stack">
+                    <h2>Tech Stack</h2>
+                    
+                    <div class="tech-category">
+                        <h3>Languages</h3>
+                        <ul>
+                            <li>JavaScript</li>
+                            <li>Python</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>Frontend & Backend</h3>
+                        <ul>
+                            <li>React</li>
+                            <li>FastAPI</li>
+                            <li>Dash</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>Cloud & Storage</h3>
+                        <ul>
+                            <li>Docker</li>
+                            <li>Azure Web Apps</li>
+                            <li>SQLite</li>
+                            <li>Azure Blob Storage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow">
+                <h2>System Architecture</h2>
+                <div class="mermaid">
 flowchart LR
     %% ========================
     %% Modern Light Color Scheme
     %% ========================
     classDef frontend fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
     classDef backend fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
-    classDef database fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
-    classDef cloud fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
-    classDef auth fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
-    classDef storage fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
-    classDef deployment fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+    classDef auth fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef storage fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef cloud fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef deployment fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
 
     %% ========================
     %% Component Grouping
     %% ========================
-    subgraph frontend["Frontend Layer"]
+    subgraph frontend_layer["Frontend Layer"]
         react_app["React Application"]
         dash_components["Dash Components"]
-        bootstrap_ui["Bootstrap UI"]
+        dynamic_forms["Dynamic Form Builder"]
+        quote_modeling["Quote Modeling Interface"]
     end
     
-    subgraph backend["Backend Services"]
-        fastapi_app["FastAPI Application"]
-        flask_auth["Flask-Login Authentication"]
-        calculator_engine["Calculator Engine"]
+    subgraph backend_layer["Backend Layer"]
+        fastapi_server["FastAPI Server"]
+        calculation_engine["Calculation Engine"]
+        quote_processor["Quote Processor"]
+        multi_currency["Multi-Currency Engine"]
     end
     
-    subgraph data["Data Layer"]
+    subgraph auth_system["Authentication System"]
+        role_management["Role Management"]
+        admin_access["Admin Access"]
+        sales_access["Sales Access"]
+        developer_access["Developer Access"]
+    end
+    
+    subgraph storage_layer["Storage Layer"]
         sqlite_db["SQLite Database"]
+        transactional_data["Transactional Data"]
         azure_blob["Azure Blob Storage"]
+        contract_pdfs["Contract PDFs"]
     end
     
     subgraph cloud_platform["Cloud Platform"]
-        azure_webapp["Azure Web Apps"]
-        azure_pipelines["Azure DevOps CI/CD"]
+        azure_webapps["Azure Web Apps"]
+        azure_pipelines["Azure Pipelines"]
+        docker_containers["Docker Containers"]
     end
     
-    subgraph deployment["Deployment"]
-        docker_container["Docker Container"]
-        azure_deploy["Azure Deployment"]
+    subgraph deployment["CI/CD Pipeline"]
+        cicd_pipeline["CI/CD Pipeline"]
+        zero_downtime["Zero-Downtime Deployment"]
+        global_deployment["Global Deployment"]
     end
 
     %% ========================
     %% Data Flow
     %% ========================
-    react_app -->|HTTP Requests| fastapi_app
-    dash_components -->|Interactive Components| react_app
-    bootstrap_ui -->|UI Framework| react_app
-    fastapi_app -->|Authentication| flask_auth
-    fastapi_app -->|Calculations| calculator_engine
-    calculator_engine -->|Data Storage| sqlite_db
-    calculator_engine -->|File Storage| azure_blob
-    fastapi_app -->|API Responses| react_app
-    docker_container -->|Deployment| azure_webapp
-    azure_pipelines -->|CI/CD| azure_deploy
-    azure_deploy -->|Production| azure_webapp
+    react_app -->|Build| dash_components
+    dash_components -->|Create| dynamic_forms
+    dynamic_forms -->|Process| quote_modeling
+    quote_modeling -->|Send| fastapi_server
+    fastapi_server -->|Calculate| calculation_engine
+    calculation_engine -->|Process| quote_processor
+    quote_processor -->|Convert| multi_currency
+    multi_currency -->|Authenticate| role_management
+    role_management -->|Authorize| admin_access
+    role_management -->|Authorize| sales_access
+    role_management -->|Authorize| developer_access
+    admin_access -->|Store| sqlite_db
+    sales_access -->|Store| sqlite_db
+    developer_access -->|Store| sqlite_db
+    sqlite_db -->|Save| transactional_data
+    fastapi_server -->|Upload| azure_blob
+    azure_blob -->|Store| contract_pdfs
+    fastapi_server -->|Deploy| azure_webapps
+    azure_webapps -->|Build| azure_pipelines
+    azure_pipelines -->|Package| docker_containers
+    docker_containers -->|Deploy| cicd_pipeline
+    cicd_pipeline -->|Execute| zero_downtime
+    zero_downtime -->|Serve| global_deployment
 
     %% ========================
     %% Apply Color Coding
     %% ========================
-    class react_app,dash_components,bootstrap_ui frontend
-    class fastapi_app,flask_auth,calculator_engine backend
-    class sqlite_db,azure_blob data
-    class azure_webapp,azure_pipelines cloud
-    class flask_auth auth
-    class docker_container,azure_deploy deployment
+    class react_app,dash_components,dynamic_forms,quote_modeling frontend
+    class fastapi_server,calculation_engine,quote_processor,multi_currency backend
+    class role_management,admin_access,sales_access,developer_access auth
+    class sqlite_db,transactional_data,azure_blob,contract_pdfs storage
+    class azure_webapps,azure_pipelines,docker_containers cloud
+    class cicd_pipeline,zero_downtime,global_deployment deployment
 
     %% ========================
     %% Connection Styling
     %% ========================
     linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
-    linkStyle 0,1,2 stroke:#1E90FF,stroke-dasharray:0  
-    linkStyle 3,4,5 stroke:#9370DB,stroke-dasharray:0    
-    linkStyle 6,7 stroke:#FF7F50,stroke-dasharray:0
-    linkStyle 8,9,10 stroke:#3CB371,stroke-dasharray:0
+                </div>
             </div>
-        </div>
+        </main>
     </div>
 
     <script>

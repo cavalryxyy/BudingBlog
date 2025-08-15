@@ -4,49 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tensile Strength Predictive Model</title>
+    <link rel="stylesheet" href="../css/project-details.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .flowchart {
-            margin: 20px 0;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: #fafafa;
-        }
-        .flowchart h2 {
-            color: #666;
-            margin-bottom: 15px;
-        }
-        .mermaid {
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Tensile Strength Predictive Model</h1>
-        
-        <div class="flowchart">
-            <h2>System Architecture</h2>
-            <div class="mermaid">
+        <header>
+            <h1>Tensile Strength Predictive Model</h1>
+        </header>
+
+        <main>
+            <div class="top-section">
+                <div class="key-achievement">
+                    <h2>Key Achievements</h2>
+                    <ul class="achievement-list">
+                        <li>Developed time-series forecasting model using Scikit-learn for manufacturing quality prediction</li>
+                        <li>Built model evaluation dashboard with cross-validation and performance metrics</li>
+                        <li>Deployed FastAPI service with Azure DevOps for real-time predictions</li>
+                        <li>Cost saving 1.8M¥ per year with actual payback rate 0.6</li>
+                    </ul>
+                </div>
+                <div class="tech-stack">
+                    <h2>Tech Stack</h2>
+                    
+                    <div class="tech-category">
+                        <h3>Languages</h3>
+                        <ul>
+                            <li>Python</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>ML & Analytics</h3>
+                        <ul>
+                            <li>Pandas</li>
+                            <li>Scikit-learn</li>
+                            <li>Plotly</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>Tools & Platform</h3>
+                        <ul>
+                            <li>FastAPI</li>
+                            <li>Azure DevOps</li>
+                            <li>Material Science</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow">
+                <h2>System Architecture</h2>
+                <div class="mermaid">
 flowchart LR
     %% ========================
     %% Modern Light Color Scheme
@@ -55,94 +65,94 @@ flowchart LR
     classDef preprocessing fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
     classDef ml_engine fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
     classDef evaluation fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
-    classDef deployment fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef deployment fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
 
     %% ========================
     %% Component Grouping
     %% ========================
-    subgraph data_sources["Data Sources"]
-        manufacturing_data["Manufacturing Data"]
-        quality_metrics["Quality Metrics"]
-        historical_ts["Historical Time-Series"]
+    subgraph data_sources["Material Data"]
+        tensile_data["Historical Tensile Data"]
+        material_properties["Material Properties"]
+        quality_tests["Quality Test Results"]
+        manufacturing_params["Manufacturing Parameters"]
     end
     
     subgraph preprocessing["Data Preprocessing"]
-        pandas_processing["Pandas Processing"]
-        data_cleaning["Data Cleaning"]
+        pandas_processing["Pandas Data Processing"]
+        time_series_prep["Time-Series Preparation"]
         feature_engineering["Feature Engineering"]
-        time_series_prep["Time-Series Prep"]
+        cross_validation["Cross-Validation Setup"]
     end
     
     subgraph ml_engine["ML Engine"]
         scikit_learn["Scikit-learn Models"]
-        time_series_models["Time-Series Models"]
+        forecasting_model["Time-Series Forecasting Model"]
         model_training["Model Training"]
-        hyperparameter_tuning["Hyperparameter Tuning"]
+        quality_prediction["Quality Prediction"]
     end
-
-    %% ========================
-    %% Data Flow - Upper Layer
-    %% ========================
-    manufacturing_data -->|Extract| pandas_processing
-    quality_metrics -->|Extract| pandas_processing
-    historical_ts -->|Extract| pandas_processing
-    pandas_processing -->|Clean| data_cleaning
-    data_cleaning -->|Engineer| feature_engineering
-    feature_engineering -->|Prepare| time_series_prep
-    time_series_prep -->|Train| scikit_learn
-    time_series_prep -->|Train| time_series_models
-    scikit_learn -->|Optimize| hyperparameter_tuning
-    time_series_models -->|Optimize| hyperparameter_tuning
-    hyperparameter_tuning -->|Train| model_training
-    model_training -->|Evaluate| performance_metrics
-
-    %% ========================
-    %% Lower Layer - Evaluation & Deployment (ÕÛµþ²¿·Ö)
-    %% ========================
+    
     subgraph evaluation["Model Evaluation"]
         performance_metrics["Performance Metrics"]
-        cross_validation["Cross-Validation"]
-        model_comparison["Model Comparison"]
+        model_validation["Model Validation"]
         prediction_accuracy["Prediction Accuracy"]
+        evaluation_dashboard["Evaluation Dashboard"]
+    end
+    
+    subgraph visualization["Visualization"]
+        plotly_charts["Plotly Charts"]
+        performance_plots["Performance Plots"]
+        quality_dashboards["Quality Dashboards"]
     end
     
     subgraph deployment["Deployment"]
         fastapi_service["FastAPI Service"]
         azure_devops["Azure DevOps"]
-        model_serving["Model Serving"]
+        real_time_predictions["Real-time Predictions"]
     end
 
     %% ========================
-    %% Cross-layer Connection (ÕÛÏß)
+    %% Data Flow
     %% ========================
-    performance_metrics -.->|Validate| cross_validation
-    cross_validation -->|Compare| model_comparison
-    model_comparison -->|Assess| prediction_accuracy
-    prediction_accuracy -->|Deploy| fastapi_service
-    fastapi_service -->|Deploy| azure_devops
-    azure_devops -->|Host| model_serving
+    tensile_data -->|Process| pandas_processing
+    material_properties -->|Process| pandas_processing
+    quality_tests -->|Process| pandas_processing
+    manufacturing_params -->|Process| pandas_processing
+    pandas_processing -->|Prepare| time_series_prep
+    time_series_prep -->|Engineer| feature_engineering
+    feature_engineering -->|Setup| cross_validation
+    cross_validation -->|Train| scikit_learn
+    scikit_learn -->|Build| forecasting_model
+    forecasting_model -->|Train| model_training
+    model_training -->|Predict| quality_prediction
+    quality_prediction -->|Evaluate| performance_metrics
+    performance_metrics -->|Validate| model_validation
+    model_validation -->|Assess| prediction_accuracy
+    prediction_accuracy -->|Display| evaluation_dashboard
+    evaluation_dashboard -->|Visualize| plotly_charts
+    plotly_charts -->|Show| performance_plots
+    performance_plots -->|Create| quality_dashboards
+    quality_dashboards -->|Deploy| fastapi_service
+    fastapi_service -->|Manage| azure_devops
+    azure_devops -->|Serve| real_time_predictions
 
     %% ========================
     %% Apply Color Coding
     %% ========================
-    class manufacturing_data,quality_metrics,historical_ts data_source
-    class pandas_processing,data_cleaning,feature_engineering,time_series_prep preprocessing
-    class scikit_learn,time_series_models,model_training,hyperparameter_tuning ml_engine
-    class performance_metrics,cross_validation,model_comparison,prediction_accuracy evaluation
-    class fastapi_service,azure_devops,model_serving deployment
+    class tensile_data,material_properties,quality_tests,manufacturing_params data_source
+    class pandas_processing,time_series_prep,feature_engineering,cross_validation preprocessing
+    class scikit_learn,forecasting_model,model_training,quality_prediction ml_engine
+    class performance_metrics,model_validation,prediction_accuracy,evaluation_dashboard evaluation
+    class plotly_charts,performance_plots,quality_dashboards visualization
+    class fastapi_service,azure_devops,real_time_predictions deployment
 
     %% ========================
     %% Connection Styling
     %% ========================
     linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
-    linkStyle 0,1,2 stroke:#1E90FF,stroke-dasharray:0  
-    linkStyle 3,4,5,6 stroke:#9370DB,stroke-dasharray:0    
-    linkStyle 7,8,9,10 stroke:#FF7F50,stroke-dasharray:0
-    linkStyle 11 stroke:#3CB371,stroke-dasharray:0
-    linkStyle 12 stroke:#3CB371,stroke-dasharray:5 5
-    linkStyle 13,14,15,16 stroke:#FFA500,stroke-dasharray:0
+                </div>
             </div>
-        </div>
+        </main>
     </div>
 
     <script>

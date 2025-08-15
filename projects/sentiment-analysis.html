@@ -3,49 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentiment analysis</title>
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" href="../css/project-details.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .flowchart {
-            margin: 20px 0;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: #fafafa;
-        }
-        .flowchart h2 {
-            color: #666;
-            margin-bottom: 15px;
-        }
-        .mermaid {
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Sentiment analysis</h1>
-        
-        <div class="flowchart">
-            <h2>System Architecture</h2>
+        <header>
+            <h1>Sentiment Analysis</h1>
+        </header>
+
+        <main>
+            <div class="top-section">
+                <div class="key-achievement">
+                    <h2>Key Achievements</h2>
+                    <ul class="achievement-list">
+                        <li>Built pipeline to extract financial metrics and forward-looking business strategy statements</li>
+                        <li>Implemented RAG system with GPT-4o for sentiment scoring</li>
+                        <li>Created regularization algorithms for sentiment score smoothing and validation</li>
+                        <li>Deliver quantitative analysis to predict customer demand across sale teams</li>
+                    </ul>
+                </div>
+                <div class="tech-stack">
+                    <h2>Tech Stack</h2>
+                    
+                    <div class="tech-category">
+                        <h3>Languages</h3>
+                        <ul>
+                            <li>Python</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>AI & ML</h3>
+                        <ul>
+                            <li>Prompt Engineering</li>
+                            <li>RAG</li>
+                            <li>GPT-4o</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>Analytics</h3>
+                        <ul>
+                            <li>Financial Analytics</li>
+                            <li>NLP</li>
+                            <li>Text Analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow">
+                <h2>System Architecture</h2>
             <div class="mermaid">
 flowchart LR
     %% ========================
@@ -128,7 +138,8 @@ flowchart LR
     linkStyle 7,8,9 stroke:#FFA07A,stroke-dasharray:0
     linkStyle 10,11,12 stroke:#3CB371,stroke-dasharray:0
             </div>
-        </div>
+            </div>
+        </main>
     </div>
 
     <script>
