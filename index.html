@@ -403,14 +403,14 @@
     <div id="emailModal" class="email-modal">
         <div class="email-modal-content">
             <div class="email-modal-header">
-                <h3><i class="fas fa-envelope"></i> Get Your Resume</h3>
+                <h3><i class="fas fa-envelope"></i> Download Resume</h3>
                 <button class="close-btn" onclick="closeEmailModal()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="email-form-content">
-                <p>Please provide your email address, and I'll send you my resume soon.</p>
-                <form id="emailForm" onsubmit="submitEmail(event)">
+                <p>Please provide your company email address, and I'll send you my resume soon.</p>
+                <form id="emailForm" action="https://formspree.io/f/xuyuanyuan102888@outlook" method="POST" onsubmit="submitEmail(event)">
                     <div class="form-group">
                         <label for="visitorEmail">Email Address *</label>
                         <input type="email" id="visitorEmail" name="email" required placeholder="your.email@company.com">
@@ -423,6 +423,8 @@
                         <label for="companyName">Company (Optional)</label>
                         <input type="text" id="companyName" name="company" placeholder="Your Company">
                     </div>
+                    <input type="hidden" name="_subject" value="Resume Request from Portfolio">
+                    <input type="hidden" name="_next" value="https://cavalryxyy.github.io/BudingBlog/">
                     <div class="form-actions">
                         <button type="submit" class="btn-submit">
                             <i class="fas fa-paper-plane"></i>
