@@ -267,5 +267,5 @@ function navigateToProjectWithLoading(projectName) {
     // Add a small delay to show the loading message
     setTimeout(() => {
         window.location.href = `projects/${filename}`;
-    }, 1500); // Show loading message for 1.5 seconds
+    }, 100); // Reduced delay to test if that's the issue
 } 

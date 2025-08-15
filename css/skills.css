@@ -1,12 +1,4 @@
 /* Enhanced Skill Tree Animation Section */
-.enhanced-skills-section {
-    padding: 3rem 0;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    min-height: 80vh;
-    position: relative;
-    overflow: hidden;
-}
-
 .enhanced-skills-container {
     display: flex;
     justify-content: center;
@@ -25,13 +17,96 @@
 
 .enhanced-skill-module.focused {
     z-index: 100;
-    transform: scale(1.1);
+    /* transform: scale(1.2); */ /* Scaling will be handled by hover now */
+}
+
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1);
+        box-shadow: 
+            0 10px 30px rgba(0,0,0,0.3),
+            0 0 20px rgba(0, 170, 255, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 
+            0 15px 40px rgba(0,0,0,0.35), 
+            0 0 30px rgba(0, 170, 255, 0.4),
+            0 0 60px rgba(0, 170, 255, 0.2);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 
+            0 10px 30px rgba(0,0,0,0.3),
+            0 0 20px rgba(0, 170, 255, 0.2);
+    }
+}
+
+/* Add tech-inspired scanning effect */
+@keyframes tech-scan {
+    0% {
+        background-position: -100px 0;
+    }
+    100% {
+        background-position: 100px 0;
+    }
+}
+
+/* Add subtle data flow animation */
+@keyframes data-flow {
+    0% {
+        opacity: 0.3;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(-2px);
+    }
+    100% {
+        opacity: 0.3;
+        transform: translateY(0);
+    }
+}
+
+.skill-section.user-has-interacted .enhanced-main-bubble {
+    animation: none;
+}
+
+.enhanced-skills-container.user-has-interacted .enhanced-main-bubble {
+    animation: none;
 }
 
 .enhanced-skill-module.faded {
     opacity: 0.2;
     transform: scale(0.85);
     filter: blur(2px);
+}
+
+.skill-guide-text {
+    position: relative;
+    top: 1rem;
+    color: #cbd5e1; /* Light gray text for dark theme */
+    font-size: 1.4rem;
+    font-style: italic;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    pointer-events: none; /* Make sure it doesn't interfere with clicks */
+    margin-bottom: 2rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+.skill-guide-text.is-visible {
+    opacity: 1;
+}
+
+/* Hover effect to scale individual bubbles */
+.enhanced-main-bubble:hover,
+.enhanced-skill-module.is-expanded .enhanced-child-bubble:hover,
+.enhanced-skill-module.is-expanded .enhanced-grandchild-bubble:hover {
+    transform: scale(1.2);
+    z-index: 101; /* Bring to front to avoid being overlapped */
+    animation: none;
 }
 
 .enhanced-main-bubble {
@@ -45,35 +120,52 @@
     cursor: pointer;
     position: relative;
     z-index: 10;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 
+        0 10px 30px rgba(0,0,0,0.3),
+        0 4px 6px rgba(0,0,0,0.2),
+        inset 0 1px 3px rgba(255,255,255,0.2);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    font-weight: bold;
+    font-weight: 600;
     font-size: 0.95rem;
-    color: white;
-    border: 3px solid rgba(255,255,255,0.4);
+    color: #ffffff; /* Text inside bubbles should be white */
     backdrop-filter: blur(10px);
+    animation: pulse-glow 3s infinite ease-in-out;
+    letter-spacing: -0.01em;
 }
 
 .enhanced-skill-module.focused .enhanced-main-bubble {
-    box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(255,255,255,0.3);
-    border: 4px solid rgba(255,255,255,0.8);
+    box-shadow: 
+        0 20px 50px rgba(0,0,0,0.4), 
+        0 10px 25px rgba(0,0,0,0.2),
+        inset 0 1px 3px rgba(255,255,255,0.3);
+    transform: scale(1.05);
 }
 
-/* Enhanced bubble colors with gradients - each bubble uses its own color */
+/* Enhanced bubble colors with dark theme */
 .enhanced-programming .enhanced-main-bubble { 
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, #00aaff 0%, #0088cc 100%);
+    border: 3px solid rgba(0, 170, 255, 0.3);
+    color: white;
 }
 .enhanced-cloud .enhanced-main-bubble { 
-    background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    border: 3px solid rgba(139, 92, 246, 0.3);
+    color: white;
 }
 .enhanced-ai .enhanced-main-bubble { 
-    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: 3px solid rgba(16, 185, 129, 0.3);
+    color: white;
 }
 .enhanced-analytics .enhanced-main-bubble { 
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    border: 3px solid rgba(245, 158, 11, 0.3);
+    color: white;
 }
 .enhanced-industrial .enhanced-main-bubble { 
-    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    border: 3px solid rgba(239, 68, 68, 0.3);
+    color: white;
 }
 
 .enhanced-children-container {
@@ -93,15 +185,19 @@
     text-align: center;
     font-size: 0.85rem;
     font-weight: 600;
-    color: white;
+    color: #ffffff; /* Text inside bubbles should be white */
     opacity: 0;
     visibility: hidden;
     transform: scale(0) rotate(180deg);
     transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    border: 2px solid rgba(255,255,255,0.5);
+    box-shadow: 
+        0 6px 20px rgba(0,0,0,0.4),
+        0 0 15px rgba(0, 170, 255, 0.2),
+        inset 0 1px 2px rgba(255,255,255,0.2);
+    border: 2px solid rgba(0, 170, 255, 0.4);
     z-index: 8;
     backdrop-filter: blur(5px);
+    letter-spacing: -0.01em;
 }
 
 .enhanced-grandchild-bubble {
@@ -114,15 +210,19 @@
     justify-content: center;
     text-align: center;
     font-size: 0.7rem;
-    color: white;
+    color: #ffffff; /* Text inside bubbles should be white */
     opacity: 0;
     visibility: hidden;
     transform: scale(0) rotate(-90deg);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 
+        0 4px 15px rgba(0,0,0,0.35),
+        0 0 10px rgba(0, 170, 255, 0.15),
+        inset 0 1px 1px rgba(255,255,255,0.1);
+    border: 1px solid rgba(0, 170, 255, 0.3);
     z-index: 6;
     backdrop-filter: blur(3px);
+    font-weight: 500;
 }
 
 /* Enhanced child bubble colors - each uses same color as its parent bubble */
@@ -179,35 +279,18 @@
 .enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(2) { transition-delay: 0.2s; }
 .enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(3) { transition-delay: 0.3s; }
 .enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(4) { transition-delay: 0.4s; }
-
-/* Increased distances to prevent overlapping */
-.enhanced-skill-module .enhanced-child-bubble:nth-child(1) { 
-    top: -180px; left: 25px; /* 12 o'clock - top center */
-}
-.enhanced-skill-module .enhanced-child-bubble:nth-child(2) { 
-    top: 25px; right: -180px; /* 3 o'clock - right center */
-}
-.enhanced-skill-module .enhanced-child-bubble:nth-child(3) { 
-    bottom: -180px; left: 25px; /* 6 o'clock - bottom center */
-}
-.enhanced-skill-module .enhanced-child-bubble:nth-child(4) { 
-    top: 25px; left: -180px; /* 9 o'clock - left center */
-}
-.enhanced-skill-module .enhanced-child-bubble:nth-child(5) { 
-    top: -130px; left: -140px; /* 10 o'clock - for trees with 5 children */
-}
+.enhanced-skill-module.is-expanded .enhanced-child-bubble:nth-child(5) { transition-delay: 0.5s; }
 
 
-/* Grandchildren distributed around their parent with increased spacing */
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(1) { top: -90px; left: 17px; /* increased from -70px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(2) { top: -65px; right: -80px; /* increased from -60px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(3) { top: 17px; right: -90px; /* increased from -70px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(4) { bottom: -65px; right: -80px; /* increased from -60px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(5) { bottom: -90px; left: 17px; /* increased from -70px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(6) { bottom: -65px; left: -80px; /* increased from -60px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(7) { top: 17px; left: -90px; /* increased from -70px */ }
-.enhanced-child-bubble .enhanced-grandchild-bubble:nth-child(8) { top: -65px; left: -80px; /* 8th node following existing pattern */ }
+/* Dynamic positioning for child bubbles */
+.enhanced-skill-module .enhanced-child-bubble {
+    /* Bubbles are positioned by JavaScript now */
+}
 
+/* Dynamic positioning for grandchild bubbles */
+.enhanced-child-bubble .enhanced-grandchild-bubble {
+    /* Bubbles are positioned by JavaScript now */
+}
 
 
 /* Mobile responsive adjustments */
