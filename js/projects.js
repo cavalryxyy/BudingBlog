@@ -5,15 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initProjectsSection() {
-    // Add click handlers for project cards
+    // Add hover effects to project cards (click handlers are now inline)
     const projectCards = document.querySelectorAll('.project-card');
     
     projectCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const projectName = this.querySelector('h4').textContent.split('(')[0].trim();
-            navigateToProject(projectName.toLowerCase().replace(/\s+/g, '-'));
-        });
-
         // Add hover effects
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-5px) scale(1.02)';
@@ -39,10 +34,8 @@ function initProjectsSection() {
     });
 }
 
-function navigateToProject(projectName) {
-    // Navigate to the specific project page
-    window.location.href = `projects/${projectName}.html`;
-}
+// Note: Project navigation is now handled by navigateToProjectWithLoading() 
+// function in main.js with inline onclick handlers in sections/projects.html
 
 // Utility function for smooth scrolling
 function scrollToSection(sectionId) {

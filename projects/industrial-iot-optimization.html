@@ -3,126 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MPS</title>
+    <title>Industrial IoT Manufacturing Optimization</title>
+    <link rel="stylesheet" href="../css/project-details.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
+        #diagram-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            cursor: grab;
+            background-color: #f9f9f9;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+        #diagram-container.panning {
+            cursor: grabbing;
         }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .flowchart {
-            margin: 20px 0;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: #fafafa;
-        }
-        .flowchart h2 {
-            color: #666;
-            margin-bottom: 15px;
-        }
+
         .mermaid {
-            text-align: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .mermaid svg {
+            display: block;
+            transform-origin: 0 0;
+        }
+
+        .diagram-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .diagram-controls button {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .diagram-controls button:hover {
+            background-color: #f0f0f0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>MPS</h1>
-        
-        <div class="flowchart">
-            <h2>System Architecture</h2>
-            <div class="mermaid">
+        <header>
+            <h1>Industrial IoT Manufacturing Optimization</h1>
+        </header>
+
+        <main>
+            <div class="top-section">
+                <div class="key-achievement">
+                    <h2>Key Achievements</h2>
+                    <ul class="achievement-list">
+                        <li>Developed Python/OpenCV backend pipeline for real-time magnetic point detection and monitoring</li>
+                        <li>Built computer vision algorithms for automated quality control in manufacturing processes</li>
+                        <li>Implemented FastAPI REST services for data collection and process optimization</li>
+                        <li>Architected IoT solution connecting IR thermometers and PLCs via Azure IoT Hub</li>
+                        <li>Achieved significant cost savings annually, with exceptional payback rate</li>
+                    </ul>
+                </div>
+                <div class="tech-stack">
+                    <h2>Tech Stack</h2>
+                    
+                    <div class="tech-category">
+                        <h3>Languages</h3>
+                        <ul>
+                            <li>Python</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>Computer Vision</h3>
+                        <ul>
+                            <li>OpenCV</li>
+                            <li>Computer Vision Algorithms</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-category">
+                        <h3>IoT & Platform</h3>
+                        <ul>
+                            <li>Azure Synapse Analytics</li>
+                            <li>FastAPI</li>
+                            <li>Manufacturing IoT</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow">
+                <h2>System Architecture</h2>
+                <div id="diagram-container">
+                    <div class="mermaid">
 flowchart LR
     %% ========================
     %% Modern Light Color Scheme
     %% ========================
-    classDef device fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
-    classDef gateway fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
-    classDef scada fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
-    classDef cloud fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
-    classDef analytics fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
-    classDef decision fill:#FFB6C1,stroke:#FF69B4,color:#333,stroke-width:2px,rounded:5px
-    classDef storage fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
-    classDef batch fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+    classDef iot_devices fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef data_processing fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef cv_system fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef analytics fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef cloud_platform fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef optimization fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
 
     %% ========================
     %% Component Grouping
     %% ========================
-    subgraph edge_devices["Production Hardware"]
-        ir_thermometer[IR Thermometer/Camera]
-        plc[Production PLC]
+    subgraph iot_layer["IoT Device Layer"]
+        industrial_sensors["Industrial Sensors"]
+        iot_connectivity["IoT Connectivity"]
+        manufacturing_equipment["Manufacturing Equipment"]
+        quality_sensors["Quality Control Sensors"]
     end
     
-    subgraph gateways["Communication"]
-        gateway[Edge Gateway Device]
+    subgraph data_layer["Data Processing Layer"]
+        real_time_ingestion["Real-time Data Ingestion"]
+        edge_computing["Edge Computing"]
+        data_validation["Data Validation"]
+        stream_processing["Stream Processing"]
     end
     
-    subgraph control["Control Systems"]
-        scada[WebSCADA System]
+    subgraph cv_layer["Computer Vision System"]
+        image_capture["Image Capture System"]
+        cv_algorithms["CV Algorithms"]
+        quality_inspection["Automated Quality Inspection"]
+        defect_detection["Defect Detection"]
     end
     
-    subgraph cloud_services["Cloud Platform"]
-        azure_iothub[Azure IoT Hub]
-        stream_analytics["Azure Stream Analytics (Real-time Processing)"]
+    subgraph analytics_layer["Analytics Engine"]
+        real_time_analytics["Real-time Analytics"]
+        predictive_models["Predictive Models"]
+        anomaly_detection["Anomaly Detection"]
+        performance_monitoring["Performance Monitoring"]
     end
     
-    subgraph data["Data Layer"]
-        synapse["Azure Synapse Analytics (Data Warehouse)"]
+    subgraph cloud_layer["Cloud Platform"]
+        azure_iot_hub["Azure IoT Hub"]
+        azure_stream_analytics["Azure Stream Analytics"]
+        azure_machine_learning["Azure Machine Learning"]
+        azure_storage["Azure Storage"]
     end
     
-    subgraph intelligence["Decision Services"]
-        fastapi["FastAPI Service (20-min Batch & Prediction)"]
+    subgraph optimization_layer["Optimization Engine"]
+        process_optimization["Process Optimization"]
+        cost_reduction["Cost Reduction Analysis"]
+        quality_control["Quality Control Automation"]
+        manufacturing_insights["Manufacturing Insights"]
     end
 
     %% ========================
     %% Data Flow
     %% ========================
-    ir_thermometer -->|Modbus TCP| gateway
-    gateway -->|OPC UA| scada
-    scada -->|REST API| azure_iothub
-    azure_iothub -->|AMQP| stream_analytics
-    stream_analytics -->|Processed Data| synapse
-    synapse -->|Batch Data| fastapi
-    fastapi -->|Predictions & Decisions| scada
-    scada -->|OPC UA Commands| plc
-    plc -->|OPC UA Data| scada
-    scada -->|Historical Data| synapse
+    industrial_sensors -->|Connect| iot_connectivity
+    iot_connectivity -->|Monitor| manufacturing_equipment
+    manufacturing_equipment -->|Sense| quality_sensors
+    quality_sensors -->|Ingest| real_time_ingestion
+    real_time_ingestion -->|Process| edge_computing
+    edge_computing -->|Validate| data_validation
+    data_validation -->|Stream| stream_processing
+    stream_processing -->|Capture| image_capture
+    image_capture -->|Analyze| cv_algorithms
+    cv_algorithms -->|Inspect| quality_inspection
+    quality_inspection -->|Detect| defect_detection
+    defect_detection -->|Analyze| real_time_analytics
+    real_time_analytics -->|Predict| predictive_models
+    predictive_models -->|Detect| anomaly_detection
+    anomaly_detection -->|Monitor| performance_monitoring
+    performance_monitoring -->|Hub| azure_iot_hub
+    azure_iot_hub -->|Analytics| azure_stream_analytics
+    azure_stream_analytics -->|ML| azure_machine_learning
+    azure_machine_learning -->|Store| azure_storage
+    azure_storage -->|Optimize| process_optimization
+    process_optimization -->|Reduce| cost_reduction
+    cost_reduction -->|Control| quality_control
+    quality_control -->|Insights| manufacturing_insights
 
     %% ========================
     %% Apply Color Coding
     %% ========================
-    class ir_thermometer,plc device
-    class gateway gateway
-    class scada scada
-    class azure_iothub,stream_analytics cloud
-    class fastapi decision
-    class synapse storage
+    class industrial_sensors,iot_connectivity,manufacturing_equipment,quality_sensors iot_devices
+    class real_time_ingestion,edge_computing,data_validation,stream_processing data_processing
+    class image_capture,cv_algorithms,quality_inspection,defect_detection cv_system
+    class real_time_analytics,predictive_models,anomaly_detection,performance_monitoring analytics
+    class azure_iot_hub,azure_stream_analytics,azure_machine_learning,azure_storage cloud_platform
+    class process_optimization,cost_reduction,quality_control,manufacturing_insights optimization
 
     %% ========================
     %% Connection Styling
     %% ========================
     linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
-    linkStyle 0,1,7,8 stroke:#FF7F50,stroke-dasharray:0  
-    linkStyle 2,3,4 stroke:#3CB371,stroke-dasharray:0    
-    linkStyle 5,6 stroke:#FF69B4,stroke-dasharray:0
-    linkStyle 9 stroke:#BA55D3,stroke-dasharray:5 5
+                    </div>
+                    <div class="diagram-controls">
+                        <button id="zoom-in" title="Zoom In">+</button>
+                        <button id="zoom-out" title="Zoom Out">-</button>
+                        <button id="reset-view" title="Reset View">&#x21bb;</button>
+                    </div>
+                </div>
             </div>
-        </div>
+        </main>
     </div>
 
     <script>
@@ -134,6 +228,146 @@ flowchart LR
                 htmlLabels: true
             }
         });
+    </script>
+    <script>
+        let diagramControls = {
+            container: null,
+            svg: null,
+            scale: 1,
+            panX: 0,
+            panY: 0,
+            isPanning: false,
+            startX: 0,
+            startY: 0,
+            initialPanX: 0,
+            initialPanY: 0
+        };
+
+        function initializeDiagramControls() {
+            diagramControls.container = document.getElementById('diagram-container');
+            if (!diagramControls.container) {
+                console.error('Diagram container not found');
+                return;
+            }
+
+            // Wait for Mermaid to render
+            setTimeout(() => {
+                diagramControls.svg = diagramControls.container.querySelector('svg');
+                if (!diagramControls.svg) {
+                    console.error('SVG not found in container');
+                    return;
+                }
+
+                console.log('SVG found, initializing controls');
+                setupEventListeners();
+                resetView();
+            }, 1000);
+        }
+
+        function updateTransform() {
+            if (diagramControls.svg) {
+                diagramControls.svg.style.transform = `translate(${diagramControls.panX}px, ${diagramControls.panY}px) scale(${diagramControls.scale})`;
+            }
+        }
+
+        function zoomDiagram(factor, centerX, centerY) {
+            if (!diagramControls.svg) return;
+            
+            const rect = diagramControls.container.getBoundingClientRect();
+            const mouseX = centerX - rect.left;
+            const mouseY = centerY - rect.top;
+
+            const newScale = diagramControls.scale * factor;
+            
+            diagramControls.panX = mouseX - (mouseX - diagramControls.panX) * (newScale / diagramControls.scale);
+            diagramControls.panY = mouseY - (mouseY - diagramControls.panY) * (newScale / diagramControls.scale);
+            diagramControls.scale = newScale;
+
+            updateTransform();
+        }
+
+        function resetView() {
+            if (!diagramControls.svg || !diagramControls.container) return;
+            
+            const containerRect = diagramControls.container.getBoundingClientRect();
+            
+            // Reset transform to get actual size
+            diagramControls.svg.style.transform = '';
+            
+            // Get SVG dimensions
+            const svgRect = diagramControls.svg.getBoundingClientRect();
+            
+            if (svgRect.width === 0 || svgRect.height === 0) {
+                console.error('Could not get SVG dimensions');
+                return;
+            }
+
+            // Calculate scale to fit
+            const scaleX = containerRect.width / svgRect.width;
+            const scaleY = containerRect.height / svgRect.height;
+            diagramControls.scale = Math.min(scaleX, scaleY) * 0.9;
+            
+            // Center the diagram
+            diagramControls.panX = (containerRect.width - svgRect.width * diagramControls.scale) / 2;
+            diagramControls.panY = (containerRect.height - svgRect.height * diagramControls.scale) / 2;
+            
+            updateTransform();
+        }
+
+        function setupEventListeners() {
+            // Zoom buttons
+            document.getElementById('zoom-in').addEventListener('click', () => {
+                const rect = diagramControls.container.getBoundingClientRect();
+                zoomDiagram(1.2, rect.left + rect.width / 2, rect.top + rect.height / 2);
+            });
+
+            document.getElementById('zoom-out').addEventListener('click', () => {
+                const rect = diagramControls.container.getBoundingClientRect();
+                zoomDiagram(0.8, rect.left + rect.width / 2, rect.top + rect.height / 2);
+            });
+
+            document.getElementById('reset-view').addEventListener('click', resetView);
+
+            // Mouse wheel zoom
+            diagramControls.container.addEventListener('wheel', (event) => {
+                event.preventDefault();
+                const factor = event.deltaY < 0 ? 1.1 : 0.9;
+                zoomDiagram(factor, event.clientX, event.clientY);
+            });
+
+            // Pan functionality
+            diagramControls.container.addEventListener('mousedown', (event) => {
+                if (event.button !== 0) return;
+                diagramControls.isPanning = true;
+                diagramControls.container.classList.add('panning');
+                diagramControls.startX = event.clientX;
+                diagramControls.startY = event.clientY;
+                diagramControls.initialPanX = diagramControls.panX;
+                diagramControls.initialPanY = diagramControls.panY;
+            });
+
+            diagramControls.container.addEventListener('mousemove', (event) => {
+                if (diagramControls.isPanning) {
+                    event.preventDefault();
+                    diagramControls.panX = diagramControls.initialPanX + (event.clientX - diagramControls.startX);
+                    diagramControls.panY = diagramControls.initialPanY + (event.clientY - diagramControls.startY);
+                    updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                diagramControls.isPanning = false;
+                diagramControls.container.classList.remove('panning');
+            });
+
+            diagramControls.container.addEventListener('mouseleave', () => {
+                diagramControls.isPanning = false;
+                diagramControls.container.classList.remove('panning');
+            });
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', initializeDiagramControls);
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Calculator</title>
+    <title>Hypothesis & Predictive Model</title>
     <link rel="stylesheet" href="../css/project-details.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
@@ -63,7 +63,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Web Calculator</h1>
+            <h1>Hypothesis & Predictive Model</h1>
         </header>
 
         <main>
@@ -71,11 +71,10 @@
                 <div class="key-achievement">
                     <h2>Key Achievements</h2>
                     <ul class="achievement-list">
-                        <li>Developed React/FastAPI web app serving 200+ users across different time zones</li>
-                        <li>Built dynamic form builder with Dash components for custom quote modeling</li>
-                        <li>Implemented authentication with hierarchical roles (Admin/Sales/Developer)</li>
-                        <li>Architected hybrid storage: SQLite for transactional data, Azure Blob for contract PDFs</li>
-                        <li>Enabled 10M+ Euro quarterly deals across different regions</li>
+                        <li>Built predictive ML model with hypothesis testing for manufacturing optimization</li>
+                        <li>Implemented data preprocessing pipeline with feature engineering and quality metrics</li>
+                        <li>Developed Plotly dashboards for performance visualization and manufacturing insights</li>
+                        <li>Built FastAPI service with Azure DevOps deployment for production integration</li>
                     </ul>
                 </div>
                 <div class="tech-stack">
@@ -84,29 +83,25 @@
                     <div class="tech-category">
                         <h3>Languages</h3>
                         <ul>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>JavaScript</li>
                             <li>Python</li>
                         </ul>
                     </div>
 
                     <div class="tech-category">
-                        <h3>Frontend & Backend</h3>
+                        <h3>ML & Analytics</h3>
                         <ul>
-                            <li>React</li>
-                            <li>FastAPI</li>
-                            <li>Dash</li>
+                            <li>Pandas</li>
+                            <li>Scikit-learn</li>
+                            <li>Statistics</li>
                         </ul>
                     </div>
 
                     <div class="tech-category">
-                        <h3>Cloud & Storage</h3>
+                        <h3>Tools & Platform</h3>
                         <ul>
-                            <li>Docker</li>
-                            <li>Azure Web Apps</li>
-                            <li>SQLite</li>
-                            <li>Azure Blob Storage</li>
+                            <li>Plotly</li>
+                            <li>FastAPI</li>
+                            <li>Azure DevOps</li>
                         </ul>
                     </div>
                 </div>
@@ -120,92 +115,94 @@ flowchart LR
     %% ========================
     %% Modern Light Color Scheme
     %% ========================
-    classDef frontend fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
-    classDef backend fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
-    classDef auth fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
-    classDef storage fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
-    classDef cloud fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef preprocessing fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef ml_engine fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef evaluation fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
     classDef deployment fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+    classDef optimization fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
 
     %% ========================
     %% Component Grouping
     %% ========================
-    subgraph frontend_layer["Frontend Layer"]
-        react_app["React Application"]
-        dash_components["Dash Components"]
-        dynamic_forms["Dynamic Form Builder"]
-        quote_modeling["Quote Modeling Interface"]
+    subgraph data_sources["Manufacturing Data"]
+        production_data["Production Process Data"]
+        die_parameters["Die Driver Parameters"]
+        quality_metrics["Quality Metrics"]
+        historical_performance["Historical Performance Data"]
     end
     
-    subgraph backend_layer["Backend Layer"]
-        fastapi_server["FastAPI Server"]
-        calculation_engine["Calculation Engine"]
-        quote_processor["Quote Processor"]
-        multi_currency["Multi-Currency Engine"]
+    subgraph preprocessing["Data Preprocessing"]
+        pandas_processing["Pandas Data Processing"]
+        data_cleaning["Data Cleaning"]
+        feature_engineering["Feature Engineering"]
+        hypothesis_testing["Hypothesis Testing"]
     end
     
-    subgraph auth_system["Authentication System"]
-        role_management["Role Management"]
-        admin_access["Admin Access"]
-        sales_access["Sales Access"]
-        developer_access["Developer Access"]
+    subgraph ml_engine["ML Engine"]
+        scikit_learn["Scikit-learn Models"]
+        predictive_models["Predictive Models"]
+        model_training["Model Training"]
+        performance_optimization["Performance Optimization"]
     end
     
-    subgraph storage_layer["Storage Layer"]
-        sqlite_db["SQLite Database"]
-        transactional_data["Transactional Data"]
-        azure_blob["Azure Blob Storage"]
-        contract_pdfs["Contract PDFs"]
+    subgraph evaluation["Model Evaluation"]
+        performance_metrics["Performance Metrics"]
+        model_validation["Model Validation"]
+        prediction_accuracy["Prediction Accuracy"]
+        manufacturing_insights["Manufacturing Insights"]
     end
     
-    subgraph cloud_platform["Cloud Platform"]
-        azure_webapps["Azure Web Apps"]
-        azure_pipelines["Azure Pipelines"]
-        docker_containers["Docker Containers"]
+    subgraph visualization["Visualization & Dashboards"]
+        plotly_dashboards["Plotly Dashboards"]
+        performance_charts["Performance Charts"]
+        manufacturing_dashboards["Manufacturing Dashboards"]
+        optimization_plots["Optimization Plots"]
     end
     
-    subgraph deployment["CI/CD Pipeline"]
-        cicd_pipeline["CI/CD Pipeline"]
-        zero_downtime["Zero-Downtime Deployment"]
-        global_deployment["Global Deployment"]
+    subgraph deployment["Deployment"]
+        fastapi_service["FastAPI Service"]
+        azure_devops["Azure DevOps"]
+        manufacturing_integration["Manufacturing Integration"]
     end
 
     %% ========================
     %% Data Flow
     %% ========================
-    react_app -->|Build| dash_components
-    dash_components -->|Create| dynamic_forms
-    dynamic_forms -->|Process| quote_modeling
-    quote_modeling -->|Send| fastapi_server
-    fastapi_server -->|Calculate| calculation_engine
-    calculation_engine -->|Process| quote_processor
-    quote_processor -->|Convert| multi_currency
-    multi_currency -->|Authenticate| role_management
-    role_management -->|Authorize| admin_access
-    role_management -->|Authorize| sales_access
-    role_management -->|Authorize| developer_access
-    admin_access -->|Store| sqlite_db
-    sales_access -->|Store| sqlite_db
-    developer_access -->|Store| sqlite_db
-    sqlite_db -->|Save| transactional_data
-    fastapi_server -->|Upload| azure_blob
-    azure_blob -->|Store| contract_pdfs
-    fastapi_server -->|Deploy| azure_webapps
-    azure_webapps -->|Build| azure_pipelines
-    azure_pipelines -->|Package| docker_containers
-    docker_containers -->|Deploy| cicd_pipeline
-    cicd_pipeline -->|Execute| zero_downtime
-    zero_downtime -->|Serve| global_deployment
+    production_data -->|Extract| pandas_processing
+    die_parameters -->|Extract| pandas_processing
+    quality_metrics -->|Extract| pandas_processing
+    historical_performance -->|Extract| pandas_processing
+    pandas_processing -->|Clean| data_cleaning
+    data_cleaning -->|Engineer| feature_engineering
+    feature_engineering -->|Test| hypothesis_testing
+    hypothesis_testing -->|Train| scikit_learn
+    hypothesis_testing -->|Train| predictive_models
+    scikit_learn -->|Optimize| performance_optimization
+    predictive_models -->|Optimize| performance_optimization
+    performance_optimization -->|Train| model_training
+    model_training -->|Evaluate| performance_metrics
+    performance_metrics -->|Validate| model_validation
+    model_validation -->|Assess| prediction_accuracy
+    prediction_accuracy -->|Generate| manufacturing_insights
+    manufacturing_insights -->|Visualize| plotly_dashboards
+    plotly_dashboards -->|Display| performance_charts
+    performance_charts -->|Show| manufacturing_dashboards
+    manufacturing_dashboards -->|Monitor| optimization_plots
+    optimization_plots -->|Serve| fastapi_service
+    fastapi_service -->|Deploy| azure_devops
+    azure_devops -->|Integrate| manufacturing_integration
 
     %% ========================
     %% Apply Color Coding
     %% ========================
-    class react_app,dash_components,dynamic_forms,quote_modeling frontend
-    class fastapi_server,calculation_engine,quote_processor,multi_currency backend
-    class role_management,admin_access,sales_access,developer_access auth
-    class sqlite_db,transactional_data,azure_blob,contract_pdfs storage
-    class azure_webapps,azure_pipelines,docker_containers cloud
-    class cicd_pipeline,zero_downtime,global_deployment deployment
+    class production_data,die_parameters,quality_metrics,historical_performance data_source
+    class pandas_processing,data_cleaning,feature_engineering,hypothesis_testing preprocessing
+    class scikit_learn,predictive_models,model_training,performance_optimization ml_engine
+    class performance_metrics,model_validation,prediction_accuracy,manufacturing_insights evaluation
+    class plotly_dashboards,performance_charts,manufacturing_dashboards,optimization_plots visualization
+    class fastapi_service,azure_devops,manufacturing_integration deployment
 
     %% ========================
     %% Connection Styling

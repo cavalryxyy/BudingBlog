@@ -1,37 +1,81 @@
 /* Projects Section Styles */
 .projects-section {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: white;
+    background: #1a1a1a; /* Dark background to match project detail pages */
+    color: #f5f5f5; /* Light text color */
+    position: relative;
+    padding: 4rem 0;
+    overflow: hidden; /* Contain pseudo-elements */
 }
+
+/* Animated shapes for projects section */
+.projects-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        radial-gradient(circle at 75% 25%, rgba(0, 170, 255, 0.08), transparent 35%),
+        radial-gradient(circle at 25% 85%, rgba(139, 92, 246, 0.06), transparent 45%);
+    animation: moveAndSpin 70s linear infinite reverse; /* Using the same animation, but reversed */
+    z-index: 0;
+}
+
 
 .projects-content {
     max-width: 1200px;
     width: 100%;
     padding: 2rem;
+    position: relative;
+    z-index: 1; /* Content above background */
 }
 
 .projects-content h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
+    font-weight: 700;
+    color: #00aaff; /* Blue accent color from project detail pages */
+    letter-spacing: -0.02em;
 }
 
 .role-section {
     margin-bottom: 3rem;
     padding: 2rem;
-    border-radius: 15px;
-    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    background: rgba(45, 55, 72, 0.8); /* Glassmorphism background */
     backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1; /* Ensure role sections are above background animation */
+}
+
+.role-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 170, 255, 0.2);
+    border-color: rgba(0, 170, 255, 0.3);
 }
 
 .role-section h3 {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #f8fafc; /* Light text color */
+}
+
+.role-section h3 i {
+    color: #00aaff; /* Blue accent color */
+    margin-right: 0.5rem;
 }
 
 .role-section p {
     margin-bottom: 1.5rem;
     opacity: 0.9;
+    color: #cbd5e1; /* Light gray text */
 }
 
 .role-header {
@@ -49,7 +93,7 @@
 .role-toggle {
     font-size: 1.5rem;
     transition: transform 0.3s ease;
-    color: white;
+    color: #00aaff; /* Blue accent color */
     opacity: 0.8;
     margin-left: 1rem;
 }
@@ -86,40 +130,89 @@
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(45, 55, 72, 0.8); /* Glassmorphism background */
+    backdrop-filter: blur(10px);
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1; /* Ensure cards are above background animation */
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    background: rgba(0, 170, 255, 0.1);
+    border-color: rgba(0, 170, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 170, 255, 0.2);
 }
 
 .project-card h4 {
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #f8fafc; /* Light text color */
+}
+
+.project-card h4 i {
+    color: #00aaff; /* Blue accent color */
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
 }
 
 .project-card p {
     opacity: 0.9;
     font-size: 0.9rem;
+    color: #cbd5e1; /* Light gray text */
 }
 
-/* Role-specific backgrounds */
+/* Role-specific backgrounds with dark theme */
 .role-data-scientist {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: rgba(45, 55, 72, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #00aaff; /* Blue accent */
 }
 
 .role-data-engineer {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: rgba(45, 55, 72, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #8b5cf6; /* Purple accent */
 }
 
 .role-python-developer {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: rgba(45, 55, 72, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #10b981; /* Green accent */
+}
+
+/* Keyframes for the animated background */
+@keyframes moveAndSpin {
+    from {
+        transform: rotate(0deg) translateX(10%) rotate(-0deg);
+    }
+    to {
+        transform: rotate(360deg) translateX(10%) rotate(-360deg);
+    }
+}
+
+
+/* Add tech-inspired loading animation for project cards */
+@keyframes tech-load {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.project-card {
+    animation: tech-load 0.6s ease-out;
 }
 
 /* Responsive Design */
