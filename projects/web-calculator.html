@@ -6,6 +6,59 @@
     <title>Web Calculator</title>
     <link rel="stylesheet" href="../css/project-details.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        #diagram-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            cursor: grab;
+            background-color: #f9f9f9;
+        }
+
+        #diagram-container.panning {
+            cursor: grabbing;
+        }
+
+        .mermaid {
+            height: 100%;
+            width: 100%;
+        }
+
+        .mermaid svg {
+            display: block;
+            transform-origin: 0 0;
+        }
+
+        .diagram-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .diagram-controls button {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .diagram-controls button:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -61,7 +114,8 @@
 
             <div class="workflow">
                 <h2>System Architecture</h2>
-                <div class="mermaid">
+                <div id="diagram-container">
+                    <div class="mermaid">
 flowchart LR
     %% ========================
     %% Modern Light Color Scheme
@@ -157,6 +211,12 @@ flowchart LR
     %% Connection Styling
     %% ========================
     linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+                    </div>
+                    <div class="diagram-controls">
+                        <button id="zoom-in" title="Zoom In">+</button>
+                        <button id="zoom-out" title="Zoom Out">-</button>
+                        <button id="reset-view" title="Reset View">&#x21bb;</button>
+                    </div>
                 </div>
             </div>
         </main>
@@ -171,6 +231,146 @@ flowchart LR
                 htmlLabels: true
             }
         });
+    </script>
+    <script>
+        let diagramControls = {
+            container: null,
+            svg: null,
+            scale: 1,
+            panX: 0,
+            panY: 0,
+            isPanning: false,
+            startX: 0,
+            startY: 0,
+            initialPanX: 0,
+            initialPanY: 0
+        };
+
+        function initializeDiagramControls() {
+            diagramControls.container = document.getElementById('diagram-container');
+            if (!diagramControls.container) {
+                console.error('Diagram container not found');
+                return;
+            }
+
+            // Wait for Mermaid to render
+            setTimeout(() => {
+                diagramControls.svg = diagramControls.container.querySelector('svg');
+                if (!diagramControls.svg) {
+                    console.error('SVG not found in container');
+                    return;
+                }
+
+                console.log('SVG found, initializing controls');
+                setupEventListeners();
+                resetView();
+            }, 1000);
+        }
+
+        function updateTransform() {
+            if (diagramControls.svg) {
+                diagramControls.svg.style.transform = `translate(${diagramControls.panX}px, ${diagramControls.panY}px) scale(${diagramControls.scale})`;
+            }
+        }
+
+        function zoomDiagram(factor, centerX, centerY) {
+            if (!diagramControls.svg) return;
+            
+            const rect = diagramControls.container.getBoundingClientRect();
+            const mouseX = centerX - rect.left;
+            const mouseY = centerY - rect.top;
+
+            const newScale = diagramControls.scale * factor;
+            
+            diagramControls.panX = mouseX - (mouseX - diagramControls.panX) * (newScale / diagramControls.scale);
+            diagramControls.panY = mouseY - (mouseY - diagramControls.panY) * (newScale / diagramControls.scale);
+            diagramControls.scale = newScale;
+
+            updateTransform();
+        }
+
+        function resetView() {
+            if (!diagramControls.svg || !diagramControls.container) return;
+            
+            const containerRect = diagramControls.container.getBoundingClientRect();
+            
+            // Reset transform to get actual size
+            diagramControls.svg.style.transform = '';
+            
+            // Get SVG dimensions
+            const svgRect = diagramControls.svg.getBoundingClientRect();
+            
+            if (svgRect.width === 0 || svgRect.height === 0) {
+                console.error('Could not get SVG dimensions');
+                return;
+            }
+
+            // Calculate scale to fit
+            const scaleX = containerRect.width / svgRect.width;
+            const scaleY = containerRect.height / svgRect.height;
+            diagramControls.scale = Math.min(scaleX, scaleY) * 0.9;
+            
+            // Center the diagram
+            diagramControls.panX = (containerRect.width - svgRect.width * diagramControls.scale) / 2;
+            diagramControls.panY = (containerRect.height - svgRect.height * diagramControls.scale) / 2;
+            
+            updateTransform();
+        }
+
+        function setupEventListeners() {
+            // Zoom buttons
+            document.getElementById('zoom-in').addEventListener('click', () => {
+                const rect = diagramControls.container.getBoundingClientRect();
+                zoomDiagram(1.2, rect.left + rect.width / 2, rect.top + rect.height / 2);
+            });
+
+            document.getElementById('zoom-out').addEventListener('click', () => {
+                const rect = diagramControls.container.getBoundingClientRect();
+                zoomDiagram(0.8, rect.left + rect.width / 2, rect.top + rect.height / 2);
+            });
+
+            document.getElementById('reset-view').addEventListener('click', resetView);
+
+            // Mouse wheel zoom
+            diagramControls.container.addEventListener('wheel', (event) => {
+                event.preventDefault();
+                const factor = event.deltaY < 0 ? 1.1 : 0.9;
+                zoomDiagram(factor, event.clientX, event.clientY);
+            });
+
+            // Pan functionality
+            diagramControls.container.addEventListener('mousedown', (event) => {
+                if (event.button !== 0) return;
+                diagramControls.isPanning = true;
+                diagramControls.container.classList.add('panning');
+                diagramControls.startX = event.clientX;
+                diagramControls.startY = event.clientY;
+                diagramControls.initialPanX = diagramControls.panX;
+                diagramControls.initialPanY = diagramControls.panY;
+            });
+
+            diagramControls.container.addEventListener('mousemove', (event) => {
+                if (diagramControls.isPanning) {
+                    event.preventDefault();
+                    diagramControls.panX = diagramControls.initialPanX + (event.clientX - diagramControls.startX);
+                    diagramControls.panY = diagramControls.initialPanY + (event.clientY - diagramControls.startY);
+                    updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                diagramControls.isPanning = false;
+                diagramControls.container.classList.remove('panning');
+            });
+
+            diagramControls.container.addEventListener('mouseleave', () => {
+                diagramControls.isPanning = false;
+                diagramControls.container.classList.remove('panning');
+            });
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', initializeDiagramControls);
     </script>
 </body>
 </html>
