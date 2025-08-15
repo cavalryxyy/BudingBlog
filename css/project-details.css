@@ -399,14 +399,16 @@ ul li::before {
 
 .mermaid {
     text-align: center;
-    background: rgba(30, 41, 59, 0.5);
+    background: #ffffff;
     padding: 25px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .mermaid:hover {
-    background: rgba(30, 41, 59, 0.7);
-    transform: scale(1.02);
+    background: #ffffff;
+    transform: scale(1.01);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
