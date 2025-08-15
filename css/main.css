@@ -13,8 +13,8 @@
 body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     line-height: 1.6;
-    color: #374151; /* Body text color */
-    background-color: #f9fafb; /* Base background color */
+    color: #f5f5f5; /* Light text color */
+    background-color: #1a1a1a; /* Dark background color */
 }
 
 /* Section-specific styles */
@@ -62,13 +62,14 @@ body {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
-    color: #ffffff; /* This section is dark, so text stays white */
+    color: #00aaff; /* Blue accent color from project pages */
 }
 
 .welcome-content p {
     font-size: 1.3rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+    color: #f5f5f5;
 }
 
 .scroll-indicator {
@@ -76,21 +77,17 @@ body {
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    color: white;
+    color: #00aaff;
     cursor: pointer;
-    /* Removed bouncing animation */
 }
-
-
-/* Removed bounce animation keyframes */
 
 /* Skill Tree Section */
 .skill-section {
-    background-color: #f9fafb; /* Light base color */
-    color: #1f2937;
+    background-color: #1a1a1a; /* Dark background */
+    color: #f5f5f5; /* Light text */
     position: relative;
     padding: 4rem 0;
-    overflow: hidden; /* Contain pseudo-elements */
+    overflow: hidden;
 }
 
 /* Animated shapes for skills section */
@@ -102,7 +99,7 @@ body {
     width: 200%;
     height: 200%;
     background-image: 
-        radial-gradient(circle at 15% 45%, rgba(59, 130, 246, 0.1), transparent 30%),
+        radial-gradient(circle at 15% 45%, rgba(0, 170, 255, 0.1), transparent 30%),
         radial-gradient(circle at 85% 75%, rgba(139, 92, 246, 0.08), transparent 40%),
         radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.05), transparent 50%);
     animation: moveAndSpin 60s linear infinite;
@@ -115,14 +112,14 @@ body {
     padding: 2rem;
     text-align: center;
     position: relative;
-    z-index: 1; /* Content above background */
+    z-index: 1;
 }
 
 .skill-content h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     font-weight: 700;
-    color: #111827; /* Updated heading color */
+    color: #00aaff; /* Blue accent color */
     letter-spacing: -0.02em;
 }
 
@@ -134,24 +131,25 @@ body {
 }
 
 .skill-category {
-    background: #ffffff;
+    background: rgba(45, 55, 72, 0.8);
+    backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
-    border: 1px solid #e5e7eb;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .skill-category:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
-    border-color: #3b82f6;
+    box-shadow: 0 12px 40px rgba(0, 170, 255, 0.2);
+    border-color: rgba(0, 170, 255, 0.3);
 }
 
 .skill-category h3 {
     margin-bottom: 1rem;
     font-size: 1.3rem;
-    color: #111827; /* Updated heading color */
+    color: #f8fafc;
 }
 
 .skill-category ul {
@@ -161,17 +159,13 @@ body {
 
 .skill-category li {
     padding: 0.5rem 0;
-    border-bottom: 1px solid #f3f4f6;
-    color: #6b7280;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
 }
 
 .skill-category li:last-child {
     border-bottom: none;
 }
-
-/* Projects Section - Styles moved to css/projects.css */
-
-
 
 /* Navigation */
 .nav-links {
@@ -197,14 +191,15 @@ body {
 }
 
 .nav-links a {
-    color: #1f2937;
+    color: #f5f5f5;
     text-decoration: none;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
-    background: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: rgba(45, 55, 72, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
-    border: 1px solid #e5e7eb;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     font-weight: 500;
     font-size: 0.9rem;
 }
@@ -222,16 +217,16 @@ body {
 }
 
 .nav-links a:hover {
-    background: #f8fafc;
+    background: rgba(0, 170, 255, 0.2);
     transform: translateY(-1px);
-    border-color: #3b82f6;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    border-color: #00aaff;
+    box-shadow: 0 8px 25px rgba(0, 170, 255, 0.3);
 }
 
 /* Footer */
 .footer {
     background: #1a1a1a;
-    color: white;
+    color: #f5f5f5;
     padding: 2rem 0;
     text-align: center;
 }
@@ -253,13 +248,13 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: white;
+    color: #f5f5f5;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .social-link:hover {
-    color: #10b981;
+    color: #00aaff;
 }
 
 /* Resume Modal Styles */
@@ -276,7 +271,8 @@ body {
 }
 
 .resume-modal-content, .email-modal-content {
-    background: white;
+    background: rgba(45, 55, 72, 0.95);
+    backdrop-filter: blur(10px);
     margin: 5% auto;
     padding: 0;
     border-radius: 20px;
@@ -285,6 +281,7 @@ body {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     animation: modalSlideIn 0.3s ease-out;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @keyframes modalSlideIn {
@@ -300,7 +297,7 @@ body {
 
 .resume-modal-header, .email-modal-header {
     background: linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%);
-    color: white;
+    color: #f5f5f5;
     padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
@@ -318,7 +315,7 @@ body {
 .close-btn {
     background: none;
     border: none;
-    color: white;
+    color: #f5f5f5;
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem;
@@ -332,11 +329,12 @@ body {
 
 .resume-preview-content {
     padding: 2rem;
+    color: #f5f5f5;
 }
 
 .resume-preview-info h4 {
     font-size: 2rem;
-    color: #2c3e50;
+    color: #00aaff;
     margin-bottom: 0.5rem;
     font-weight: 700;
 }
@@ -360,7 +358,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem;
-    background: #f7fafc;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     border-left: 4px solid #10b981;
 }
@@ -372,19 +370,19 @@ body {
 
 .highlight-item span {
     font-weight: 500;
-    color: #2c3e50;
+    color: #f5f5f5;
 }
 
 .resume-summary {
-    background: #f7fafc;
+    background: rgba(255, 255, 255, 0.1);
     padding: 1.5rem;
     border-radius: 8px;
     margin-bottom: 2rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .resume-summary p {
-    color: #555;
+    color: #cbd5e1;
     line-height: 1.6;
     margin: 0;
 }
@@ -415,7 +413,7 @@ body {
 }
 
 .resume-note {
-    color: #666;
+    color: #cbd5e1;
     font-size: 0.9rem;
     margin: 0;
 }
@@ -423,10 +421,11 @@ body {
 /* Email Modal Styles */
 .email-form-content {
     padding: 2rem;
+    color: #f5f5f5;
 }
 
 .email-form-content p {
-    color: #555;
+    color: #cbd5e1;
     margin-bottom: 2rem;
     line-height: 1.6;
 }
@@ -438,23 +437,29 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #2c3e50;
+    color: #f8fafc;
     font-weight: 600;
 }
 
 .form-group input {
     width: 100%;
     padding: 1rem;
-    border: 2px solid #e1e8ed;
+    border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    color: #f5f5f5;
 }
 
 .form-group input:focus {
     outline: none;
     border-color: #10b981;
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #cbd5e1;
 }
 
 .form-actions {
@@ -495,10 +500,10 @@ body {
     gap: 0.5rem;
     margin-top: 1.5rem;
     padding: 1rem;
-    background: #f8f9fa;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     font-size: 0.9rem;
-    color: #666;
+    color: #cbd5e1;
 }
 
 .privacy-note i {
@@ -509,6 +514,7 @@ body {
 .success-message {
     text-align: center;
     padding: 2rem;
+    color: #f5f5f5;
 }
 
 .success-message i {
@@ -518,12 +524,12 @@ body {
 }
 
 .success-message h4 {
-    color: #2c3e50;
+    color: #f8fafc;
     margin-bottom: 1rem;
 }
 
 .success-message p {
-    color: #666;
+    color: #cbd5e1;
     margin-bottom: 1.5rem;
 }
 
@@ -531,6 +537,7 @@ body {
 .error-message {
     text-align: center;
     padding: 2rem;
+    color: #f5f5f5;
 }
 
 .error-message i {
@@ -540,7 +547,7 @@ body {
 }
 
 .error-message p {
-    color: #374151;
+    color: #cbd5e1;
     margin-bottom: 2rem;
     line-height: 1.6;
     font-size: 1.1rem;
@@ -609,7 +616,8 @@ header p {
 
 /* Navigation */
 nav {
-    background: white;
+    background: rgba(45, 55, 72, 0.8);
+    backdrop-filter: blur(10px);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 1rem 0;
 }
@@ -623,21 +631,19 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: #333;
+    color: #f5f5f5;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 nav a:hover {
-    color: #667eea;
+    color: #00aaff;
 }
 
 /* Main content */
 main {
     padding: 3rem 0;
 }
-
-/* Project grid - Styles moved to css/projects.css */
 
 /* Loading Modal Styles */
 .loading-modal {
@@ -659,13 +665,16 @@ main {
 }
 
 .loading-content {
-    background: white;
+    background: rgba(45, 55, 72, 0.95);
+    backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: 15px;
     text-align: center;
     max-width: 400px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     animation: modalSlideIn 0.3s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f5f5f5;
 }
 
 @keyframes modalSlideIn {
@@ -681,18 +690,18 @@ main {
 
 .loading-spinner {
     font-size: 3rem;
-    color: #667eea;
+    color: #00aaff;
     margin-bottom: 1rem;
 }
 
 .loading-content h3 {
-    color: #333;
+    color: #f8fafc;
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
 .loading-content p {
-    color: #666;
+    color: #cbd5e1;
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
@@ -700,14 +709,14 @@ main {
 .loading-progress {
     width: 100%;
     height: 4px;
-    background: #f0f0f0;
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 2px;
     overflow: hidden;
 }
 
 .progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, #00aaff, #667eea);
     width: 0%;
     animation: progressAnimation 2s ease-in-out infinite;
 }
@@ -717,8 +726,6 @@ main {
     50% { width: 70%; }
     100% { width: 100%; }
 }
-
-
 
 /* Responsive design for loading modal */
 @media (max-width: 768px) {
@@ -762,10 +769,6 @@ main {
     .skills-grid {
         grid-template-columns: 1fr;
     }
-    
-
-    
-    /* Projects responsive styles moved to css/projects.css */
 }
 
 /* Animations */
