@@ -143,7 +143,7 @@
                 <h2>System Architecture</h2>
                 <div id="diagram-container">
                     <div class="mermaid">
-    flowchart LR
+flowchart LR
     %% ========================
     %% Modern Light Color Scheme
     %% ========================
@@ -248,23 +248,16 @@
 
     <script>
         // Enhanced Mermaid configuration for cross-device compatibility
-        // Enhanced Mermaid configuration for cross-device compatibility
         mermaid.initialize({ 
             startOnLoad: true,
             theme: 'default',
             flowchart: {
                 useMaxWidth: true,
-                useMaxWidth: true,
                 htmlLabels: true,
-                nodeSpacing: 80,
-                rankSpacing: 100,
+                nodeSpacing: 100,
+                rankSpacing: 120,
                 curve: 'linear',
-                padding: 30,
-                wrap: true
-                nodeSpacing: 80,
-                rankSpacing: 100,
-                curve: 'linear',
-                padding: 30,
+                padding: 40,
                 wrap: true
             },
             themeVariables: {
@@ -280,6 +273,7 @@
             },
             securityLevel: 'loose'
         });
+
 
         // Function to enhance text rendering after Mermaid loads
         function enhanceTextRendering() {
@@ -298,8 +292,33 @@
                 text.style.textAnchor = 'middle';
             });
 
-            // Initialize controls after rendering
-            setTimeout(initializeDiagramControls, 100);
+            // Initialize controls after rendering with multiple retry attempts
+            initializeDiagramControlsWithRetry();
+        }
+
+        // Enhanced initialization with retry logic
+        function initializeDiagramControlsWithRetry(maxRetries = 10) {
+            let retryCount = 0;
+            
+            function tryInitialize() {
+                console.log(`Attempting to initialize diagram controls (attempt ${retryCount + 1})`);
+                
+                const container = document.getElementById('diagram-container');
+                const svg = container ? container.querySelector('svg') : null;
+                
+                if (container && svg && svg.getBoundingClientRect().width > 0) {
+                    console.log('SVG found and rendered, initializing controls');
+                    initializeDiagramControls();
+                } else if (retryCount < maxRetries) {
+                    retryCount++;
+                    console.log(`SVG not ready, retrying in 200ms... (${retryCount}/${maxRetries})`);
+                    setTimeout(tryInitialize, 200);
+                } else {
+                    console.error('Failed to initialize diagram controls after maximum retries');
+                }
+            }
+            
+            tryInitialize();
         }
 
         // Initialize when page loads
@@ -328,51 +347,82 @@
         };
 
         function initializeDiagramControls() {
+            console.log('Initializing diagram controls...');
+            
+            // Add loading state to controls
+            const controlsElement = document.querySelector('.diagram-controls');
+            if (controlsElement) {
+                controlsElement.classList.add('loading');
+                controlsElement.classList.remove('ready');
+            }
+            
             diagramControls.container = document.getElementById('diagram-container');
             if (!diagramControls.container) {
                 console.error('Diagram container not found');
                 return;
             }
+            console.log('Diagram container found');
 
             // Get the SVG element
             diagramControls.svg = diagramControls.container.querySelector('svg');
             if (!diagramControls.svg) {
-                console.error('SVG not found in container, retrying...');
-                // Retry after a short delay
-                setTimeout(initializeDiagramControls, 200);
+                console.error('SVG not found in container');
                 return;
             }
-            // Get the SVG element
-            diagramControls.svg = diagramControls.container.querySelector('svg');
-            if (!diagramControls.svg) {
-                console.error('SVG not found in container, retrying...');
-                // Retry after a short delay
-                setTimeout(initializeDiagramControls, 200);
-                return;
-            }
+            console.log('SVG element found');
 
-            console.log('SVG found, initializing controls');
+            // Check if buttons exist
+            const zoomInBtn = document.getElementById('zoom-in');
+            const zoomOutBtn = document.getElementById('zoom-out');
+            const resetBtn = document.getElementById('reset-view');
+            
+            if (!zoomInBtn || !zoomOutBtn || !resetBtn) {
+                console.error('One or more control buttons not found:', {
+                    zoomIn: !!zoomInBtn,
+                    zoomOut: !!zoomOutBtn,
+                    reset: !!resetBtn
+                });
+                return;
+            }
+            console.log('All control buttons found');
+
+            console.log('Setting up event listeners and resetting view');
             setupEventListeners();
             resetView();
-            console.log('SVG found, initializing controls');
-            setupEventListeners();
-            resetView();
+            
+            // Add ready state to controls
+            if (controlsElement) {
+                controlsElement.classList.remove('loading');
+                controlsElement.classList.add('ready');
+            }
+            
+            console.log('Diagram controls initialized successfully');
         }
 
         function updateTransform() {
             if (diagramControls.svg) {
-                diagramControls.svg.style.transform = `translate(${diagramControls.panX}px, ${diagramControls.panY}px) scale(${diagramControls.scale})`;
+                const transform = `translate(${diagramControls.panX}px, ${diagramControls.panY}px) scale(${diagramControls.scale})`;
+                diagramControls.svg.style.transform = transform;
+                console.log('Transform updated:', transform);
+            } else {
+                console.error('SVG not available for transform update');
             }
         }
 
         function zoomDiagram(factor, centerX, centerY) {
-            if (!diagramControls.svg) return;
+            console.log('Zooming diagram:', { factor, centerX, centerY });
+            
+            if (!diagramControls.svg) {
+                console.error('SVG not available for zoom');
+                return;
+            }
             
             const rect = diagramControls.container.getBoundingClientRect();
             const mouseX = centerX - rect.left;
             const mouseY = centerY - rect.top;
 
             const newScale = diagramControls.scale * factor;
+            console.log('Scale change:', { oldScale: diagramControls.scale, newScale });
             
             diagramControls.panX = mouseX - (mouseX - diagramControls.panX) * (newScale / diagramControls.scale);
             diagramControls.panY = mouseY - (mouseY - diagramControls.panY) * (newScale / diagramControls.scale);
@@ -382,15 +432,22 @@
         }
 
         function resetView() {
-            if (!diagramControls.svg || !diagramControls.container) return;
+            console.log('Resetting view...');
+            
+            if (!diagramControls.svg || !diagramControls.container) {
+                console.error('SVG or container not available for reset');
+                return;
+            }
             
             const containerRect = diagramControls.container.getBoundingClientRect();
+            console.log('Container dimensions:', { width: containerRect.width, height: containerRect.height });
             
             // Reset transform to get actual size
             diagramControls.svg.style.transform = '';
             
             // Get SVG dimensions
             const svgRect = diagramControls.svg.getBoundingClientRect();
+            console.log('SVG dimensions:', { width: svgRect.width, height: svgRect.height });
             
             if (svgRect.width === 0 || svgRect.height === 0) {
                 console.error('Could not get SVG dimensions');
@@ -401,27 +458,52 @@
             const scaleX = containerRect.width / svgRect.width;
             const scaleY = containerRect.height / svgRect.height;
             diagramControls.scale = Math.min(scaleX, scaleY) * 0.9;
+            console.log('Calculated scale:', { scaleX, scaleY, finalScale: diagramControls.scale });
             
             // Center the diagram
             diagramControls.panX = (containerRect.width - svgRect.width * diagramControls.scale) / 2;
             diagramControls.panY = (containerRect.height - svgRect.height * diagramControls.scale) / 2;
+            console.log('Calculated pan:', { panX: diagramControls.panX, panY: diagramControls.panY });
             
             updateTransform();
         }
 
         function setupEventListeners() {
+            console.log('Setting up event listeners...');
+            
             // Zoom buttons
-            document.getElementById('zoom-in').addEventListener('click', () => {
-                const rect = diagramControls.container.getBoundingClientRect();
-                zoomDiagram(1.2, rect.left + rect.width / 2, rect.top + rect.height / 2);
-            });
-
-            document.getElementById('zoom-out').addEventListener('click', () => {
-                const rect = diagramControls.container.getBoundingClientRect();
-                zoomDiagram(0.8, rect.left + rect.width / 2, rect.top + rect.height / 2);
-            });
-
-            document.getElementById('reset-view').addEventListener('click', resetView);
+            const zoomInBtn = document.getElementById('zoom-in');
+            const zoomOutBtn = document.getElementById('zoom-out');
+            const resetBtn = document.getElementById('reset-view');
+            
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', (e) => {
+                    console.log('Zoom in clicked');
+                    e.preventDefault();
+                    const rect = diagramControls.container.getBoundingClientRect();
+                    zoomDiagram(1.2, rect.left + rect.width / 2, rect.top + rect.height / 2);
+                });
+                console.log('Zoom in event listener added');
+            }
+            
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', (e) => {
+                    console.log('Zoom out clicked');
+                    e.preventDefault();
+                    const rect = diagramControls.container.getBoundingClientRect();
+                    zoomDiagram(0.8, rect.left + rect.width / 2, rect.top + rect.height / 2);
+                });
+                console.log('Zoom out event listener added');
+            }
+            
+            if (resetBtn) {
+                resetBtn.addEventListener('click', (e) => {
+                    console.log('Reset view clicked');
+                    e.preventDefault();
+                    resetView();
+                });
+                console.log('Reset view event listener added');
+            }
 
             
 
@@ -455,9 +537,6 @@
                 diagramControls.container.classList.remove('panning');
             });
         }
-
-        // Note: Diagram initialization is now handled by renderDiagram() function
-        // Note: Diagram initialization is now handled by renderDiagram() function
         
         // Function to go back to main page
         function goBackToMain() {
@@ -474,6 +553,30 @@
         window.addEventListener('load', function() {
             localStorage.removeItem('showingLoadingModal');
         });
+        
+        // Test function for debugging (can be called from console)
+        window.testDiagramControls = function() {
+            console.log('Testing diagram controls...');
+            console.log('Container:', diagramControls.container);
+            console.log('SVG:', diagramControls.svg);
+            console.log('Scale:', diagramControls.scale);
+            console.log('Pan:', { x: diagramControls.panX, y: diagramControls.panY });
+            
+            const zoomInBtn = document.getElementById('zoom-in');
+            const zoomOutBtn = document.getElementById('zoom-out');
+            const resetBtn = document.getElementById('reset-view');
+            
+            console.log('Buttons:', {
+                zoomIn: zoomInBtn,
+                zoomOut: zoomOutBtn,
+                reset: resetBtn
+            });
+            
+            if (zoomInBtn) {
+                console.log('Testing zoom in...');
+                zoomInBtn.click();
+            }
+        };
     </script>
 </body>
 </html>
