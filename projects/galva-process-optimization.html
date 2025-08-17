@@ -248,12 +248,19 @@
 
     <script>
         // Enhanced Mermaid configuration for cross-device compatibility
+        // Enhanced Mermaid configuration for cross-device compatibility
         mermaid.initialize({ 
             startOnLoad: true,
             theme: 'default',
             flowchart: {
                 useMaxWidth: true,
+                useMaxWidth: true,
                 htmlLabels: true,
+                nodeSpacing: 80,
+                rankSpacing: 100,
+                curve: 'linear',
+                padding: 30,
+                wrap: true
                 nodeSpacing: 80,
                 rankSpacing: 100,
                 curve: 'linear',
@@ -335,7 +342,18 @@
                 setTimeout(initializeDiagramControls, 200);
                 return;
             }
+            // Get the SVG element
+            diagramControls.svg = diagramControls.container.querySelector('svg');
+            if (!diagramControls.svg) {
+                console.error('SVG not found in container, retrying...');
+                // Retry after a short delay
+                setTimeout(initializeDiagramControls, 200);
+                return;
+            }
 
+            console.log('SVG found, initializing controls');
+            setupEventListeners();
+            resetView();
             console.log('SVG found, initializing controls');
             setupEventListeners();
             resetView();
@@ -438,6 +456,7 @@
             });
         }
 
+        // Note: Diagram initialization is now handled by renderDiagram() function
         // Note: Diagram initialization is now handled by renderDiagram() function
         
         // Function to go back to main page

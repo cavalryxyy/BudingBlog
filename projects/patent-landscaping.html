@@ -258,12 +258,20 @@ flowchart LR
 
         <script>
         // Enhanced Mermaid configuration for cross-device compatibility
+        <script>
+        // Enhanced Mermaid configuration for cross-device compatibility
         mermaid.initialize({ 
             startOnLoad: true,
             theme: 'default',
             flowchart: {
                 useMaxWidth: true,
+                useMaxWidth: true,
                 htmlLabels: true,
+                nodeSpacing: 80,
+                rankSpacing: 100,
+                curve: 'linear',
+                padding: 30,
+                wrap: true
                 nodeSpacing: 80,
                 rankSpacing: 100,
                 curve: 'linear',
@@ -331,6 +339,7 @@ flowchart LR
         };
 
                 function initializeDiagramControls() {
+                function initializeDiagramControls() {
             diagramControls.container = document.getElementById('diagram-container');
             if (!diagramControls.container) {
                 console.error('Diagram container not found');
@@ -345,7 +354,18 @@ flowchart LR
                 setTimeout(initializeDiagramControls, 200);
                 return;
             }
+            // Get the SVG element
+            diagramControls.svg = diagramControls.container.querySelector('svg');
+            if (!diagramControls.svg) {
+                console.error('SVG not found in container, retrying...');
+                // Retry after a short delay
+                setTimeout(initializeDiagramControls, 200);
+                return;
+            }
 
+            console.log('SVG found, initializing controls');
+            setupEventListeners();
+            resetView();
             console.log('SVG found, initializing controls');
             setupEventListeners();
             resetView();
@@ -448,6 +468,7 @@ flowchart LR
             });
         }
 
+                        // Note: Diagram initialization is now handled by enhanceTextRendering() function
                         // Note: Diagram initialization is now handled by enhanceTextRendering() function
         
         // Function to go back to main page
