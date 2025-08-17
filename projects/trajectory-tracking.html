@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trajectory Tracking</title>
     <link rel="stylesheet" href="../css/project-details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
         #diagram-container {
@@ -58,11 +59,39 @@
         .diagram-controls button:hover {
             background-color: #f0f0f0;
         }
+        
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,123,255,0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,123,255,0.4);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
+            <button class="back-button" onclick="goBackToMain()">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </button>
             <h1>Trajectory Tracking</h1>
         </header>
 
@@ -220,8 +249,21 @@ flowchart LR
             startOnLoad: true,
             theme: 'default',
             flowchart: {
-                useMaxWidth: true,
-                htmlLabels: true
+                useMaxWidth: false,
+                htmlLabels: true,
+                nodeSpacing: 50,
+                rankSpacing: 60,
+                curve: 'basis',
+                padding: 20
+            },
+            themeVariables: {
+                fontFamily: 'Arial, sans-serif',
+                fontSize: '14px',
+                primaryColor: '#89CFF0',
+                primaryTextColor: '#333',
+                primaryBorderColor: '#1E90FF',
+                lineColor: '#7E8AA2',
+                tertiaryColor: '#f9f9f9'
             }
         });
     </script>
@@ -364,6 +406,22 @@ flowchart LR
 
         // Initialize when page loads
         window.addEventListener('load', initializeDiagramControls);
+        
+        // Function to go back to main page
+        function goBackToMain() {
+            // Clear any loading states
+            if (localStorage.getItem('showingLoadingModal') === 'true') {
+                localStorage.removeItem('showingLoadingModal');
+            }
+            
+            // Navigate back to main page
+            window.location.href = '../index.html';
+        }
+        
+        // Clear loading modal flag when page loads
+        window.addEventListener('load', function() {
+            localStorage.removeItem('showingLoadingModal');
+        });
     </script>
 </body>
 </html>
