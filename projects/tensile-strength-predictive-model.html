@@ -244,27 +244,64 @@ flowchart LR
         </main>
     </div>
 
-    <script>
+        <script>
+        // Enhanced Mermaid configuration for cross-device compatibility
         mermaid.initialize({ 
             startOnLoad: true,
             theme: 'default',
             flowchart: {
-                useMaxWidth: false,
+                useMaxWidth: true,
                 htmlLabels: true,
-                nodeSpacing: 50,
-                rankSpacing: 60,
-                curve: 'basis',
-                padding: 20
+                nodeSpacing: 80,
+                rankSpacing: 100,
+                curve: 'linear',
+                padding: 30,
+                wrap: true
             },
             themeVariables: {
-                fontFamily: 'Arial, sans-serif',
-                fontSize: '14px',
+                fontFamily: 'Arial, Helvetica, sans-serif',
+                fontSize: '16px',
                 primaryColor: '#89CFF0',
                 primaryTextColor: '#333',
                 primaryBorderColor: '#1E90FF',
                 lineColor: '#7E8AA2',
-                tertiaryColor: '#f9f9f9'
+                tertiaryColor: '#f9f9f9',
+                edgeLabelBackground: '#ffffff',
+                edgeLabelBackgroundOpacity: 0.8
+            },
+            securityLevel: 'loose'
+        });
+
+        // Function to enhance text rendering after Mermaid loads
+        function enhanceTextRendering() {
+            const diagramElement = document.querySelector('.mermaid');
+            if (!diagramElement) {
+                console.error('Mermaid diagram element not found');
+                return;
             }
+
+            // Apply additional styling for better text positioning
+            const textElements = diagramElement.querySelectorAll('text');
+            textElements.forEach(text => {
+                text.style.fontFamily = 'Arial, Helvetica, sans-serif';
+                text.style.fontSize = '16px';
+                text.style.fontWeight = 'normal';
+                text.style.textAnchor = 'middle';
+            });
+
+            // Initialize controls after rendering
+            setTimeout(initializeDiagramControls, 100);
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for Mermaid to render, then enhance
+            setTimeout(enhanceTextRendering, 500);
+        });
+
+        // Also try to enhance on window load as fallback
+        window.addEventListener('load', function() {
+            setTimeout(enhanceTextRendering, 200);
         });
     </script>
     <script>
@@ -281,25 +318,25 @@ flowchart LR
             initialPanY: 0
         };
 
-        function initializeDiagramControls() {
+                function initializeDiagramControls() {
             diagramControls.container = document.getElementById('diagram-container');
             if (!diagramControls.container) {
                 console.error('Diagram container not found');
                 return;
             }
 
-            // Wait for Mermaid to render
-            setTimeout(() => {
-                diagramControls.svg = diagramControls.container.querySelector('svg');
-                if (!diagramControls.svg) {
-                    console.error('SVG not found in container');
-                    return;
-                }
+            // Get the SVG element
+            diagramControls.svg = diagramControls.container.querySelector('svg');
+            if (!diagramControls.svg) {
+                console.error('SVG not found in container, retrying...');
+                // Retry after a short delay
+                setTimeout(initializeDiagramControls, 200);
+                return;
+            }
 
-                console.log('SVG found, initializing controls');
-                setupEventListeners();
-                resetView();
-            }, 1000);
+            console.log('SVG found, initializing controls');
+            setupEventListeners();
+            resetView();
         }
 
         function updateTransform() {
@@ -366,12 +403,7 @@ flowchart LR
 
             document.getElementById('reset-view').addEventListener('click', resetView);
 
-            // Mouse wheel zoom
-            diagramControls.container.addEventListener('wheel', (event) => {
-                event.preventDefault();
-                const factor = event.deltaY < 0 ? 1.1 : 0.9;
-                zoomDiagram(factor, event.clientX, event.clientY);
-            });
+            
 
             // Pan functionality
             diagramControls.container.addEventListener('mousedown', (event) => {
@@ -404,8 +436,7 @@ flowchart LR
             });
         }
 
-        // Initialize when page loads
-        window.addEventListener('load', initializeDiagramControls);
+                        // Note: Diagram initialization is now handled by enhanceTextRendering() function
         
         // Function to go back to main page
         function goBackToMain() {
