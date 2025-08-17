@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initPortfolio() {
+    // Clear any stuck loading modals first
+    clearLoadingModal();
+    
     // Initialize all portfolio components
     addFadeInAnimation();
     addInteractiveElements();
@@ -256,10 +259,23 @@ function hideLoadingModal() {
     }
 }
 
+function clearLoadingModal() {
+    // Check if we're returning from a project page
+    if (localStorage.getItem('showingLoadingModal') === 'true') {
+        // Clear the flag
+        localStorage.removeItem('showingLoadingModal');
+        // Hide any visible loading modal
+        hideLoadingModal();
+    }
+}
+
 // Enhanced navigateToProject function with loading message
 function navigateToProjectWithLoading(projectName) {
     // Show loading modal
     showLoadingModal();
+    
+    // Set flag to track loading state
+    localStorage.setItem('showingLoadingModal', 'true');
     
     // Navigate to project files in the projects directory
     const filename = projectName + '.html';
