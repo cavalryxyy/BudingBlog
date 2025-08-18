@@ -6,7 +6,6 @@
     <title>Tensile Strength Predictive Model</title>
     <link rel="stylesheet" href="../css/project-details.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
         #diagram-container {
             position: relative;
@@ -16,6 +15,7 @@
             overflow: hidden;
             cursor: grab;
             background-color: #f9f9f9;
+            user-select: none;
         }
 
         #diagram-container.panning {
@@ -32,6 +32,14 @@
             transform-origin: 0 0;
         }
 
+        #diagram-container img {
+            display: block;
+            transform-origin: 0 0;
+            user-select: none;
+            -webkit-user-drag: none;
+            will-change: transform;
+        }
+
         .diagram-controls {
             position: absolute;
             top: 10px;
@@ -43,53 +51,21 @@
         }
 
         .diagram-controls button {
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
             border-radius: 4px;
-            padding: 8px 12px;
+            font-size: 16px;
+            width: 32px;
+            height: 32px;
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            min-width: 30px;
-            min-height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
+            padding: 0;
         }
 
         .diagram-controls button:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: scale(1.1);
-        }
-
-        .diagram-controls button:active {
-            transform: scale(0.95);
-        }
-
-        /* Ensure buttons are clickable */
-        .diagram-controls button:focus {
-            outline: 2px solid #00aaff;
-            outline-offset: 2px;
-        }
-
-        /* Visual indicator when controls are ready */
-        .diagram-controls.ready button {
-            background: rgba(0, 170, 255, 0.8);
-        }
-
-        .diagram-controls.ready button:hover {
-            background: rgba(0, 170, 255, 1);
-        }
-
-        /* Loading state */
-        .diagram-controls.loading button {
-            opacity: 0.5;
-            cursor: not-allowed;
+            background-color: #f0f0f0;
         }
         
         .back-button {
@@ -171,101 +147,7 @@
             <div class="workflow">
                 <h2>System Architecture</h2>
                 <div id="diagram-container">
-                    <div class="mermaid">
-flowchart LR
-    %% ========================
-    %% Modern Light Color Scheme
-    %% ========================
-    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
-    classDef preprocessing fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
-    classDef ml_engine fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
-    classDef evaluation fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
-    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
-    classDef deployment fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
-
-    %% ========================
-    %% Component Grouping
-    %% ========================
-    subgraph data_sources["Material Data"]
-        tensile_data["Historical Tensile Data"]
-        material_properties["Material Properties"]
-        quality_tests["Quality Test Results"]
-        manufacturing_params["Manufacturing Parameters"]
-    end
-    
-    subgraph preprocessing["Data Preprocessing"]
-        pandas_processing["Pandas Data Processing"]
-        time_series_prep["Time-Series Preparation"]
-        feature_engineering["Feature Engineering"]
-        cross_validation["Cross-Validation Setup"]
-    end
-    
-    subgraph ml_engine["ML Engine"]
-        scikit_learn["Scikit-learn Models"]
-        forecasting_model["Time-Series Forecasting Model"]
-        model_training["Model Training"]
-        quality_prediction["Quality Prediction"]
-    end
-    
-    subgraph evaluation["Model Evaluation"]
-        performance_metrics["Performance Metrics"]
-        model_validation["Model Validation"]
-        prediction_accuracy["Prediction Accuracy"]
-        evaluation_dashboard["Evaluation Dashboard"]
-    end
-    
-    subgraph visualization["Visualization"]
-        plotly_charts["Plotly Charts"]
-        performance_plots["Performance Plots"]
-        quality_dashboards["Quality Dashboards"]
-    end
-    
-    subgraph deployment["Deployment"]
-        fastapi_service["FastAPI Service"]
-        azure_devops["Azure DevOps"]
-        real_time_predictions["Real-time Predictions"]
-    end
-
-    %% ========================
-    %% Data Flow
-    %% ========================
-    tensile_data -->|Process| pandas_processing
-    material_properties -->|Process| pandas_processing
-    quality_tests -->|Process| pandas_processing
-    manufacturing_params -->|Process| pandas_processing
-    pandas_processing -->|Prepare| time_series_prep
-    time_series_prep -->|Engineer| feature_engineering
-    feature_engineering -->|Setup| cross_validation
-    cross_validation -->|Train| scikit_learn
-    scikit_learn -->|Build| forecasting_model
-    forecasting_model -->|Train| model_training
-    model_training -->|Predict| quality_prediction
-    quality_prediction -->|Evaluate| performance_metrics
-    performance_metrics -->|Validate| model_validation
-    model_validation -->|Assess| prediction_accuracy
-    prediction_accuracy -->|Display| evaluation_dashboard
-    evaluation_dashboard -->|Visualize| plotly_charts
-    plotly_charts -->|Show| performance_plots
-    performance_plots -->|Create| quality_dashboards
-    quality_dashboards -->|Deploy| fastapi_service
-    fastapi_service -->|Manage| azure_devops
-    azure_devops -->|Serve| real_time_predictions
-
-    %% ========================
-    %% Apply Color Coding
-    %% ========================
-    class tensile_data,material_properties,quality_tests,manufacturing_params data_source
-    class pandas_processing,time_series_prep,feature_engineering,cross_validation preprocessing
-    class scikit_learn,forecasting_model,model_training,quality_prediction ml_engine
-    class performance_metrics,model_validation,prediction_accuracy,evaluation_dashboard evaluation
-    class plotly_charts,performance_plots,quality_dashboards visualization
-    class fastapi_service,azure_devops,real_time_predictions deployment
-
-    %% ========================
-    %% Connection Styling
-    %% ========================
-    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
-                    </div>
+                    <img src="../assets/images/tensile_ml.jpg" alt="System Architecture - tensile strength predictive model" style="width: 100%; height: auto; display: block;" />
                     <div class="diagram-controls">
                         <button id="zoom-in" title="Zoom In">+</button>
                         <button id="zoom-out" title="Zoom Out">-</button>
@@ -276,95 +158,16 @@ flowchart LR
         </main>
     </div>
 
-        <script>
-        // Enhanced Mermaid configuration for cross-device compatibility
-        mermaid.initialize({ 
-            startOnLoad: true,
-            theme: 'default',
-            flowchart: {
-                useMaxWidth: true,
-                htmlLabels: true,
-                nodeSpacing: 100,
-                rankSpacing: 120,
-                curve: 'linear',
-                padding: 40,
-                wrap: true
-            },
-            themeVariables: {
-                fontFamily: 'Arial, Helvetica, sans-serif',
-                fontSize: '16px',
-                primaryColor: '#89CFF0',
-                primaryTextColor: '#333',
-                primaryBorderColor: '#1E90FF',
-                lineColor: '#7E8AA2',
-                tertiaryColor: '#f9f9f9',
-                edgeLabelBackground: '#ffffff',
-                edgeLabelBackgroundOpacity: 0.8
-            },
-            securityLevel: 'loose'
-        });
-
-        // Function to enhance text rendering after Mermaid loads
-        function enhanceTextRendering() {
-            const diagramElement = document.querySelector('.mermaid');
-            if (!diagramElement) {
-                console.error('Mermaid diagram element not found');
-                return;
-            }
-
-            // Apply additional styling for better text positioning
-            const textElements = diagramElement.querySelectorAll('text');
-            textElements.forEach(text => {
-                text.style.fontFamily = 'Arial, Helvetica, sans-serif';
-                text.style.fontSize = '16px';
-                text.style.fontWeight = 'normal';
-                text.style.textAnchor = 'middle';
-            });
-
-            // Initialize controls after rendering with multiple retry attempts
-            initializeDiagramControlsWithRetry();
-        }
-
-        // Enhanced initialization with retry logic
-        function initializeDiagramControlsWithRetry(maxRetries = 10) {
-            let retryCount = 0;
-            
-            function tryInitialize() {
-                console.log(`Attempting to initialize diagram controls (attempt ${retryCount + 1})`);
-                
-                const container = document.getElementById('diagram-container');
-                const svg = container ? container.querySelector('svg') : null;
-                
-                if (container && svg && svg.getBoundingClientRect().width > 0) {
-                    console.log('SVG found and rendered, initializing controls');
-                    initializeDiagramControls();
-                } else if (retryCount < maxRetries) {
-                    retryCount++;
-                    console.log(`SVG not ready, retrying in 200ms... (${retryCount}/${maxRetries})`);
-                    setTimeout(tryInitialize, 200);
-                } else {
-                    console.error('Failed to initialize diagram controls after maximum retries');
-                }
-            }
-            
-            tryInitialize();
-        }
-
-        // Initialize when page loads
+    <script>
+        // Initialize controls for static image when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Wait for Mermaid to render, then enhance
-            setTimeout(enhanceTextRendering, 500);
-        });
-
-        // Also try to enhance on window load as fallback
-        window.addEventListener('load', function() {
-            setTimeout(enhanceTextRendering, 200);
+            initializeDiagramControls();
         });
     </script>
     <script>
         let diagramControls = {
             container: null,
-            svg: null,
+            contentEl: null,
             scale: 1,
             panX: 0,
             panY: 0,
@@ -392,13 +195,13 @@ flowchart LR
             }
             console.log('Diagram container found');
 
-            // Get the SVG element
-            diagramControls.svg = diagramControls.container.querySelector('svg');
-            if (!diagramControls.svg) {
-                console.error('SVG not found in container');
+            // Get the diagram content element (img or svg)
+            diagramControls.contentEl = diagramControls.container.querySelector('img, svg');
+            if (!diagramControls.contentEl) {
+                console.error('Diagram content element (img or svg) not found in container');
                 return;
             }
-            console.log('SVG element found');
+            console.log('Diagram content element found');
 
             // Check if buttons exist
             const zoomInBtn = document.getElementById('zoom-in');
@@ -429,20 +232,20 @@ flowchart LR
         }
 
         function updateTransform() {
-            if (diagramControls.svg) {
+            if (diagramControls.contentEl) {
                 const transform = `translate(${diagramControls.panX}px, ${diagramControls.panY}px) scale(${diagramControls.scale})`;
-                diagramControls.svg.style.transform = transform;
+                diagramControls.contentEl.style.transform = transform;
                 console.log('Transform updated:', transform);
             } else {
-                console.error('SVG not available for transform update');
+                console.error('Content element not available for transform update');
             }
         }
 
         function zoomDiagram(factor, centerX, centerY) {
             console.log('Zooming diagram:', { factor, centerX, centerY });
             
-            if (!diagramControls.svg) {
-                console.error('SVG not available for zoom');
+            if (!diagramControls.contentEl) {
+                console.error('Content element not available for zoom');
                 return;
             }
             
@@ -461,39 +264,10 @@ flowchart LR
         }
 
         function resetView() {
-            console.log('Resetting view...');
-            
-            if (!diagramControls.svg || !diagramControls.container) {
-                console.error('SVG or container not available for reset');
-                return;
-            }
-            
-            const containerRect = diagramControls.container.getBoundingClientRect();
-            console.log('Container dimensions:', { width: containerRect.width, height: containerRect.height });
-            
-            // Reset transform to get actual size
-            diagramControls.svg.style.transform = '';
-            
-            // Get SVG dimensions
-            const svgRect = diagramControls.svg.getBoundingClientRect();
-            console.log('SVG dimensions:', { width: svgRect.width, height: svgRect.height });
-            
-            if (svgRect.width === 0 || svgRect.height === 0) {
-                console.error('Could not get SVG dimensions');
-                return;
-            }
-
-            // Calculate scale to fit
-            const scaleX = containerRect.width / svgRect.width;
-            const scaleY = containerRect.height / svgRect.height;
-            diagramControls.scale = Math.min(scaleX, scaleY) * 0.9;
-            console.log('Calculated scale:', { scaleX, scaleY, finalScale: diagramControls.scale });
-            
-            // Center the diagram
-            diagramControls.panX = (containerRect.width - svgRect.width * diagramControls.scale) / 2;
-            diagramControls.panY = (containerRect.height - svgRect.height * diagramControls.scale) / 2;
-            console.log('Calculated pan:', { panX: diagramControls.panX, panY: diagramControls.panY });
-            
+            if (!diagramControls.contentEl || !diagramControls.container) return;
+            diagramControls.scale = 1;
+            diagramControls.panX = 0;
+            diagramControls.panY = 0;
             updateTransform();
         }
 
@@ -565,6 +339,7 @@ flowchart LR
                 diagramControls.isPanning = false;
                 diagramControls.container.classList.remove('panning');
             });
+
         }
         
         // Function to go back to main page
@@ -587,7 +362,7 @@ flowchart LR
         window.testDiagramControls = function() {
             console.log('Testing diagram controls...');
             console.log('Container:', diagramControls.container);
-            console.log('SVG:', diagramControls.svg);
+            console.log('Content element:', diagramControls.contentEl);
             console.log('Scale:', diagramControls.scale);
             console.log('Pan:', { x: diagramControls.panX, y: diagramControls.panY });
             

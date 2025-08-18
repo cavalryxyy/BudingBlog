@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Calculator</title>
+    <title>Galva Process Optimization</title>
     <link rel="stylesheet" href="../css/project-details.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
         #diagram-container {
             position: relative;
@@ -16,6 +15,7 @@
             overflow: hidden;
             cursor: grab;
             background-color: #f9f9f9;
+            user-select: none;
         }
 
         #diagram-container.panning {
@@ -30,6 +30,14 @@
         .mermaid svg {
             display: block;
             transform-origin: 0 0;
+        }
+
+        #diagram-container img {
+            display: block;
+            transform-origin: 0 0;
+            user-select: none;
+            -webkit-user-drag: none;
+            will-change: transform;
         }
 
         .diagram-controls {
@@ -144,103 +152,7 @@
             <div class="workflow">
                 <h2>System Architecture</h2>
                 <div id="diagram-container">
-                    <div class="mermaid">
-flowchart TB
-    %% ========================
-    %% Modern Light Color Scheme
-    %% ========================
-    classDef frontend fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
-    classDef backend fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
-    classDef auth fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
-    classDef storage fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
-    classDef cloud fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
-    classDef deployment fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
-
-    %% ========================
-    %% Component Grouping
-    %% ========================
-    subgraph frontend_layer["Frontend Layer"]
-        react_app["React Application"]
-        dash_components["Dash Components"]
-        dynamic_forms["Dynamic Form Builder"]
-        quote_modeling["Quote Modeling Interface"]
-    end
-    
-    subgraph backend_layer["Backend Layer"]
-        fastapi_server["FastAPI Server"]
-        calculation_engine["Calculation Engine"]
-        quote_processor["Quote Processor"]
-        multi_currency["Multi-Currency Engine"]
-    end
-    
-    subgraph auth_system["Authentication System"]
-        role_management["Role Management"]
-        admin_access["Admin Access"]
-        sales_access["Sales Access"]
-        developer_access["Developer Access"]
-    end
-    
-    subgraph storage_layer["Storage Layer"]
-        sqlite_db["SQLite Database"]
-        transactional_data["Transactional Data"]
-        azure_blob["Azure Blob Storage"]
-        contract_pdfs["Contract PDFs"]
-    end
-    
-    subgraph cloud_platform["Cloud Platform"]
-        azure_webapps["Azure Web Apps"]
-        azure_pipelines["Azure Pipelines"]
-        docker_containers["Docker Containers"]
-    end
-    
-    subgraph deployment["CI/CD Pipeline"]
-        cicd_pipeline["CI/CD Pipeline"]
-        zero_downtime["Zero-Downtime Deployment"]
-        global_deployment["Global Deployment"]
-    end
-
-    %% ========================
-    %% Data Flow
-    %% ========================
-    react_app -->|Build| dash_components
-    dash_components -->|Create| dynamic_forms
-    dynamic_forms -->|Process| quote_modeling
-    quote_modeling -->|Send| fastapi_server
-    fastapi_server -->|Calculate| calculation_engine
-    calculation_engine -->|Process| quote_processor
-    quote_processor -->|Convert| multi_currency
-    multi_currency -->|Authenticate| role_management
-    role_management -->|Authorize| admin_access
-    role_management -->|Authorize| sales_access
-    role_management -->|Authorize| developer_access
-    admin_access -->|Store| sqlite_db
-    sales_access -->|Store| sqlite_db
-    developer_access -->|Store| sqlite_db
-    sqlite_db -->|Save| transactional_data
-    fastapi_server -->|Upload| azure_blob
-    azure_blob -->|Store| contract_pdfs
-    fastapi_server -->|Deploy| azure_webapps
-    azure_webapps -->|Build| azure_pipelines
-    azure_pipelines -->|Package| docker_containers
-    docker_containers -->|Deploy| cicd_pipeline
-    cicd_pipeline -->|Execute| zero_downtime
-    zero_downtime -->|Serve| global_deployment
-
-    %% ========================
-    %% Apply Color Coding
-    %% ========================
-    class react_app,dash_components,dynamic_forms,quote_modeling frontend
-    class fastapi_server,calculation_engine,quote_processor,multi_currency backend
-    class role_management,admin_access,sales_access,developer_access auth
-    class sqlite_db,transactional_data,azure_blob,contract_pdfs storage
-    class azure_webapps,azure_pipelines,docker_containers cloud
-    class cicd_pipeline,zero_downtime,global_deployment deployment
-
-    %% ========================
-    %% Connection Styling
-    %% ========================
-    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
-                    </div>
+                    <img src="../assets/images/web-calc.jpg" alt="System Architecture - Web Calculator" style="width: 100%; height: auto; display: block;" />
                     <div class="diagram-controls">
                         <button id="zoom-in" title="Zoom In">+</button>
                         <button id="zoom-out" title="Zoom Out">-</button>
@@ -251,95 +163,16 @@ flowchart TB
         </main>
     </div>
 
-        <script>
-        // Enhanced Mermaid configuration for cross-device compatibility
-        mermaid.initialize({ 
-            startOnLoad: true,
-            theme: 'default',
-            flowchart: {
-                useMaxWidth: true,
-                htmlLabels: true,
-                nodeSpacing: 100,
-                rankSpacing: 120,
-                curve: 'linear',
-                padding: 40,
-                wrap: true
-            },
-            themeVariables: {
-                fontFamily: 'Arial, Helvetica, sans-serif',
-                fontSize: '16px',
-                primaryColor: '#89CFF0',
-                primaryTextColor: '#333',
-                primaryBorderColor: '#1E90FF',
-                lineColor: '#7E8AA2',
-                tertiaryColor: '#f9f9f9',
-                edgeLabelBackground: '#ffffff',
-                edgeLabelBackgroundOpacity: 0.8
-            },
-            securityLevel: 'loose'
-        });
-
-        // Function to enhance text rendering after Mermaid loads
-        function enhanceTextRendering() {
-            const diagramElement = document.querySelector('.mermaid');
-            if (!diagramElement) {
-                console.error('Mermaid diagram element not found');
-                return;
-            }
-
-            // Apply additional styling for better text positioning
-            const textElements = diagramElement.querySelectorAll('text');
-            textElements.forEach(text => {
-                text.style.fontFamily = 'Arial, Helvetica, sans-serif';
-                text.style.fontSize = '16px';
-                text.style.fontWeight = 'normal';
-                text.style.textAnchor = 'middle';
-            });
-
-            // Initialize controls after rendering with multiple retry attempts
-            initializeDiagramControlsWithRetry();
-        }
-
-        // Enhanced initialization with retry logic
-        function initializeDiagramControlsWithRetry(maxRetries = 10) {
-            let retryCount = 0;
-            
-            function tryInitialize() {
-                console.log(`Attempting to initialize diagram controls (attempt ${retryCount + 1})`);
-                
-                const container = document.getElementById('diagram-container');
-                const svg = container ? container.querySelector('svg') : null;
-                
-                if (container && svg && svg.getBoundingClientRect().width > 0) {
-                    console.log('SVG found and rendered, initializing controls');
-                    initializeDiagramControls();
-                } else if (retryCount < maxRetries) {
-                    retryCount++;
-                    console.log(`SVG not ready, retrying in 200ms... (${retryCount}/${maxRetries})`);
-                    setTimeout(tryInitialize, 200);
-                } else {
-                    console.error('Failed to initialize diagram controls after maximum retries');
-                }
-            }
-            
-            tryInitialize();
-        }
-
-        // Initialize when page loads
+    <script>
+        // Initialize controls for static image when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Wait for Mermaid to render, then enhance
-            setTimeout(enhanceTextRendering, 500);
-        });
-
-        // Also try to enhance on window load as fallback
-        window.addEventListener('load', function() {
-            setTimeout(enhanceTextRendering, 200);
+            initializeDiagramControls();
         });
     </script>
     <script>
         let diagramControls = {
             container: null,
-            svg: null,
+            contentEl: null,
             scale: 1,
             panX: 0,
             panY: 0,
@@ -367,13 +200,13 @@ flowchart TB
             }
             console.log('Diagram container found');
 
-            // Get the SVG element
-            diagramControls.svg = diagramControls.container.querySelector('svg');
-            if (!diagramControls.svg) {
-                console.error('SVG not found in container');
+            // Get the diagram content element (img or svg)
+            diagramControls.contentEl = diagramControls.container.querySelector('img, svg');
+            if (!diagramControls.contentEl) {
+                console.error('Diagram content element (img or svg) not found in container');
                 return;
             }
-            console.log('SVG element found');
+            console.log('Diagram content element found');
 
             // Check if buttons exist
             const zoomInBtn = document.getElementById('zoom-in');
@@ -404,20 +237,20 @@ flowchart TB
         }
 
         function updateTransform() {
-            if (diagramControls.svg) {
+            if (diagramControls.contentEl) {
                 const transform = `translate(${diagramControls.panX}px, ${diagramControls.panY}px) scale(${diagramControls.scale})`;
-                diagramControls.svg.style.transform = transform;
+                diagramControls.contentEl.style.transform = transform;
                 console.log('Transform updated:', transform);
             } else {
-                console.error('SVG not available for transform update');
+                console.error('Content element not available for transform update');
             }
         }
 
         function zoomDiagram(factor, centerX, centerY) {
             console.log('Zooming diagram:', { factor, centerX, centerY });
             
-            if (!diagramControls.svg) {
-                console.error('SVG not available for zoom');
+            if (!diagramControls.contentEl) {
+                console.error('Content element not available for zoom');
                 return;
             }
             
@@ -436,39 +269,10 @@ flowchart TB
         }
 
         function resetView() {
-            console.log('Resetting view...');
-            
-            if (!diagramControls.svg || !diagramControls.container) {
-                console.error('SVG or container not available for reset');
-                return;
-            }
-            
-            const containerRect = diagramControls.container.getBoundingClientRect();
-            console.log('Container dimensions:', { width: containerRect.width, height: containerRect.height });
-            
-            // Reset transform to get actual size
-            diagramControls.svg.style.transform = '';
-            
-            // Get SVG dimensions
-            const svgRect = diagramControls.svg.getBoundingClientRect();
-            console.log('SVG dimensions:', { width: svgRect.width, height: svgRect.height });
-            
-            if (svgRect.width === 0 || svgRect.height === 0) {
-                console.error('Could not get SVG dimensions');
-                return;
-            }
-
-            // Calculate scale to fit
-            const scaleX = containerRect.width / svgRect.width;
-            const scaleY = containerRect.height / svgRect.height;
-            diagramControls.scale = Math.min(scaleX, scaleY) * 0.9;
-            console.log('Calculated scale:', { scaleX, scaleY, finalScale: diagramControls.scale });
-            
-            // Center the diagram
-            diagramControls.panX = (containerRect.width - svgRect.width * diagramControls.scale) / 2;
-            diagramControls.panY = (containerRect.height - svgRect.height * diagramControls.scale) / 2;
-            console.log('Calculated pan:', { panX: diagramControls.panX, panY: diagramControls.panY });
-            
+            if (!diagramControls.contentEl || !diagramControls.container) return;
+            diagramControls.scale = 1;
+            diagramControls.panX = 0;
+            diagramControls.panY = 0;
             updateTransform();
         }
 
@@ -540,6 +344,7 @@ flowchart TB
                 diagramControls.isPanning = false;
                 diagramControls.container.classList.remove('panning');
             });
+
         }
         
         // Function to go back to main page
@@ -562,7 +367,7 @@ flowchart TB
         window.testDiagramControls = function() {
             console.log('Testing diagram controls...');
             console.log('Container:', diagramControls.container);
-            console.log('SVG:', diagramControls.svg);
+            console.log('Content element:', diagramControls.contentEl);
             console.log('Scale:', diagramControls.scale);
             console.log('Pan:', { x: diagramControls.panX, y: diagramControls.panY });
             

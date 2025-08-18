@@ -6,7 +6,6 @@
     <title>Patent Landscaping</title>
     <link rel="stylesheet" href="../css/project-details.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
         #diagram-container {
             position: relative;
@@ -16,6 +15,7 @@
             overflow: hidden;
             cursor: grab;
             background-color: #f9f9f9;
+            user-select: none;
         }
 
         #diagram-container.panning {
@@ -32,6 +32,14 @@
             transform-origin: 0 0;
         }
 
+        #diagram-container img {
+            display: block;
+            transform-origin: 0 0;
+            user-select: none;
+            -webkit-user-drag: none;
+            will-change: transform;
+        }
+
         .diagram-controls {
             position: absolute;
             top: 10px;
@@ -43,53 +51,21 @@
         }
 
         .diagram-controls button {
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
             border-radius: 4px;
-            padding: 8px 12px;
+            font-size: 16px;
+            width: 32px;
+            height: 32px;
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            min-width: 30px;
-            min-height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
+            padding: 0;
         }
 
         .diagram-controls button:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: scale(1.1);
-        }
-
-        .diagram-controls button:active {
-            transform: scale(0.95);
-        }
-
-        /* Ensure buttons are clickable */
-        .diagram-controls button:focus {
-            outline: 2px solid #00aaff;
-            outline-offset: 2px;
-        }
-
-        /* Visual indicator when controls are ready */
-        .diagram-controls.ready button {
-            background: rgba(0, 170, 255, 0.8);
-        }
-
-        .diagram-controls.ready button:hover {
-            background: rgba(0, 170, 255, 1);
-        }
-
-        /* Loading state */
-        .diagram-controls.loading button {
-            opacity: 0.5;
-            cursor: not-allowed;
+            background-color: #f0f0f0;
         }
         
         .back-button {
@@ -172,112 +148,7 @@
             <div class="workflow">
                 <h2>System Architecture</h2>
                 <div id="diagram-container">
-                    <div class="mermaid">
-flowchart LR
-    %% ========================
-    %% Modern Light Color Scheme
-    %% ========================
-    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
-    classDef ai_agent fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
-    classDef processing fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
-    classDef analysis fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
-    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
-    classDef llm fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
-    classDef output fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
-
-    %% ========================
-    %% Component Grouping
-    %% ========================
-    subgraph data_sources["Patent Data Sources"]
-        patent_documents["Patent Documents"]
-        patent_titles["Patent Titles"]
-        patent_abstracts["Patent Abstracts"]
-        patent_claims["Patent Claims"]
-    end
-    
-    subgraph ai_agent["AI Agent System"]
-        genai_bot["GenAI Bot Patent Analyzer"]
-        smart_genai["Smart GenAI Bot"]
-        patent_agent["Patent Landscape Agent"]
-        category_analyzer["Category Analyzer"]
-    end
-    
-    subgraph processing["Processing Engine"]
-        langchain_extraction["LangChain Extraction"]
-        prompt_engineering["Prompt Engineering"]
-        text_processing["Text Processing"]
-        data_cleaning["Data Cleaning"]
-    end
-    
-    subgraph analysis["Analysis Engine"]
-        category_extraction["Category Extraction"]
-        keyword_clustering["Keyword Clustering"]
-        priority_assessment["Priority Assessment"]
-        landscape_analysis["Landscape Analysis"]
-    end
-    
-    subgraph llm["LLM Integration"]
-        gpt4_integration["GPT-4 Integration"]
-        gemini_integration["Gemini Integration"]
-        autogen_integration["AutoGen Integration"]
-        llm_prompts["LLM Prompts"]
-    end
-    
-    subgraph output["Output & Results"]
-        patent_categories["Patent Categories"]
-        keyword_analysis["Keyword Analysis"]
-        priority_scores["Priority Scores"]
-        landscape_report["Landscape Report"]
-    end
-
-    %% ========================
-    %% Data Flow
-    %% ========================
-    patent_documents -->|Extract| patent_titles
-    patent_documents -->|Extract| patent_abstracts
-    patent_documents -->|Extract| patent_claims
-    patent_titles -->|Process| genai_bot
-    patent_abstracts -->|Process| genai_bot
-    patent_claims -->|Process| genai_bot
-    genai_bot -->|Initialize| smart_genai
-    smart_genai -->|Create| patent_agent
-    patent_agent -->|Analyze| category_analyzer
-    category_analyzer -->|Extract| langchain_extraction
-    langchain_extraction -->|Engineer| prompt_engineering
-    prompt_engineering -->|Process| text_processing
-    text_processing -->|Clean| data_cleaning
-    data_cleaning -->|Analyze| category_extraction
-    category_extraction -->|Cluster| keyword_clustering
-    keyword_clustering -->|Assess| priority_assessment
-    priority_assessment -->|Analyze| landscape_analysis
-    landscape_analysis -->|Integrate| gpt4_integration
-    landscape_analysis -->|Integrate| gemini_integration
-    landscape_analysis -->|Integrate| autogen_integration
-    gpt4_integration -->|Generate| llm_prompts
-    gemini_integration -->|Generate| llm_prompts
-    autogen_integration -->|Generate| llm_prompts
-    llm_prompts -->|Output| patent_categories
-    llm_prompts -->|Output| keyword_analysis
-    llm_prompts -->|Output| priority_scores
-    patent_categories -->|Generate| landscape_report
-    keyword_analysis -->|Generate| landscape_report
-    priority_scores -->|Generate| landscape_report
-
-    %% ========================
-    %% Apply Color Coding
-    %% ========================
-    class patent_documents,patent_titles,patent_abstracts,patent_claims data_source
-    class genai_bot,smart_genai,patent_agent,category_analyzer ai_agent
-    class langchain_extraction,prompt_engineering,text_processing,data_cleaning processing
-    class category_extraction,keyword_clustering,priority_assessment,landscape_analysis analysis
-    class gpt4_integration,gemini_integration,autogen_integration,llm_prompts llm
-    class patent_categories,keyword_analysis,priority_scores,landscape_report output
-
-    %% ========================
-    %% Connection Styling
-    %% ========================
-    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
-                    </div>
+                    <img src="../assets/images/patent.jpg" alt="System Architecture - Patent Landscaping" style="width: 100%; height: auto; display: block;" />
                     <div class="diagram-controls">
                         <button id="zoom-in" title="Zoom In">+</button>
                         <button id="zoom-out" title="Zoom Out">-</button>
@@ -288,95 +159,16 @@ flowchart LR
         </main>
     </div>
 
-        <script>
-        // Enhanced Mermaid configuration for cross-device compatibility
-        mermaid.initialize({ 
-            startOnLoad: true,
-            theme: 'default',
-            flowchart: {
-                useMaxWidth: true,
-                htmlLabels: true,
-                nodeSpacing: 100,
-                rankSpacing: 120,
-                curve: 'linear',
-                padding: 40,
-                wrap: true
-            },
-            themeVariables: {
-                fontFamily: 'Arial, Helvetica, sans-serif',
-                fontSize: '16px',
-                primaryColor: '#89CFF0',
-                primaryTextColor: '#333',
-                primaryBorderColor: '#1E90FF',
-                lineColor: '#7E8AA2',
-                tertiaryColor: '#f9f9f9',
-                edgeLabelBackground: '#ffffff',
-                edgeLabelBackgroundOpacity: 0.8
-            },
-            securityLevel: 'loose'
-        });
-
-        // Function to enhance text rendering after Mermaid loads
-        function enhanceTextRendering() {
-            const diagramElement = document.querySelector('.mermaid');
-            if (!diagramElement) {
-                console.error('Mermaid diagram element not found');
-                return;
-            }
-
-            // Apply additional styling for better text positioning
-            const textElements = diagramElement.querySelectorAll('text');
-            textElements.forEach(text => {
-                text.style.fontFamily = 'Arial, Helvetica, sans-serif';
-                text.style.fontSize = '16px';
-                text.style.fontWeight = 'normal';
-                text.style.textAnchor = 'middle';
-            });
-
-            // Initialize controls after rendering with multiple retry attempts
-            initializeDiagramControlsWithRetry();
-        }
-
-        // Enhanced initialization with retry logic
-        function initializeDiagramControlsWithRetry(maxRetries = 10) {
-            let retryCount = 0;
-            
-            function tryInitialize() {
-                console.log(`Attempting to initialize diagram controls (attempt ${retryCount + 1})`);
-                
-                const container = document.getElementById('diagram-container');
-                const svg = container ? container.querySelector('svg') : null;
-                
-                if (container && svg && svg.getBoundingClientRect().width > 0) {
-                    console.log('SVG found and rendered, initializing controls');
-                    initializeDiagramControls();
-                } else if (retryCount < maxRetries) {
-                    retryCount++;
-                    console.log(`SVG not ready, retrying in 200ms... (${retryCount}/${maxRetries})`);
-                    setTimeout(tryInitialize, 200);
-                } else {
-                    console.error('Failed to initialize diagram controls after maximum retries');
-                }
-            }
-            
-            tryInitialize();
-        }
-
-        // Initialize when page loads
+    <script>
+        // Initialize controls for static image when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Wait for Mermaid to render, then enhance
-            setTimeout(enhanceTextRendering, 500);
-        });
-
-        // Also try to enhance on window load as fallback
-        window.addEventListener('load', function() {
-            setTimeout(enhanceTextRendering, 200);
+            initializeDiagramControls();
         });
     </script>
     <script>
         let diagramControls = {
             container: null,
-            svg: null,
+            contentEl: null,
             scale: 1,
             panX: 0,
             panY: 0,
@@ -404,13 +196,13 @@ flowchart LR
             }
             console.log('Diagram container found');
 
-            // Get the SVG element
-            diagramControls.svg = diagramControls.container.querySelector('svg');
-            if (!diagramControls.svg) {
-                console.error('SVG not found in container');
+            // Get the diagram content element (img or svg)
+            diagramControls.contentEl = diagramControls.container.querySelector('img, svg');
+            if (!diagramControls.contentEl) {
+                console.error('Diagram content element (img or svg) not found in container');
                 return;
             }
-            console.log('SVG element found');
+            console.log('Diagram content element found');
 
             // Check if buttons exist
             const zoomInBtn = document.getElementById('zoom-in');
@@ -441,20 +233,20 @@ flowchart LR
         }
 
         function updateTransform() {
-            if (diagramControls.svg) {
+            if (diagramControls.contentEl) {
                 const transform = `translate(${diagramControls.panX}px, ${diagramControls.panY}px) scale(${diagramControls.scale})`;
-                diagramControls.svg.style.transform = transform;
+                diagramControls.contentEl.style.transform = transform;
                 console.log('Transform updated:', transform);
             } else {
-                console.error('SVG not available for transform update');
+                console.error('Content element not available for transform update');
             }
         }
 
         function zoomDiagram(factor, centerX, centerY) {
             console.log('Zooming diagram:', { factor, centerX, centerY });
             
-            if (!diagramControls.svg) {
-                console.error('SVG not available for zoom');
+            if (!diagramControls.contentEl) {
+                console.error('Content element not available for zoom');
                 return;
             }
             
@@ -473,39 +265,10 @@ flowchart LR
         }
 
         function resetView() {
-            console.log('Resetting view...');
-            
-            if (!diagramControls.svg || !diagramControls.container) {
-                console.error('SVG or container not available for reset');
-                return;
-            }
-            
-            const containerRect = diagramControls.container.getBoundingClientRect();
-            console.log('Container dimensions:', { width: containerRect.width, height: containerRect.height });
-            
-            // Reset transform to get actual size
-            diagramControls.svg.style.transform = '';
-            
-            // Get SVG dimensions
-            const svgRect = diagramControls.svg.getBoundingClientRect();
-            console.log('SVG dimensions:', { width: svgRect.width, height: svgRect.height });
-            
-            if (svgRect.width === 0 || svgRect.height === 0) {
-                console.error('Could not get SVG dimensions');
-                return;
-            }
-
-            // Calculate scale to fit
-            const scaleX = containerRect.width / svgRect.width;
-            const scaleY = containerRect.height / svgRect.height;
-            diagramControls.scale = Math.min(scaleX, scaleY) * 0.9;
-            console.log('Calculated scale:', { scaleX, scaleY, finalScale: diagramControls.scale });
-            
-            // Center the diagram
-            diagramControls.panX = (containerRect.width - svgRect.width * diagramControls.scale) / 2;
-            diagramControls.panY = (containerRect.height - svgRect.height * diagramControls.scale) / 2;
-            console.log('Calculated pan:', { panX: diagramControls.panX, panY: diagramControls.panY });
-            
+            if (!diagramControls.contentEl || !diagramControls.container) return;
+            diagramControls.scale = 1;
+            diagramControls.panX = 0;
+            diagramControls.panY = 0;
             updateTransform();
         }
 
@@ -577,10 +340,8 @@ flowchart LR
                 diagramControls.isPanning = false;
                 diagramControls.container.classList.remove('panning');
             });
-        }
 
-                        // Note: Diagram initialization is now handled by enhanceTextRendering() function
-                        // Note: Diagram initialization is now handled by enhanceTextRendering() function
+        }
         
         // Function to go back to main page
         function goBackToMain() {
@@ -602,7 +363,7 @@ flowchart LR
         window.testDiagramControls = function() {
             console.log('Testing diagram controls...');
             console.log('Container:', diagramControls.container);
-            console.log('SVG:', diagramControls.svg);
+            console.log('Content element:', diagramControls.contentEl);
             console.log('Scale:', diagramControls.scale);
             console.log('Pan:', { x: diagramControls.panX, y: diagramControls.panY });
             

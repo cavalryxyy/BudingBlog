@@ -1,0 +1,764 @@
+### Portfolio
+flowchart TB
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef etl fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef warehouse fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef analytics fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef cloud fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+    classDef business fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph data_sources["Data Sources"]
+        raw_data["Raw Business Data"]
+        external_sources["External Data Sources"]
+        historical_data["Historical Portfolio Data"]
+    end
+    
+    subgraph etl_process["ETL Pipeline"]
+        data_extraction["Data Extraction"]
+        data_cleaning["Data Cleaning & Transformation"]
+        synapse_etl["Azure Synapse ETL"]
+    end
+    
+    subgraph data_warehouse["Data Warehouse"]
+        synapse_analytics["Azure Synapse Analytics"]
+        sql_database["SQL Database"]
+    end
+    
+    subgraph visualization["Visualization Layer"]
+        powerbi_reports["PowerBI Reports"]
+    end
+    
+    subgraph cloud_platform["Cloud Platform"]
+        azure_synapse["Azure Synapse Analytics"]
+        azure_storage["Azure Storage"]
+        azure_devops["Azure DevOps"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    raw_data -->|Extract| data_extraction
+    external_sources -->|Extract| data_extraction
+    historical_data -->|Extract| data_extraction
+    data_extraction -->|Transform| data_cleaning
+    data_cleaning -->|Load| synapse_etl
+    synapse_etl -->|Store| synapse_analytics
+    synapse_analytics -->|Query| sql_database
+    sql_database -->|"text sql query"| powerbi_reports
+    azure_synapse -->|Host| synapse_analytics
+    azure_storage -->|Store| raw_data
+    azure_devops -->|Deploy| synapse_etl
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class raw_data,external_sources,historical_data data_source
+    class data_extraction,data_cleaning,synapse_etl etl
+    class synapse_analytics,sql_database warehouse
+    class powerbi_reports visualization
+    class azure_synapse,azure_storage,azure_devops cloud
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+
+### Galva
+flowchart LR
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef legacy fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef migration fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef processing fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef ml fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef cloud fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+    classDef deployment fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph legacy_systems["Legacy Systems"]
+        sas_repositories["SAS Repositories"]
+        sas_cli["SAS CLI"]
+        legacy_models["Legacy SAS Models"]
+    end
+    
+    subgraph migration["Migration Layer"]
+        python_migration["Python Migration Engine"]
+        data_transformation["Data Transformation"]
+        model_conversion["Model Conversion"]
+        pyspark_etl["PySpark ETL Pipeline"]
+    end
+    
+    subgraph processing["Processing Engine"]
+        azure_synapse["Azure Synapse Analytics"]
+        pyspark_processing["PySpark Processing"]
+        data_cleaning["Data Cleaning"]
+        feature_engineering["Feature Engineering"]
+    end
+    
+    subgraph ml_models["ML Models"]
+        python_ml["Python ML Models"]
+        model_training["Model Training"]
+        model_evaluation["Model Evaluation"]
+        optimization_algorithms["Optimization Algorithms"]
+    end
+    
+    subgraph visualization["Visualization"]
+        powerbi_reports["PowerBI Reports"]
+        replicated_visualizations["Replicated Visualizations"]
+        process_dashboards["Process Dashboards"]
+    end
+    
+    subgraph cloud_platform["Cloud Platform"]
+        azure_synapse_platform["Azure Synapse"]
+        azure_devops["Azure DevOps"]
+        azure_storage["Azure Storage"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    sas_repositories -->|Extract| python_migration
+    sas_cli -->|Command Line| python_migration
+    legacy_models -->|Convert| model_conversion
+    python_migration -->|Transform| data_transformation
+    data_transformation -->|Process| pyspark_etl
+    pyspark_etl -->|Load| azure_synapse
+    azure_synapse -->|Process| pyspark_processing
+    pyspark_processing -->|Clean| data_cleaning
+    data_cleaning -->|Engineer| feature_engineering
+    feature_engineering -->|Train| python_ml
+    model_conversion -->|Migrate| python_ml
+    python_ml -->|Train| model_training
+    model_training -->|Evaluate| model_evaluation
+    model_evaluation -->|Optimize| optimization_algorithms
+    optimization_algorithms -->|Visualize| powerbi_reports
+    powerbi_reports -->|Display| replicated_visualizations
+    replicated_visualizations -->|Show| process_dashboards
+    azure_synapse_platform -->|Host| azure_synapse
+    azure_devops -->|Deploy| pyspark_etl
+    azure_storage -->|Store| sas_repositories
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class sas_repositories,sas_cli,legacy_models legacy
+    class python_migration,data_transformation,model_conversion,pyspark_etl migration
+    class azure_synapse,pyspark_processing,data_cleaning,feature_engineering processing
+    class python_ml,model_training,model_evaluation,optimization_algorithms ml
+    class powerbi_reports,replicated_visualizations,process_dashboards visualization
+    class azure_synapse_platform,azure_devops,azure_storage cloud
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+
+### web-cal
+flowchart TB
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef frontend fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef backend fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef auth fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef storage fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef cloud fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef deployment fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+    classDef legacy fill:#F0E68C,stroke:#B8860B,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph legacy_stack["Legacy (Dash)"]
+        dash_app["Dash Application (Legacy)"]
+        dash_ui["Dash Pages & Components"]
+    end
+
+    subgraph current_stack["Current (React + FastAPI)"]
+        subgraph frontend_layer["Frontend"]
+            react_app["React Application"]
+            dynamic_forms["Dynamic Form Builder"]
+        end
+        
+        subgraph backend_layer["Backend"]
+            fastapi_server["FastAPI Server"]
+            calculation_engine["Calculation Engine"]
+            multi_currency["Multi-Currency Engine"]
+        end
+        
+        subgraph auth_system["Authentication System"]
+            role_management["Role Management"]
+            admin_access["Admin Access"]
+            sales_access["Sales Access"]
+            developer_access["Developer Access"]
+        end
+        
+        subgraph storage_layer["Storage Layer"]
+            sqlite_db["SQLite Database"]
+            transactional_data["Transactional Data"]
+            azure_blob["Azure Blob Storage"]
+            contract_pdfs["Contract PDFs"]
+        end
+        
+        subgraph cloud_platform["Cloud Platform"]
+            azure_webapps["Azure Web Apps"]
+            azure_pipelines["Azure Pipelines"]
+            docker_containers["Docker Containers"]
+        end
+        
+        subgraph deployment["CI/CD Pipeline"]
+            cicd_pipeline["CI/CD Pipeline"]
+            global_deployment["Global Deployment"]
+        end
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    dash_app --> dash_ui
+    dash_app -. "Refactored to" .-> react_app
+    
+    react_app --> dynamic_forms
+    dynamic_forms -->|Send| fastapi_server
+    fastapi_server -->|Calculate| calculation_engine
+    calculation_engine -->|Authenticate| role_management
+    role_management -->|Authorize| admin_access
+    role_management -->|Authorize| sales_access
+    role_management -->|Authorize| developer_access
+    admin_access -->|Store| sqlite_db
+    sales_access -->|Store| sqlite_db
+    developer_access -->|Store| sqlite_db
+    sqlite_db -->|Save| transactional_data
+    fastapi_server -->|Upload| azure_blob
+    azure_blob -->|Store| contract_pdfs
+    fastapi_server -->|Deploy| azure_webapps
+    azure_webapps -->|Build| azure_pipelines
+    azure_pipelines -->|Package| docker_containers
+    docker_containers -->|Deploy| cicd_pipeline
+    cicd_pipeline -->|Serve| global_deployment
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class react_app,dynamic_forms frontend
+    class fastapi_server,calculation_engine,multi_currency backend
+    class role_management,admin_access,sales_access,developer_access auth
+    class sqlite_db,transactional_data,azure_blob,contract_pdfs storage
+    class azure_webapps,azure_pipelines,docker_containers cloud
+    class cicd_pipeline,zero_downtime,global_deployment deployment
+    class dash_app,dash_ui legacy
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+    
+### ttv
+flowchart TB
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef processing fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef cv_engine fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef analytics fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef deployment fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph data_sources["Data Sources"]
+        gps_data["GPS Trajectory Data"]
+        vehicle_sensors["Vehicle Sensors"]
+        coordinate_systems["Coordinate Systems"]
+        historical_tracks["Historical Tracks"]
+    end
+    
+    subgraph processing["Data Processing"]
+        pandas_processing["Pandas Data Processing"]
+        coordinate_transform["Coordinate Transformation"]
+        data_cleaning["Data Cleaning"]
+        trajectory_parsing["Trajectory Parsing"]
+    end
+    
+    subgraph cv_engine["Computer Vision Engine"]
+        distance_calc["Distance Calculations"]
+    end
+    
+    subgraph analytics["Analytics Engine"]
+        multi_track_processing["Multi-Track Processing"]
+        pattern_recognition["Pattern Recognition"]
+        performance_metrics["Performance Metrics"]
+    end
+    
+    subgraph visualization["Visualization Layer"]
+        plotly_dashboards["Plotly Dashboards"]
+        trajectory_plots["Trajectory Plots"]
+        analytics_reports["Analytics Reports"]
+    end
+    
+    subgraph deployment["Deployment"]
+        fastapi_service["FastAPI Service"]
+        azure_devops["Azure DevOps"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    gps_data -->|Process| pandas_processing
+    vehicle_sensors -->|Process| pandas_processing
+    coordinate_systems -->|Transform| coordinate_transform
+    historical_tracks -->|Clean| data_cleaning
+    pandas_processing -->|Parse| trajectory_parsing
+    coordinate_transform -->|Analyze| distance_calc
+    data_cleaning -->|Calculate| distance_calc
+    trajectory_parsing -->|Analyze| distance_calc
+    distance_calc -->|Process| multi_track_processing
+    
+    multi_track_processing -->|Calculate| performance_metrics
+    pattern_recognition -->|Visualize| plotly_dashboards
+    performance_metrics -->|Plot| trajectory_plots
+    plotly_dashboards -->|Report| analytics_reports
+    trajectory_plots -->|Deploy| azure_devops
+    
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class gps_data,vehicle_sensors,coordinate_systems,historical_tracks data_source
+    class pandas_processing,coordinate_transform,data_cleaning,trajectory_parsing processing
+    class distance_calc cv_engine
+    class multi_track_processing,pattern_recognition,performance_metrics analytics
+    class plotly_dashboards,trajectory_plots,analytics_reports visualization
+    class fastapi_service,azure_devops deployment
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+
+### indus
+flowchart TD
+    %% ========================
+    %% Professional Color Scheme
+    %% ========================
+    classDef datasource fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px
+    classDef edge fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px
+    classDef cloud fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px
+    classDef analytics fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px
+    classDef action fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px
+
+    %% ========================
+    %% Data Acquisition Layer
+    %% ========================
+    subgraph DataAcquisition["Data Acquisition Layer"]
+        direction LR
+        A[Manufacturing Equipment]:::datasource
+        B[Image Capture System]:::datasource
+    end
+
+    %% ========================
+    %% Edge Computing Layer
+    %% ========================
+    subgraph EdgeComputing["Edge Computing Layer"]
+        direction TB
+        C[Edge Gateway]:::edge
+        D[CV Inference\nReal-time Defect Detection]:::edge
+        E[Data Pre-processing &\nAggregation]:::edge
+        C --> D
+        C --> E
+    end
+
+    %% ========================
+    %% Cloud Platform Layer
+    %% ========================
+    subgraph CloudPlatform["Cloud Platform - Azure"]
+        direction TB
+        F[Azure IoT Hub]:::cloud
+        G[Azure Stream Analytics]:::cloud
+        H[Azure Blob Storage]:::cloud
+    end
+
+    %% ========================
+    %% Analytics Layer
+    %% ========================
+    subgraph Analytics["Analytics & Insights Layer"]
+        direction TB
+        I[Azure Machine Learning]:::analytics
+        J[Real-time Dashboards &\nAlerts\nPower BI]:::analytics
+        K[Root Cause Analysis &\nPerformance Monitoring]:::analytics
+        L[Manufacturing Insights]:::analytics
+    end
+
+    %% ========================
+    %% Control Layer
+    %% ========================
+    subgraph Control["Optimization & Control Layer"]
+        M[Process Optimization Commands]:::action
+    end
+
+    %% ========================
+    %% Data & Control Flow
+    %% ========================
+    A -->|Sensor Data\nWebSCADA| C
+    B -->|Image Stream| C
+    D -->|Defect Alerts| G
+    E -->|Filtered/Aggregated Data| F
+    F --> G
+    F --> H
+    H --> I
+    G -->|Live Data| J
+    I -->|Trained Models| K
+    J --> L
+    K --> L
+    I -.->|Deploy Updated Model| D
+    L -->|Generate| M
+    M -->|Feedback Control Signal| A
+
+### sentiment
+flowchart TB
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef data fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef prompt fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef agent fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef analytics fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef rags fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef decisions fill:#FFB6C1,stroke:#FF69B4,color:#333,stroke-width:2px,rounded:5px
+    classDef data_process fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph all_data["Data"]
+        reports["Annual Report"]
+        financial_sections["Financial Sections"]
+        statements_sections["Business Strategy Sections"]
+    end
+    
+    subgraph rag["RAG"]
+        RAG_Score["Financial Strategy Knowledge Base"]
+    end
+    
+    subgraph s1["Prompt Engineering"]
+        P_F["Langchain - Extract Financial Tables"]
+        P_S["Langchain - Extract Business Statements"]
+        P_BU["Distinguish Business Segment"]
+        P_Time["Remap with Actual Time Periods"]
+        P_Score["Perform Sentiment Scoring"]
+    end
+    
+    subgraph agent["Agent"]
+        A_metrics["Extract Financial Metrics Results"]
+    end
+    
+    subgraph analytics["Analytics"]
+        data_smoothing["Regularization & Smoothing"]
+        t_evaluation["Predicted Sentiment Score Results"]
+        a_evaluation["Actual Financial Results"]
+        testing["Validate on Historic Data"]
+        prediction["Prediction"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    reports -->|Langchain| financial_sections
+    reports -->|Langchain| statements_sections
+    financial_sections --> A_metrics
+    statements_sections --> RAG_Score
+    RAG_Score --> P_Score
+    P_Score --> data_smoothing
+    P_BU --> P_Time
+    P_Time --> P_Score
+    data_smoothing -->|Revenue vs Time Periods| t_evaluation
+    t_evaluation --> testing
+    testing --> prediction
+    A_metrics -->|Revenue vs Time Periods| a_evaluation
+    a_evaluation --> testing
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class reports,financial_sections,statements_sections data
+    class RAG_Score rags
+    class P_F,P_S,P_BU,P_Time,P_Score prompt
+    class A_metrics agent
+    class data_smoothing,t_evaluation,a_evaluation,testing,prediction analytics
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+    linkStyle 0,1 stroke:#1E90FF,stroke-dasharray:0
+    linkStyle 2,3 stroke:#FFD700,stroke-dasharray:0
+    linkStyle 4,5,6 stroke:#9370DB,stroke-dasharray:0
+    linkStyle 7,8,9 stroke:#FFA07A,stroke-dasharray:0
+    linkStyle 10,11,12 stroke:#3CB371,stroke-dasharray:0
+
+### patent
+flowchart LR
+    %% ========================
+    %% Modern Light Color Scheme (kept)
+    %% ========================
+    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef ai_agent fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef processing fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef analysis fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef output fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Components
+    %% ========================
+    subgraph data_sources["Patent Data"]
+        patents["Patents (Docs/Titles/Abstracts/Claims)"]
+    end
+
+    subgraph preprocess["Preprocess"]
+        text_clean["Normalize & Clean"]
+        chunk["Chunking"]
+    end
+
+    subgraph ai["AI Analysis"]
+        subgraph rag["RAG"]
+            embed["Embedding & Vectorize"]
+            vdb["Vector DB"]
+            retrieve["Retriever"]
+        end
+        subgraph agents["Agents"]
+            orchestrator["Orchestrator"]
+            cat_agent["Category Extractor"]
+            kw_agent["Keyword Extractor"]
+            pr_agent["Priority Scorer"]
+        end
+        llm_models["LLM (GPT-4o / Gemini)"]
+    end
+
+    subgraph analytics["Analytics & Landscaping"]
+        category_group["Category Clustering"]
+        keyword_cluster["Keyword Clustering"]
+        priority_calc["Priority Scoring"]
+        landscape["Landscape Analysis"]
+    end
+
+    subgraph out["Output"]
+        categories["Patent Categories"]
+        keywords["Keyword Analysis"]
+        priority["Priority Scores"]
+        report["Landscape Report"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    patents --> text_clean --> chunk
+    chunk --> embed --> vdb --> retrieve
+    retrieve --> orchestrator
+    llm_models --> orchestrator
+    orchestrator --> cat_agent
+    orchestrator --> kw_agent
+    orchestrator --> pr_agent
+    cat_agent --> category_group
+    kw_agent --> keyword_cluster
+    pr_agent --> priority_calc
+    category_group --> landscape
+    keyword_cluster --> landscape
+    priority_calc --> landscape
+    category_group --> categories
+    keyword_cluster --> keywords
+    priority_calc --> priority
+    landscape --> report
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class patents data_source
+    class text_clean,chunk,dedup processing
+    class embed,vdb,retrieve,llm_models,orchestrator,cat_agent,kw_agent,pr_agent ai_agent
+    class category_group,keyword_cluster,priority_calc,landscape analysis
+    class categories,keywords,priority,report output
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+    
+### tensileml
+flowchart TB
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef preprocessing fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef ml_engine fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef evaluation fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef deployment fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph data_sources["Main Data"]
+        tensile_data["VAS: Lab Test Results"]
+        material_properties["VAS: Material Properties"]
+        quality_tests["WebScada: Production line Data"]
+        manufacturing_params["WebScada: Manufacturing Parameters"]
+    end
+    
+    subgraph preprocessing["Data Preprocessing"]
+        time_series_prep["Time-Series Preparation"]
+        feature_engineering["Feature Engineering"]
+        cross_validation["Cross-Validation Setup"]
+    end
+    
+    subgraph ml_engine["ML Engine"]
+        forecasting_model["Time-Series Forecasting Model"]
+        model_training["Model Training"]
+    end
+    
+    subgraph evaluation["Model Evaluation"]
+        tensile_model_evaluation["Model Evaluation"]
+    end
+    
+    subgraph visualization["Visualization"]
+        plotly_charts["Plotly Charts"]
+    end
+    
+    subgraph deployment["Deployment"]
+        fastapi_service["FastAPI Service"]
+        azure_devops["Azure DevOps"]
+        real_time_predictions["Real-time Predictions"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    tensile_data -->|Process| time_series_prep
+    material_properties -->|Process| time_series_prep
+    quality_tests -->|Process| time_series_prep
+    manufacturing_params -->|Process| time_series_prep
+    time_series_prep -->|Engineer| feature_engineering
+    feature_engineering -->|Setup| cross_validation
+    cross_validation -->|Train| forecasting_model
+    forecasting_model -->|Train| model_training
+    model_training -->|Evaluate| tensile_model_evaluation
+    tensile_model_evaluation -->|Visualize| plotly_charts
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class tensile_data,material_properties,quality_tests,manufacturing_params data_source
+    class time_series_prep,feature_engineering,cross_validation preprocessing
+    class forecasting_model,model_training ml_engine
+    class tensile_model_evaluation evaluation
+    class plotly_charts visualization
+    class fastapi_service,azure_devops,real_time_predictions deployment
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
+
+### hypo
+flowchart LR
+    %% ========================
+    %% Modern Light Color Scheme
+    %% ========================
+    classDef data_source fill:#89CFF0,stroke:#1E90FF,color:#333,stroke-width:2px,rounded:5px
+    classDef preprocessing fill:#B19CD9,stroke:#9370DB,color:#333,stroke-width:2px,rounded:5px
+    classDef ml_engine fill:#FFA07A,stroke:#FF7F50,color:#333,stroke-width:2px,rounded:5px
+    classDef evaluation fill:#98FB98,stroke:#3CB371,color:#333,stroke-width:2px,rounded:5px
+    classDef visualization fill:#FFD700,stroke:#FFA500,color:#333,stroke-width:2px,rounded:5px
+    classDef deployment fill:#E0E0E0,stroke:#BDBDBD,color:#333,stroke-width:2px,rounded:5px
+    classDef optimization fill:#DDA0DD,stroke:#BA55D3,color:#333,stroke-width:2px,rounded:5px
+
+    %% ========================
+    %% Component Grouping
+    %% ========================
+    subgraph data_sources["Manufacturing Data"]
+        production_data["Production Process Data"]
+        die_parameters["Die Driver Parameters"]
+        quality_metrics["Quality Metrics"]
+        historical_performance["Historical Performance Data"]
+    end
+    
+    subgraph preprocessing["Data Preprocessing"]
+        data_cleaning["Data Cleaning"]
+        feature_engineering["Feature Engineering"]
+        hypothesis_testing["Hypothesis Testing"]
+    end
+    
+    subgraph ml_engine["ML Engine"]
+        scikit_learn["Scikit-learn Models"]
+        azure_ml_pipeline["Azure ML Pipeline"]
+    end
+    
+    subgraph experimentation["Experimentation (A/B Testing)"]
+        ab_design["Experiment Design"]
+        traffic_split["Traffic Split"]
+        stat_test["Statistical Testing"]
+        ab_results["Experiment Results"]
+    end
+    
+    subgraph evaluation["Model Evaluation"]
+        model_evaluation["Model Evaluation"]
+    end
+    
+    subgraph visualization["Visualization & Dashboards"]
+        plotly_dashboards["Plotly Dashboards"]
+    end
+    
+    subgraph deployment["Deployment"]
+        api_layer["API Layer"]
+        cicd_pipeline["CI/CD Pipeline"]
+        manufacturing_integration["Manufacturing Integration"]
+    end
+
+    %% ========================
+    %% Data Flow
+    %% ========================
+    production_data -->|Extract| data_cleaning
+    die_parameters -->|Extract| data_cleaning
+    quality_metrics -->|Extract| data_cleaning
+    historical_performance -->|Extract| data_cleaning
+    data_cleaning -->|Engineer| feature_engineering
+    feature_engineering -->|Test| hypothesis_testing
+    feature_engineering -->|Pipeline| azure_ml_pipeline
+    azure_ml_pipeline -->|Evaluate| model_evaluation
+    hypothesis_testing -->|Design| ab_design
+    ab_design -->|Allocate| traffic_split
+    traffic_split -->|Test| stat_test
+    stat_test -->|Results| ab_results
+    ab_results -->|Evaluate| model_evaluation
+    model_evaluation -->|Visualize| plotly_dashboards
+    scikit_learn -->|Serve| api_layer
+    api_layer -->|Deploy| cicd_pipeline
+    cicd_pipeline -->|Integrate| manufacturing_integration
+
+    %% ========================
+    %% Apply Color Coding
+    %% ========================
+    class production_data,die_parameters,quality_metrics,historical_performance data_source
+    class data_cleaning,feature_engineering,hypothesis_testing preprocessing
+    class scikit_learn,azure_ml_pipeline,ab_design,traffic_split,stat_test,ab_results ml_engine
+    class model_evaluation evaluation
+    class plotly_dashboards visualization
+    class api_layer,cicd_pipeline,manufacturing_integration deployment
+
+    %% ========================
+    %% Connection Styling
+    %% ========================
+    linkStyle default stroke:#7E8AA2,stroke-width:2px,fill:none
