@@ -104,9 +104,7 @@ function resetEmailForm() {
 
 // Handle email form submission
 function submitEmail(event) {
-    // Let the form submit to Formspree naturally
-    // Just show success message
-    showSuccessMessage();
+    event.preventDefault(); // Prevent default form submission
     
     const form = event.target;
     const submitBtn = form.querySelector('.btn-submit');
@@ -120,43 +118,46 @@ function submitEmail(event) {
         return;
     }
     
+    // Set the reply-to field to the visitor's email
+    document.getElementById('replyToField').value = email;
+    
     // Disable button and show loading
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Validating...';
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     
-    // Quick validation check (removed random failure for production)
-    setTimeout(() => {
-        // Email is valid, proceed with collection
-        const name = document.getElementById('visitorName').value || 'Anonymous';
-        const company = document.getElementById('companyName').value || 'Not specified';
-        
-        // Store email data (in production, this would be sent to your server)
-        const emailData = {
-            email: email,
-            name: name,
-            company: company,
-            timestamp: new Date().toISOString(),
-            userAgent: navigator.userAgent,
-            referrer: document.referrer
-        };
-        
-        // Form will be submitted to Formspree automatically
-        // Show success message
-        showSuccessMessage();
-        
-        // Reset form
-        form.reset();
-        
+    // Submit form to Formspree
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Show success message
+            showSuccessMessage();
+            
+            // Reset form
+            form.reset();
+            
+            // Close modal after a delay
+            setTimeout(() => {
+                closeEmailModal();
+            }, 5000);
+        } else {
+            throw new Error('Form submission failed');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showErrorMessage('Sorry, there was an error sending your request. Please try again.');
+    })
+    .finally(() => {
         // Re-enable button
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
-        
-        // Close modal after a delay
-        setTimeout(() => {
-            closeEmailModal();
-        }, 5000);
-        
-    }, 1000); // Reduced delay for better UX
+    });
 }
 
 // Show success message
