@@ -298,7 +298,7 @@ body {
 .resume-modal-header, .email-modal-header {
     background: linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%);
     color: #f5f5f5;
-    padding: 1.5rem 2rem;
+    padding: 0.5rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -420,7 +420,7 @@ body {
 
 /* Email Modal Styles */
 .email-form-content {
-    padding: 2rem;
+    padding: 1.5rem;
     color: #f5f5f5;
 }
 
@@ -531,6 +531,18 @@ body {
 .success-message p {
     color: #cbd5e1;
     margin-bottom: 1.5rem;
+}
+
+/* Fallback link for opening form in new tab */
+.fallback-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+.fallback-link:hover {
+    color: #bfdbfe;
 }
 
 /* Error Message */
