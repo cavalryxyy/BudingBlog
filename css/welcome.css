@@ -66,8 +66,21 @@
     color: #00aaff; /* Blue accent color to match project detail pages */
 }
 
+.welcome-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #f8fafc; /* Light text color to match projects section */
+}
+
+.welcome-content h3 i {
+    color: #00aaff; /* Blue accent color to match projects section */
+    margin-right: 0.5rem;
+}
+
 .welcome-content p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
 }
@@ -93,6 +106,10 @@
     
     .welcome-content h1 {
         font-size: 2.5rem;
+    }
+    
+    .welcome-content h3 {
+        font-size: 1.5rem;
     }
     
     .welcome-content p {
