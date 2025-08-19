@@ -1,4 +1,15 @@
 /* Enhanced Skill Tree Animation Section */
+
+/* Add h2 styling to match projects section */
+.skill-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+    color: #00aaff; /* Blue accent color from project detail pages */
+    letter-spacing: -0.02em;
+}
+
 .enhanced-skills-container {
     display: flex;
     justify-content: center;
