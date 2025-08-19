@@ -33,9 +33,12 @@ function openEmailModal() {
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
     
-    // Focus on email input
+    // Focus on email input if present (native form) otherwise no-op for iframe embed
     setTimeout(() => {
-        document.getElementById('visitorEmail').focus();
+        const emailInput = document.getElementById('visitorEmail');
+        if (emailInput) {
+            emailInput.focus();
+        }
     }, 300);
 }
 
@@ -104,11 +107,11 @@ function resetEmailForm() {
 
 // Handle email form submission
 function submitEmail(event) {
-    event.preventDefault(); // Prevent default form submission
+    // Prevent immediate navigation so we can validate first
+    event.preventDefault();
     
     const form = event.target;
     const submitBtn = form.querySelector('.btn-submit');
-    const originalText = submitBtn.innerHTML;
     const email = document.getElementById('visitorEmail').value.trim();
     
     // Validate email format
@@ -121,43 +124,12 @@ function submitEmail(event) {
     // Set the reply-to field to the visitor's email
     document.getElementById('replyToField').value = email;
     
-    // Disable button and show loading
+    // Disable button and show loading, then submit natively to JotForm
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     
-    // Submit form to Formspree
-    fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            // Show success message
-            showSuccessMessage();
-            
-            // Reset form
-            form.reset();
-            
-            // Close modal after a delay
-            setTimeout(() => {
-                closeEmailModal();
-            }, 5000);
-        } else {
-            throw new Error('Form submission failed');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showErrorMessage('Sorry, there was an error sending your request. Please try again.');
-    })
-    .finally(() => {
-        // Re-enable button
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-    });
+    // Use native form submission to avoid CORS/CSRF issues with fetch/XHR
+    form.submit();
 }
 
 // Show success message
