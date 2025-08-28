@@ -20,7 +20,7 @@ I am a Data Scientist & AI Engineer with extensive experience in:
 - **Email**: xuyuanyuan102888@outlook.com
 - **Mobile**: +86 15600159007 (same as WeChat)
 - **GitHub**: [https://github.com/cavalryxyy](https://github.com/cavalryxyy)
-- **Resume**: Available for download on my GitHub repository
+- **Resume**: Contact me via the Blog page dialogue / my email 
 
 ## 🏢 Professional Experience
 
@@ -32,7 +32,7 @@ I am a Data Scientist & AI Engineer with extensive experience in:
 ### Data Engineer & Data Analyst (Bekaert Technology Research Development Company, 2020~2022)
 - **Portfolio Analysis (Business Analytics / MLOps)**
 - **Tensile Strength Predictive Model (MLOps)**
-- **Die Driver Hypothesis Test & Predictive Model (MLOps)**
+- **Hypothesis Test & Predictive Model (MLOps)**
 - **Vehicle Trajectory Tracking (Data Analytics)**
 
 ### Python Developer (Bekaert Technology Research Development Company, 2019~2020)
@@ -78,7 +78,7 @@ BudingBlog/
 │   ├── portfolio-analysis.html
 │   ├── patent-landscaping.html
 │   ├── hypothesis-predictive-model.html
-│   ├── galva-process-optimization.html
+│   ├── process-optimization.html
 │   ├── web-calculator.html
 │   ├── trajectory-tracking.html
 │   └── industrial-iot-optimization.html
