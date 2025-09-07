@@ -184,6 +184,10 @@ config.json
 # Private resume file
 assets/data/YuanyuanXu_2025-2.pdf
 
+# LaTeX source files
+latex files/resume.tex
+latex files/skill_tree.tex
+
 # Static Website specific
 .sass-cache/
 *.css.map
