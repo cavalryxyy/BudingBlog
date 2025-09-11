@@ -29,7 +29,7 @@ I am a Data Scientist & AI Engineer with extensive experience in:
 - **Sentiment Analysis (AI Application)**
 - **Patent Landscaping (AI Application)**
 
-### Data Engineer & Data Analyst (Bekaert Technology Research Development Company, 2020~2022)
+### Data Engineer & Data Analyst (Bekaert Technology Research Development Company, 2021~2022)
 - **Portfolio Analysis (Business Analytics / MLOps)**
 - **Tensile Strength Predictive Model (MLOps)**
 - **Hypothesis Test & Predictive Model (MLOps)**
