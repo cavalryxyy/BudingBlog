@@ -74,14 +74,19 @@ BudingBlog/
 │   │   └── avatar_1.jpeg
 │   └── images/                         # Portfolio images
 ├── projects/                           # Individual project pages
-│   ├── sentiment-analysis.html
-│   ├── portfolio-analysis.html
+│   ├── business-analytics-agent.html
+│   ├── fine-tuned-chatbot.html
+│   ├── galva-process-optimization.html
+│   ├── hypothesis.html
+│   ├── industrial-iot-optimization.html
 │   ├── patent-landscaping.html
-│   ├── hypothesis-predictive-model.html
-│   ├── process-optimization.html
-│   ├── web-calculator.html
+│   ├── portfolio-analysis.html
+│   ├── sentiment-analysis.html
+│   ├── tensile-strength-predictive-model.html
 │   ├── trajectory-tracking.html
-│   └── industrial-iot-optimization.html
+│   └── web-calculator.html
+├── fix_mermaid.js                      # Script to fix Mermaid diagram rendering
+├── increase_font_size.js               # Script to increase diagram font size
 ├── live-reload.py                      # Development server with auto-reload
 ├── start-dev.sh                        # Development startup script
 ├── README.md                           # Project documentation
@@ -100,10 +105,12 @@ BudingBlog/
 - **Project Cards**: Collapsible job sections that expand to show project details
 - **Navigation**: Smooth scrolling between sections
 - **Responsive Design**: Optimized for desktop and mobile devices
+- **Mermaid Diagrams**: Interactive workflow charts in project details
 
 ### Development Tools
 - **Live Reload**: Automatic browser refresh on file changes (`live-reload.py`)
 - **Development Server**: Easy startup with `start-dev.sh`
+- **Maintenance Scripts**: Utilities for updating diagram configurations (`fix_mermaid.js`, `increase_font_size.js`)
 - **Modular Structure**: Organized CSS and JS files for maintainability
 
 ## 🎯 How to Use
@@ -134,4 +141,4 @@ python3 live-reload.py
 
 ---
 
-*© 2024 Yuanyuan Xu. All rights reserved.*
+*© 2025 Yuanyuan Xu. All rights reserved.*
