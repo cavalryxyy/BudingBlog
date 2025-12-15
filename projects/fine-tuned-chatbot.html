@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Knowledge Chatbot (2023)</title>
+    <link rel="stylesheet" href="../css/project-details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        /* Reuse existing styles */
+        #diagram-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            cursor: grab;
+            background-color: #f9f9f9;
+        }
+
+        #diagram-container.panning { cursor: grabbing; }
+        .mermaid { height: 100%; width: 100%; }
+        .mermaid svg { display: block; transform-origin: 0 0; }
+        #diagram-container img { display: block; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; will-change: transform; }
+
+        .diagram-controls {
+            position: absolute; top: 10px; right: 10px; z-index: 10; display: flex; flex-direction: column; gap: 5px;
+        }
+        .diagram-controls button {
+            background: rgba(0, 0, 0, 0.7); color: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer;
+            font-size: 14px; transition: all 0.3s ease; min-width: 30px; min-height: 30px; display: flex; align-items: center; justify-content: center; user-select: none;
+        }
+        .diagram-controls button:hover { background: rgba(0, 0, 0, 0.9); transform: scale(1.1); }
+        
+        .back-button {
+            position: fixed; top: 20px; left: 20px; background-color: #007bff; color: white; border: none; border-radius: 25px;
+            padding: 12px 20px; font-size: 14px; cursor: pointer; z-index: 1000; box-shadow: 0 2px 10px rgba(0,123,255,0.3); transition: all 0.3s ease;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .back-button:hover { background-color: #0056b3; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,123,255,0.4); }
+
+        /* New styles for code blocks and cost tables */
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            border-left: 4px solid #007bff;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        
+        .cost-table th, .cost-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .cost-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .detail-section {
+            margin-bottom: 30px;
+        }
+
+        .detail-section h3 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="back-button" onclick="goBackToMain()">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </button>
+            <h1>Enterprise Knowledge Chatbot (2023)</h1>
+        </header>
+
+        <main>
+            <div class="top-section">
+                <div class="key-achievement">
+                    <h2>Key Achievements</h2>
+                    <ul class="achievement-list">
+                        <li><strong>Enterprise RAG Architecture:</strong> Engineered an enterprise-grade RAG chatbot on Azure to automate Tier-1 technical support, ingesting 200+ internal documents and reducing ticket volume by 40%.</li>
+                        <li><strong>Model Fine-Tuning:</strong> Fine-tuned <strong>Llama 7B / Llama 3.2 70B</strong> on Azure ML using QLoRA and a synthetic dataset of 1,000 dialogue pairs, aligning model responses with corporate protocols and tone.</li>
+                        <li><strong>High-Throughput Serving:</strong> Architected a high-throughput inference pipeline using vLLM with PagedAttention on AKS, enabling concurrent serving of 200+ users with low retrieval latency.</li>
+                        <li><strong>Azure Integration & Search:</strong> Integrated the solution into Microsoft Teams via Azure Bot Service and Entra ID, implementing a Hybrid Search (Vector + BM25) strategy to ensure 92% precision on technical query retrieval.</li>
+                    </ul>
+                </div>
+                <div class="tech-stack">
+                    <h2>Tech Stack</h2>
+                    <div class="tech-category">
+                        <h3>Core AI</h3>
+                        <ul>
+                            <li>LLaMA 7B / Llama 3.2 70B (Quantized)</li>
+                            <li>LoRA / QLoRA (PEFT)</li>
+                            <li>text-embedding-ada-002 / text-embedding-3-large</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h3>Orchestration</h3>
+                        <ul>
+                            <li>LangChain (v0.2.x)</li>
+                            <li>FAISS (Vector Store)</li>
+                            <li>FastAPI</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h3>Azure Infrastructure</h3>
+                        <ul>
+                            <li>Azure ML Managed Endpoints</li>
+                            <li>Azure Bot Service (Teams)</li>
+                            <li>Azure Blob Storage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow">
+                <h2>System Architecture</h2>
+                <div id="diagram-container">
+                    <img src="../assets/images/placeholder.jpg" alt="System Architecture" style="width: 100%; height: auto;" />
+                    <div class="diagram-controls">
+                        <button id="zoom-in" title="Zoom In">+</button>
+                        <button id="zoom-out" title="Zoom Out">-</button>
+                        <button id="reset-view" title="Reset View">&#x21bb;</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Initialize controls for static image when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDiagramControls();
+        });
+    </script>
+    <script>
+        let diagramControls = {
+            container: null,
+            contentEl: null,
+            scale: 1,
+            panX: 0,
+            panY: 0,
+            isPanning: false,
+            startX: 0,
+            startY: 0,
+            initialPanX: 0,
+            initialPanY: 0
+        };
+
+        function initializeDiagramControls() {
+            console.log('Initializing diagram controls...');
+            
+            const controlsElement = document.querySelector('.diagram-controls');
+            if (controlsElement) {
+                controlsElement.classList.add('loading');
+                controlsElement.classList.remove('ready');
+            }
+            
+            diagramControls.container = document.getElementById('diagram-container');
+            if (!diagramControls.container) return;
+
+            diagramControls.contentEl = diagramControls.container.querySelector('img, svg');
+            if (!diagramControls.contentEl) return;
+
+            const zoomInBtn = document.getElementById('zoom-in');
+            const zoomOutBtn = document.getElementById('zoom-out');
+            const resetBtn = document.getElementById('reset-view');
+            
+            if (!zoomInBtn || !zoomOutBtn || !resetBtn) return;
+
+            setupEventListeners();
+            resetView();
+            
+            if (controlsElement) {
+                controlsElement.classList.remove('loading');
+                controlsElement.classList.add('ready');
+            }
+        }
+
+        function updateTransform() {
+            if (diagramControls.contentEl) {
+                const transform = `translate(${diagramControls.panX}px, ${diagramControls.panY}px) scale(${diagramControls.scale})`;
+                diagramControls.contentEl.style.transform = transform;
+            }
+        }
+
+        function zoomDiagram(factor, centerX, centerY) {
+            if (!diagramControls.contentEl) return;
+            
+            const rect = diagramControls.container.getBoundingClientRect();
+            const mouseX = centerX - rect.left;
+            const mouseY = centerY - rect.top;
+
+            const newScale = diagramControls.scale * factor;
+            
+            diagramControls.panX = mouseX - (mouseX - diagramControls.panX) * (newScale / diagramControls.scale);
+            diagramControls.panY = mouseY - (mouseY - diagramControls.panY) * (newScale / diagramControls.scale);
+            diagramControls.scale = newScale;
+
+            updateTransform();
+        }
+
+        function resetView() {
+            if (!diagramControls.contentEl || !diagramControls.container) return;
+            diagramControls.scale = 1;
+            diagramControls.panX = 0;
+            diagramControls.panY = 0;
+            updateTransform();
+        }
+
+        function setupEventListeners() {
+            const zoomInBtn = document.getElementById('zoom-in');
+            const zoomOutBtn = document.getElementById('zoom-out');
+            const resetBtn = document.getElementById('reset-view');
+            
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const rect = diagramControls.container.getBoundingClientRect();
+                    zoomDiagram(1.2, rect.left + rect.width / 2, rect.top + rect.height / 2);
+                });
+            }
+            
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const rect = diagramControls.container.getBoundingClientRect();
+                    zoomDiagram(0.8, rect.left + rect.width / 2, rect.top + rect.height / 2);
+                });
+            }
+            
+            if (resetBtn) {
+                resetBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    resetView();
+                });
+            }
+
+            diagramControls.container.addEventListener('mousedown', (event) => {
+                if (event.button !== 0) return;
+                diagramControls.isPanning = true;
+                diagramControls.container.classList.add('panning');
+                diagramControls.startX = event.clientX;
+                diagramControls.startY = event.clientY;
+                diagramControls.initialPanX = diagramControls.panX;
+                diagramControls.initialPanY = diagramControls.panY;
+            });
+
+            diagramControls.container.addEventListener('mousemove', (event) => {
+                if (diagramControls.isPanning) {
+                    event.preventDefault();
+                    diagramControls.panX = diagramControls.initialPanX + (event.clientX - diagramControls.startX);
+                    diagramControls.panY = diagramControls.initialPanY + (event.clientY - diagramControls.startY);
+                    updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                diagramControls.isPanning = false;
+                diagramControls.container.classList.remove('panning');
+            });
+
+            diagramControls.container.addEventListener('mouseleave', () => {
+                diagramControls.isPanning = false;
+                diagramControls.container.classList.remove('panning');
+            });
+        }
+        
+        function goBackToMain() {
+            if (localStorage.getItem('showingLoadingModal') === 'true') {
+                localStorage.removeItem('showingLoadingModal');
+            }
+            window.location.href = '../index.html';
+        }
+        
+        window.addEventListener('load', function() {
+            localStorage.removeItem('showingLoadingModal');
+        });
+    </script>
+</body>
+</html>

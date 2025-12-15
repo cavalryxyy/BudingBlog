@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Agentic Analytics Platform</title>
+    <link rel="stylesheet" href="../css/project-details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reuse existing styles */
+        #diagram-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            cursor: grab;
+            background-color: #f9f9f9;
+        }
+
+        #diagram-container.panning { cursor: grabbing; }
+        .mermaid { height: 100%; width: 100%; }
+        .mermaid svg { display: block; transform-origin: 0 0; }
+        #diagram-container img { display: block; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; will-change: transform; }
+
+        .diagram-controls {
+            position: absolute; top: 10px; right: 10px; z-index: 10; display: flex; flex-direction: column; gap: 5px;
+        }
+        .diagram-controls button {
+            background: rgba(0, 0, 0, 0.7); color: white; border: none; border-radius: 4px; padding: 8px 12px; cursor: pointer;
+            font-size: 14px; transition: all 0.3s ease; min-width: 30px; min-height: 30px; display: flex; align-items: center; justify-content: center; user-select: none;
+        }
+        .diagram-controls button:hover { background: rgba(0, 0, 0, 0.9); transform: scale(1.1); }
+        
+        .back-button {
+            position: fixed; top: 20px; left: 20px; background-color: #007bff; color: white; border: none; border-radius: 25px;
+            padding: 12px 20px; font-size: 14px; cursor: pointer; z-index: 1000; box-shadow: 0 2px 10px rgba(0,123,255,0.3); transition: all 0.3s ease;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .back-button:hover { background-color: #0056b3; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,123,255,0.4); }
+
+        /* Styles for tables */
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        
+        .tech-table th, .tech-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .tech-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="back-button" onclick="goBackToMain()">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </button>
+            <h1>Enterprise Agentic Analytics Platform</h1>
+        </header>
+
+        <main>
+            <div class="top-section">
+                <div class="key-achievement">
+                    <h2>Key Achievements</h2>
+                    <ul class="achievement-list">
+                        <li><strong>MCP-Driven Architecture:</strong> Designed a intelligent agent system using the <strong>LLM-powered model</strong> as Router and <strong>Model Context Protocol (MCP)</strong> server as the secure gateway, standardizing the interface between the orchestration layer and Azure Synapse for efficient SQL execution.</li>
+                        <li><strong>High-Performance Inference (vLLM):</strong> Integrated <strong>vLLM</strong> to serve specialized open-source models for routing and intermediate reasoning, ensuring high throughput and cost-efficiency alongside Azure OpenAI.</li>
+                        <li><strong>Scalable Enterprise Deployment:</strong> Engineered the platform within <strong>Azure Resource Groups</strong> to handle concurrent internal user sessions, leveraging serverless scalability to maintain consistent performance under fluctuating analytics loads.</li>
+                        <li><strong>Optimized Data Management:</strong> Implemented a "Move Code to Data" approach using Serverless SQL, enabling the agent to query terabytes of data directly in ADLS Gen2 without costly data migration or latency overhead.</li>
+                    </ul>
+                </div>
+                <div class="tech-stack">
+                    <h2>Tech Stack</h2>
+                    <div class="tech-category">
+                        <h3>AI & Inference</h3>
+                        <ul>
+                            <li>Azure OpenAI (GPT-4o)</li>
+                            <li>vLLM (High-Throughput Serving)</li>
+                            <li>LangChain / OpenAI SDK</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h3>Integration & Backend</h3>
+                        <ul>
+                            <li>Model Context Protocol (MCP) Server</li>
+                            <li>FastAPI + React</li>
+                            <li>Azure Container Apps</li>
+                        </ul>
+                    </div>
+                    <div class="tech-category">
+                        <h3>Data & Infrastructure</h3>
+                        <ul>
+                            <li>Azure Synapse Serverless SQL</li>
+                            <li>Azure Resource Groups</li>
+                            <li>ADLS Gen2 (Delta/Parquet)</li>
+                            <li>Redis (Semantic Caching)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow">
+                <h2>System Architecture</h2>
+                <div id="diagram-container">
+                    <!-- Placeholder for the architecture figure -->
+                    <img src="../assets/images/BA_MCP_agent.jpg" style="width: 100%; height: auto;" />
+                    <div class="diagram-controls">
+                        <button id="zoom-in" title="Zoom In">+</button>
+                        <button id="zoom-out" title="Zoom Out">-</button>
+                        <button id="reset-view" title="Reset View">&#x21bb;</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Initialize controls for diagram
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDiagramControls();
+        });
+    </script>
+    <script>
+        let diagramControls = {
+            container: null,
+            contentEl: null,
+            scale: 1,
+            panX: 0,
+            panY: 0,
+            isPanning: false,
+            startX: 0,
+            startY: 0,
+            initialPanX: 0,
+            initialPanY: 0
+        };
+
+        function initializeDiagramControls() {
+            console.log('Initializing diagram controls...');
+            
+            const controlsElement = document.querySelector('.diagram-controls');
+            if (controlsElement) {
+                controlsElement.classList.add('loading');
+                controlsElement.classList.remove('ready');
+            }
+            
+            diagramControls.container = document.getElementById('diagram-container');
+            if (!diagramControls.container) return;
+
+            diagramControls.contentEl = diagramControls.container.querySelector('img, svg');
+            if (!diagramControls.contentEl) return;
+
+            const zoomInBtn = document.getElementById('zoom-in');
+            const zoomOutBtn = document.getElementById('zoom-out');
+            const resetBtn = document.getElementById('reset-view');
+            
+            if (!zoomInBtn || !zoomOutBtn || !resetBtn) return;
+
+            setupEventListeners();
+            resetView();
+            
+            if (controlsElement) {
+                controlsElement.classList.remove('loading');
+                controlsElement.classList.add('ready');
+            }
+        }
+
+        function updateTransform() {
+            if (diagramControls.contentEl) {
+                const transform = `translate(${diagramControls.panX}px, ${diagramControls.panY}px) scale(${diagramControls.scale})`;
+                diagramControls.contentEl.style.transform = transform;
+            }
+        }
+
+        function zoomDiagram(factor, centerX, centerY) {
+            if (!diagramControls.contentEl) return;
+            
+            const rect = diagramControls.container.getBoundingClientRect();
+            const mouseX = centerX - rect.left;
+            const mouseY = centerY - rect.top;
+
+            const newScale = diagramControls.scale * factor;
+            
+            diagramControls.panX = mouseX - (mouseX - diagramControls.panX) * (newScale / diagramControls.scale);
+            diagramControls.panY = mouseY - (mouseY - diagramControls.panY) * (newScale / diagramControls.scale);
+            diagramControls.scale = newScale;
+
+            updateTransform();
+        }
+
+        function resetView() {
+            if (!diagramControls.contentEl || !diagramControls.container) return;
+            diagramControls.scale = 1;
+            diagramControls.panX = 0;
+            diagramControls.panY = 0;
+            updateTransform();
+        }
+
+        function setupEventListeners() {
+            const zoomInBtn = document.getElementById('zoom-in');
+            const zoomOutBtn = document.getElementById('zoom-out');
+            const resetBtn = document.getElementById('reset-view');
+            
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const rect = diagramControls.container.getBoundingClientRect();
+                    zoomDiagram(1.2, rect.left + rect.width / 2, rect.top + rect.height / 2);
+                });
+            }
+            
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const rect = diagramControls.container.getBoundingClientRect();
+                    zoomDiagram(0.8, rect.left + rect.width / 2, rect.top + rect.height / 2);
+                });
+            }
+            
+            if (resetBtn) {
+                resetBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    resetView();
+                });
+            }
+
+            diagramControls.container.addEventListener('mousedown', (event) => {
+                if (event.button !== 0) return;
+                diagramControls.isPanning = true;
+                diagramControls.container.classList.add('panning');
+                diagramControls.startX = event.clientX;
+                diagramControls.startY = event.clientY;
+                diagramControls.initialPanX = diagramControls.panX;
+                diagramControls.initialPanY = diagramControls.panY;
+            });
+
+            diagramControls.container.addEventListener('mousemove', (event) => {
+                if (diagramControls.isPanning) {
+                    event.preventDefault();
+                    diagramControls.panX = diagramControls.initialPanX + (event.clientX - diagramControls.startX);
+                    diagramControls.panY = diagramControls.initialPanY + (event.clientY - diagramControls.startY);
+                    updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                diagramControls.isPanning = false;
+                diagramControls.container.classList.remove('panning');
+            });
+
+            diagramControls.container.addEventListener('mouseleave', () => {
+                diagramControls.isPanning = false;
+                diagramControls.container.classList.remove('panning');
+            });
+        }
+        
+        function goBackToMain() {
+            if (localStorage.getItem('showingLoadingModal') === 'true') {
+                localStorage.removeItem('showingLoadingModal');
+            }
+            window.location.href = '../index.html';
+        }
+        
+        window.addEventListener('load', function() {
+            localStorage.removeItem('showingLoadingModal');
+        });
+    </script>
+</body>
+</html>
